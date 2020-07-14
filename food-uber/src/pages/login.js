@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from "axios"
 import {Link} from "react-router-dom"
+import Cookies from "js-cookie"  
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -8,15 +9,18 @@ const Login = () => {
         password: "",
         dp: ""
     })
+
     const [auth, setAuth] = useState(false)
 
     const [userData, setUserData] = useState({
         Name: "",
         profile: ""
     })
+    let session = ""
 
     const {email, password, dp} = formData
     const {Name, profile} = userData
+    let sid = Cookies.get(session) || ""
     const handleChange = e => {
         let {name, value} = e.target
         setFormData({...formData, [name]: value})
@@ -29,7 +33,8 @@ const Login = () => {
         }
         axios.post("http://faraja-food-uber.herokuapp.com/api/login", user)
         .then(res => {
-            console.log(res.data)
+            console.log(res)
+            session = res.data.session
             setUserData({
                 Name: res.data.result[0].name,
                 profile: res.data.result[0].dp_path
@@ -65,7 +70,7 @@ const Login = () => {
         })
     }
 
-    console.log(auth, userData)
+    // console.log(auth, userData, sid)
     return (
         <div>
             <form onSubmit={e => {handleSubmit(e)}}>
