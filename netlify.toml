@@ -1,0 +1,4 @@
+[build]
+base = "food-uber/"
+publish = "/build/"
+command = "npm run build"
