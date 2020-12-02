@@ -8,6 +8,8 @@ import Home from "./pages/"
 import Login from "./pages/auth/Login"
 import Signup from "./pages/auth/Signup"
 
+import Dashboard from "./pages/dashboard/"
+
 // import logo
 import logo from "./assets/images/logo.png"
 
@@ -59,6 +61,7 @@ const App = () => {
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/signup" render={() => <Signup />} />
           {/* auth routes */}
+          <Route path="/dashboard" render={() => <Dashboard />} />
         </Switch>
       )}
     </div>

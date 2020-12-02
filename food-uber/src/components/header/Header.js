@@ -49,20 +49,15 @@ const Header = () => {
                   </NavLink>
                 </li>
                 <li>
+                  <NavLink to="/Favourites" activeClassName="active">
+                    Favourites
+                  </NavLink>
+                </li>
+                <li>
                   <NavLink to="/profile" activeClassName="active">
                     Profile
                   </NavLink>
                 </li>
-                {user.data.role === "admin" ||
-                  ("main-admin" && (
-                    <>
-                      <li>
-                        <NavLink to="/dashboard" activeClassName="active">
-                          Dashboard
-                        </NavLink>
-                      </li>
-                    </>
-                  ))}
               </>
             ) : (
               <>
@@ -76,6 +71,18 @@ const Header = () => {
                 </li>
               </>
             )}
+            {(user.isAuthenticated &&
+              user.data[0].role &&
+              user.data[0].role !== "admin") ||
+            "main-admin" ? (
+              <>
+                <li>
+                  <NavLink to="/dashboard" className="cart">
+                    Dashboard
+                  </NavLink>
+                </li>
+              </>
+            ) : null}
             <li>
               <NavLink to="/cart" activeClassName="active">
                 <AiOutlineShoppingCart className="icon" />
