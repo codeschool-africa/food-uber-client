@@ -5,11 +5,13 @@ header.dashboard-header
     top: 0
     height: 60px
     width: calc(100% - 250px)
-    // box-shadow: 0 0 30px rgba(0, 0, 0, .2)
+    box-shadow: 0 0 30px rgba(0, 0, 0, .2)
     // box-shadow: -6.22302px -6.22302px 18.6691px #3B4451, 6.22302px 6.22302px 18.6691px #000000
     z-index: 5
     transition: .35s
     border-bottom-left-radius: 20px
+    color: black
+    background: white
     &.full-width
         width: calc(100% - 70px)
         margin-left: 70px
@@ -35,7 +37,7 @@ header.dashboard-header
                 height: 2px
                 width: 20px
                 display: block
-                background: white
+                background: black
         .logo
             margin-left: 10px
             img
@@ -82,6 +84,7 @@ header.dashboard-header
                         // color: #CEDBDC
                         &:hover
                             // color: $primary-color
+                            opacity: .8
                     span
                         // padding: 7px 20px
                         margin: 0
@@ -94,14 +97,15 @@ header.dashboard-header
                 justify-content: center
                 align-items: center
                 display: flex
-                font-size: 18px
+                font-size: 16px
                 border-radius: 5px
                 margin-right: 25px
-                color: #CEDBDC
+                // color: #CEDBDC
                 // color: $dim-primary
                 .icon
                     margin-left: 10px
                 &:hover
+                    opacity: .8
                     // color: $primary-color
                     // box-shadow: inset -6.22302px -6.22302px 6.22302px #363e48, inset 3.73381px 3.73381px 6.22302px #000000
             .profile-image
@@ -124,15 +128,15 @@ a.user-name:hover ~ ul.dropdown
 
 @media screen and ( max-width: 768px )
     header.dashboard-header
-        // width: calc(100% - 70px)
-        width: 100%
-        // margin-left: 70px
-        margin-left: 0
+        width: calc(100% - 70px)
+        // width: 100%
+        margin-left: 70px
+        // margin-left: 0
         &.full-width
-            // width: calc(100% - 70px)
-            // margin-left: 70px
-            width: 100%
-            margin-left: 0
+            width: calc(100% - 70px)
+            margin-left: 70px
+            // width: 100%
+            // margin-left: 0
         .container
             justify-content: space-between
             position: relative

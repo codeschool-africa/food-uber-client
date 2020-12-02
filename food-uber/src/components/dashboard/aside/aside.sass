@@ -8,6 +8,7 @@ aside.aside-left
     z-index: 10
     top: 0
     transition: .35s
+    background: #CB2A1F
     &::-webkit-scrollbar
         width: 0px
         background: white
@@ -67,6 +68,7 @@ aside.aside-left
                     overflow: hidden
                     font-size: 1.05rem
                     // letter-spacing: .5px
+                    color: white
                     .icon
                         margin-right: 15px
                         font-size: 24px
@@ -74,8 +76,9 @@ aside.aside-left
                     span
                         transition: .2s
                     &:hover
-                        // background: #021224
+                        background: #0212243d
                     &:hover, &.active
+                        background: #0212243d
                         // box-shadow: inset -6.22302px -6.22302px 6.22302px #3B4451, inset 3.73381px 3.73381px 6.22302px #000000
 @media screen and ( max-width: 992px )
     aside.aside-left
@@ -84,16 +87,13 @@ aside.aside-left
 @media screen and ( max-width: 768px )
     aside.aside-left
         width: 70px
-        top: 70px
+        top: 0
         padding-bottom: 60px
         &.side-nav-open
             width: 200px
-            // background: #161825
-            // box-shadow: 7px 4px 10px 2px rgba(0, 0, 0, .2)
             .profile-name
                 display: none
             nav
-                // min-height: calc(100vh - 130px)
                 padding-right: 20px
                 ul
                     padding: 0
@@ -101,8 +101,6 @@ aside.aside-left
                         a
                             justify-content: flex-start
                             width: 100%
-                            .icon
-                                // margin-right: 15px !important
             .logo, nav ul li a
                 align-items: center
                 justify-content: flex-start
