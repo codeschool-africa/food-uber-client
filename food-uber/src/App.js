@@ -7,6 +7,12 @@ import Home from "./pages/"
 import Login from "./pages/auth/Login"
 import Signup from "./pages/auth/Signup"
 
+// import logo
+import logo from "./assets/images/logo.png"
+
+// styles
+import "./styles/style.sass"
+
 axios.defaults.baseURL = "http://faraja-food-uber.herokuapp.com/api"
 
 const App = () => {
@@ -26,10 +32,12 @@ const App = () => {
   return (
     <div className="App">
       {loading ? (
-        <h1>
-          Loading <br />
-          Please Wait
-        </h1>
+        <div className="loading-screen">
+          <div className="container">
+            <img src={logo} alt="logo" />
+            <span>Please Wait...</span>
+          </div>
+        </div>
       ) : (
         <Switch>
           <Route exact path="/" render={() => <Home />} />

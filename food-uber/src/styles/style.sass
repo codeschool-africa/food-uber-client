@@ -1,0 +1,74 @@
+*
+    padding: 0
+    margin: 0
+    box-sizing: border-box
+
+html
+    background: #EDF6F8
+
+body, html
+    height: 100%
+    width: 100%
+    overflow-x: hidden
+    scroll-behavior: smooth
+
+li
+    list-style: none
+
+a
+    text-decoration: none
+
+.container
+    width: 80%
+    margin: auto
+
+.loading-screen
+    height: 100vh
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    .container
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        text-align: center
+        img
+            height: 50px
+            margin-bottom: 30px
+            width: auto
+
+.btn
+    // width: 
+    display: inline-flex
+    justify-content: space-between
+    align-items: center
+    height: 40px
+    font-weight: bold
+    transition: .35s
+    &.btn-primary
+        background: #C7180C
+        color: white
+        padding-left: 20px
+        span
+            margin-left: 20px
+            width: 40px
+            height: 40px
+            display: flex
+            justify-content: center
+            align-items: center
+            background: #ba7104
+            font-size: 24px
+            color: white
+            transition: .35s
+        &:hover
+            outline: 1px solid #C7180C
+            background: white
+            color: black
+            span
+                padding-left: 10px
+
+@media screen and ( max-width: 768px )
+    .container
+        width: 90%
