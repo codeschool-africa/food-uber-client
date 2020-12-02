@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 
 // components
 import Banner from "../components/banner/Banner"
+import FeaturedFood from "../components/featured/FeaturedFood"
+// imag
 import plate from "../assets/images/featured_plate.png"
 
 const Home = () => {
@@ -24,6 +26,7 @@ const Home = () => {
           </Link>
         </div>
       </Banner>
+      <FeaturedFood />
     </div>
   )
 }
