@@ -13,21 +13,24 @@ const Profile = () => {
         // setDp(reader.result)
       })
       reader.readAsDataURL(e.target.files[0])
-      //   console.log(dp)
+      console.log(dp)
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     let token = localStorage.getItem("token")
+    let formData = new FormData()
+    formData.append("dp", dp)
     let config = {
       headers: {
+        "Content-Type": "multipart/form-data; boundary=AaB03x",
         authorization: token,
       },
     }
     if (dp) {
       axios
-        .post("/api/upload-dp", dp, config)
+        .post("/upload-dp", formData, config)
         .then((res) => {
           console.log(res.data)
         })
