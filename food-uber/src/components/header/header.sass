@@ -39,6 +39,7 @@ header.nav-header
                     font-weight: bold
                     position: relative
                     padding: 0 15px 0 0
+                    transition: .35s
                     &::before
                         content: ""
                         position: absolute
@@ -59,6 +60,8 @@ header.nav-header
                         right: 30px
                         padding: 0
                         height: 100%
+                        &::before
+                            width: 0
                         span
                             position: absolute
                             top: -5px
@@ -120,6 +123,7 @@ header.nav-header
                     margin: 0 7px 0
                     a
                         padding: 0
+                        font-weight: normal
                         &:hover, &.active
                             padding: 0 10px 0 0
                         &.cart
