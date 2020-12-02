@@ -13,7 +13,7 @@ const Profile = () => {
         // setDp(reader.result)
       })
       reader.readAsDataURL(e.target.files[0])
-      console.log(dp)
+      console.log(dp, imgData)
     }
   }
 
