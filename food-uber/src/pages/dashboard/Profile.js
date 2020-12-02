@@ -47,7 +47,7 @@ const Profile = () => {
         <input type="file" name="dp" onChange={(e) => handleChange(e)} />
         <button type="submit">Submit</button>
       </form>
-      {imgData && <img src={imgData} alt="" />}
+      {/* {imgData && <img src={imgData} alt="" />} */}
     </div>
   )
 }
