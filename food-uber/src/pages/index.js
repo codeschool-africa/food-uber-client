@@ -18,7 +18,7 @@ const Home = () => {
         <div className="banner__headline">
           <h1>It's that Simple.</h1>
           <p>
-            Select what you want to eat from our menu, <br />
+            Select your favourite plate from our menu, <br />
             We’ll <span>deliver</span> it to you, for <span>FREE!!</span>
           </p>
           <Link to="/menu" className="btn btn-primary">

@@ -13,7 +13,6 @@
         background: #EDF6F8
         // z-index: 1
     &::before
-
         height: 170vh
         width: 170vh
         right: 30vw
@@ -48,7 +47,8 @@
         justify-content: center
         .banner__img
             width: 50%
-            padding-right: 40px
+            padding-right: 0
+            margin-right: -10px
             text-align: right
             img
                 min-width: 350px
@@ -56,12 +56,50 @@
         .banner__headline
             max-width: 50%
             h1
-                font-size: clamp(24px, 10vw, 90px)
+                font-size: clamp(36px, 10vw, 90px)
             p
-                font-size: clamp(16px, 2vw, 18px)
+                font-size: clamp(15px, 2vw, 18px)
                 text-transform: uppercase
                 line-height: 30px
                 margin: 20px 0
                 span
                     color: #C7180C
                     font-weight: 700
+
+@media screen and ( max-width: 992px )
+    .banner
+        .container
+            .banner__img
+                img
+                    min-width: 330px
+                    filter: drop-shadow(-15px 2px 25px rgba(0, 0, 0, .4))
+
+@media screen and ( max-width: 768px )
+    .banner
+        min-height: 100vh
+        position: relative
+        &::before
+            height: 130vh
+            width: 130vh
+            right: 55vw
+            top: -15vh
+            bottom: 25vh
+        &::after
+            height: 200vh
+            width: 200vh
+            left: 40%
+        .before
+            top: -5vh
+            left: 55vw
+            height: 130vh
+            width: 130vh
+        .container
+            padding: 70px 0
+            .banner__img
+                width: 100%
+                img
+                    min-width: 120%
+            .banner__headline
+                max-width: 100%
+                margin-top: -30px
+                z-index: 6

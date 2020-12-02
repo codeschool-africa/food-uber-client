@@ -19,6 +19,7 @@ header.nav-header
         min-height: 70px
         width: 70%
         z-index: 12
+        padding: 0
         .logo
             height: 40px
             transition: transform .35s
@@ -53,3 +54,78 @@ header.nav-header
                         color: #C7180C
                         &::before
                             height: 3px
+                    &.cart
+                        position: absolute
+                        right: 30px
+                        padding: 0
+                        height: 100%
+                        span
+                            position: absolute
+                            top: -5px
+                            right: -5px
+                            height: 13px
+                            width: 13px
+                            background: red
+                            border-radius: 50%
+                        .icon
+                            font-size: 25px
+
+@media screen and ( max-width: 1200px )
+    header.nav-header
+        .container
+            width: 90%
+            .logo
+                height: 35px
+            ul
+                display: flex
+                li
+                    margin: 0 5px 0 10px
+                    a
+                        padding: 0 10px 0 0
+                        &.cart
+                            position: absolute
+                            right: 20px
+                            padding: 0
+                            height: 100%
+                            .icon
+                                font-size: 20px
+
+@media screen and ( max-width: 768px )
+    header.nav-header
+
+        .container
+            width: 95%
+            flex-wrap: wrap
+            .logo
+                height: 30px
+                order: 2
+                position: sticky
+                top: 0
+            nav.navigation
+                order: 3
+                position: sticky
+                top: 0
+            nav.auth
+                order: 1
+                width: 100%
+                ul
+                    justify-content: flex-end
+                    padding: 15px 20px 15px
+                    li
+                        a
+                            text-transform: capitalize
+            ul
+                display: flex
+                li
+                    margin: 0 7px 0
+                    a
+                        padding: 0
+                        &:hover, &.active
+                            padding: 0 10px 0 0
+                        &.cart
+                            position: absolute
+                            right: 20px
+                            padding: 0
+                            height: 100%
+                            .icon
+                                font-size: 20px

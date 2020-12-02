@@ -77,14 +77,15 @@ const Header = () => {
             "main-admin" ? (
               <>
                 <li>
-                  <NavLink to="/dashboard" className="cart">
+                  <NavLink to="/dashboard" activeClassName="active">
                     Dashboard
                   </NavLink>
                 </li>
               </>
             ) : null}
             <li>
-              <NavLink to="/cart" activeClassName="active">
+              <NavLink to="/cart" className="cart">
+                <span></span>
                 <AiOutlineShoppingCart className="icon" />
               </NavLink>
             </li>
