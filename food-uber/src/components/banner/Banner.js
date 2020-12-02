@@ -1,12 +1,12 @@
 import React from "react"
-
+import Header from "../header/Header"
 import "./banner.sass"
 
 const Banner = ({ children }) => {
   return (
     <div className="banner">
       <div className="before"></div>
-      <header>{/* <nav>navgation</nav> */}</header>
+      <Header />
       <div className="container">{children}</div>
     </div>
   )
