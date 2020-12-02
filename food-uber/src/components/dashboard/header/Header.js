@@ -20,7 +20,7 @@ const Header = ({ navOpen, handleNav }) => {
     })
     localStorage.setItem("token", null)
   }
-  if (user && user.data) console.log(user.data[0])
+  // if (user && user.data) console.log(user.data[0])
 
   return (
     <header
