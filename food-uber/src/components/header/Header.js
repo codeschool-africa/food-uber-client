@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
 import { NavLink } from "react-router-dom"
+import { AiOutlineShoppingCart } from "react-icons/all"
 import "./header.sass"
 import { UserContext } from "../../context/UserContext"
 
@@ -52,6 +53,16 @@ const Header = () => {
                     Profile
                   </NavLink>
                 </li>
+                {user.data.role === "admin" ||
+                  ("main-admin" && (
+                    <>
+                      <li>
+                        <NavLink to="/dashboard" activeClassName="active">
+                          Dashboard
+                        </NavLink>
+                      </li>
+                    </>
+                  ))}
               </>
             ) : (
               <>
@@ -67,7 +78,7 @@ const Header = () => {
             )}
             <li>
               <NavLink to="/cart" activeClassName="active">
-                Cart
+                <AiOutlineShoppingCart className="icon" />
               </NavLink>
             </li>
           </ul>

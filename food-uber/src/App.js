@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { Switch, Route } from "react-router-dom"
 import axios from "axios"
+import { UserContext } from "./context/UserContext"
 
 // components
 import Home from "./pages/"
@@ -16,19 +17,33 @@ import "./styles/style.sass"
 axios.defaults.baseURL = "http://faraja-food-uber.herokuapp.com/api"
 
 const App = () => {
+  let [user, setUser] = useContext(UserContext)
   let [loading, setLoading] = useState(true)
   useEffect(() => {
+    let token = localStorage.getItem("token")
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    }
     axios
-      .get("/get-featured-foods")
+      .get("/auth", config)
       .then((res) => {
         setLoading(false)
-        console.log(res.data)
+        if (res.data) {
+          setUser({
+            ...user,
+            isAuthenticated: true,
+            data: res.data.results,
+          })
+        }
       })
       .catch((err) => {
         setLoading(false)
         console.log(err)
       })
-  }, [])
+  }, [user, setUser])
   return (
     <div className="App">
       {loading ? (

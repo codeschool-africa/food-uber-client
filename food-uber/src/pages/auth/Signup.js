@@ -1,7 +1,159 @@
-import React from "react"
+import React, { useState, useContext } from "react"
+import { Link } from "react-router-dom"
+import {
+  MdSecurity,
+  MdMailOutline,
+  BiUserCircle,
+  BiPhone,
+} from "react-icons/all"
+import Auth from "./auth"
+import axios from "axios"
+import { UserContext } from "../../context/UserContext"
+import setAuthToken from "../../utils/authToken"
 
 const Signup = () => {
-  return <div>Sign Up</div>
+  let [loading, setLoading] = useState(false)
+  // let [errorMsg, setErrorMsg] = useState(null)
+  let [user, setUser] = useContext(UserContext)
+  let [formData, setFormData] = useState({
+    Name: "",
+    email: "",
+    tel: "",
+    password: "",
+  })
+  const { Name, email, tel, password } = formData
+  const handleChange = (e) => {
+    let { name, value } = e.target
+    setFormData({
+      ...formData,
+      [name]: value,
+    })
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setLoading(true)
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+    let User = {
+      name: Name,
+      email,
+      tel,
+      password,
+    }
+
+    const body = JSON.stringify(User)
+    axios
+      .post("/register", body, config)
+      .then((res) => {
+        // console.log(res)
+        if (res.data.msg) console.log(res.data.msg)
+        if (res.data.token && res.data.results) {
+          localStorage.setItem("token", res.data.token)
+          setUser({
+            ...user,
+            isAuthenticated: true,
+            data: res.data.results,
+          })
+          setAuthToken(res.data.token)
+        }
+        setLoading(false)
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log("Internet connection error")
+        }
+        setLoading(false)
+      })
+  }
+  return (
+    <Auth title="Create an account and start ordering food">
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <div className="form-group">
+          <label htmlFor="name">
+            <div className="icon-container">
+              <BiUserCircle className="icon" />
+            </div>
+            <div className="input-container">
+              <span>Your Full Name:</span>
+              <input
+                type="text"
+                placeholder="example@email.com"
+                name="Name"
+                id="name"
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+          </label>
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">
+            <div className="icon-container">
+              <MdMailOutline className="icon" />
+            </div>
+            <div className="input-container">
+              <span>Your Email Address:</span>
+              <input
+                type="email"
+                placeholder="example@email.com"
+                name="email"
+                id="email"
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+          </label>
+        </div>
+        <div className="form-group">
+          <label htmlFor="tel">
+            <div className="icon-container">
+              <BiPhone className="icon" />
+            </div>
+            <div className="input-container">
+              <span>Your Phone Number:</span>
+              <input
+                type="text"
+                placeholder="2558578585"
+                name="tel"
+                id="tel"
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+          </label>
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">
+            <div className="icon-container">
+              <MdSecurity className="icon" />
+            </div>
+            <div className="input-container">
+              <span>Your Password:</span>
+              <input
+                type="password"
+                placeholder="**********"
+                name="password"
+                id="password"
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+          </label>
+        </div>
+        <div className="btns">
+          <button className="btn btn-primary" disabled={loading}>
+            {loading ? "Please Wait..." : "SIGNUP"}
+          </button>
+        </div>
+        <div className="btns">
+          <Link className="btn btn-secondary" to="/login">
+            Already registered? Login
+          </Link>
+        </div>
+      </form>
+    </Auth>
+  )
 }
 
 export default Signup
