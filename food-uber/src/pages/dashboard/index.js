@@ -7,6 +7,7 @@ import Header from "../../components/dashboard/header/Header"
 import AsideLeft from "../../components/dashboard/aside/AsideLeft"
 
 // import Home from "./pages/"
+import Profile from "./Profile"
 
 //styles
 import "../../styles/pages/dashboard.sass"
@@ -45,10 +46,15 @@ const Dashboard = () => {
                 ></div>
               )}
               <Switch location={location} key={location.pathname}>
-                <Route exact path={`/`} key={`Home`}>
+                <Route exact path={`/dashboard/`} key={`Home`}>
                   <main className={navOpen ? "main" : "main full-width"}>
                     <div />
-                    Hello
+                    Hello from home page
+                  </main>
+                </Route>
+                <Route exact path={`/dashboard/profile`} key={`Home`}>
+                  <main className={navOpen ? "main" : "main full-width"}>
+                    <Profile />
                   </main>
                 </Route>
               </Switch>

@@ -58,7 +58,10 @@ const AsideLeft = ({ asideOpen, setnavOpen, isMobile }) => {
                   isMobile && setnavOpen(true)
                 }}
               >
-                <NavLink to={`/${prop.path}`} activeClassName="active">
+                <NavLink
+                  to={`/dashboard/${prop.path}`}
+                  activeClassName="active"
+                >
                   {prop.icon}
                   <span>{prop.name}</span>
                 </NavLink>
