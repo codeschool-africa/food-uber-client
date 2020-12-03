@@ -71,10 +71,10 @@ const Header = () => {
                 </li>
               </>
             )}
-            {(user.isAuthenticated &&
-              user.data[0].role &&
-              user.data[0].role !== "admin") ||
-            "main-admin" ? (
+            {user.isAuthenticated &&
+            user.data[0].role &&
+            (user.data[0].role === "admin" ||
+              user.data[0].role === "main-admin") ? (
               <>
                 <li>
                   <NavLink to="/dashboard" activeClassName="active">
