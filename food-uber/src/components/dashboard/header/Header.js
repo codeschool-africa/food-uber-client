@@ -11,7 +11,10 @@ import "./header.sass"
 const Header = ({ navOpen, handleNav }) => {
   const [user, setUser] = useContext(UserContext)
   const [open, setOpen] = useState(false)
-  //   let name = user.name.split(" ")[0]
+  let Name
+  if (user && user.data) {
+    Name = user.data[0].name.split(" ")[0]
+  }
   const logout = () => {
     setUser({
       ...user,
@@ -49,7 +52,7 @@ const Header = ({ navOpen, handleNav }) => {
             className="user-name nav-link"
             // onTap={() => setOpen(!open)}
           >
-            <span className="nav-link">Name</span>
+            <span className="nav-link">{Name}</span>
             <FaAngleDown className="icon" />
           </a>
           <ul className={open ? "dropdown show" : "dropdown"}>
@@ -81,6 +84,7 @@ const Header = ({ navOpen, handleNav }) => {
               <img
                 src={`http://faraja-food-uber.herokuapp.com/assets/uploads/dp/${user.data[0].dp_path}`}
                 alt="profile/dp"
+                // lazy={true}
               />
             )}
           </div>

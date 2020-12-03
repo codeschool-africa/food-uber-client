@@ -8,6 +8,7 @@ import AsideLeft from "../../components/dashboard/aside/AsideLeft"
 
 // import Home from "./pages/"
 import Profile from "./Profile"
+import Food from "./food"
 
 //styles
 import "../../styles/pages/dashboard.sass"
@@ -55,6 +56,11 @@ const Dashboard = () => {
                 <Route exact path={`/dashboard/profile`} key={`Home`}>
                   <main className={navOpen ? "main" : "main full-width"}>
                     <Profile />
+                  </main>
+                </Route>
+                <Route exact path={`/dashboard/food`} key={`Home`}>
+                  <main className={navOpen ? "main" : "main full-width"}>
+                    <Food />
                   </main>
                 </Route>
               </Switch>
