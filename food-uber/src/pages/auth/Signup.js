@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import {
   MdSecurity,
   MdMailOutline,
@@ -12,6 +12,7 @@ import { UserContext } from "../../context/UserContext"
 import setAuthToken from "../../utils/authToken"
 
 const Signup = () => {
+  let history = useHistory()
   let [loading, setLoading] = useState(false)
   // let [errorMsg, setErrorMsg] = useState(null)
   let [user, setUser] = useContext(UserContext)
@@ -58,6 +59,7 @@ const Signup = () => {
             data: res.data.results,
           })
           setAuthToken(res.data.token)
+          if (user.isAuthenticated) history.goBack()
         }
         setLoading(false)
       })

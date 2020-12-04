@@ -23,7 +23,7 @@ const Header = ({ navOpen, handleNav }) => {
     })
     localStorage.setItem("token", null)
   }
-  // if (user && user.data) console.log(user.data[0])
+  if (user && user.data) console.log(user.data[0])
 
   return (
     <header
@@ -82,7 +82,7 @@ const Header = ({ navOpen, handleNav }) => {
           <div className="profile-image">
             {user && user.data && user.data[0].dp_path && (
               <img
-                src={`http://faraja-food-uber.herokuapp.com/assets/uploads/dp/${user.data[0].dp_path}`}
+                src={user.data[0].dp_path}
                 alt="profile/dp"
                 // lazy={true}
               />

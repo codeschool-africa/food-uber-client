@@ -2,11 +2,12 @@ import React, { useState, useContext } from "react"
 import axios from "axios"
 import Auth from "./auth"
 import { MdSecurity, MdMailOutline } from "react-icons/all"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import { UserContext } from "../../context/UserContext"
 import setAuthToken from "../../utils/authToken"
 
 const Login = () => {
+  let history = useHistory()
   let [loading, setLoading] = useState(false)
   // let [errorMsg, setErrorMsg] = useState(null)
   let [user, setUser] = useContext(UserContext)
@@ -51,6 +52,7 @@ const Login = () => {
           setAuthToken(res.data.token)
         }
         setLoading(false)
+        if (user.isAuthenticated) history.goBack()
       })
       .catch((err) => {
         if (err) {

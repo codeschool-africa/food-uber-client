@@ -11,7 +11,7 @@ const Profile = () => {
       const reader = new FileReader()
       reader.addEventListener("load", () => {
         setImgData(reader.result)
-        // setDp(reader.result)
+        setDp(reader.result)
       })
       reader.readAsDataURL(e.target.files[0])
       // console.log(dp, imgData)
@@ -22,17 +22,22 @@ const Profile = () => {
     e.preventDefault()
     setLoading(true)
     let token = localStorage.getItem("token")
-    let formData = new FormData()
-    formData.append("dp", dp)
+    // let formData = new FormData()
+    // formData.append("dp", dp)
     let config = {
       headers: {
-        "Content-Type": "multipart/form-data; boundary=AaB03x",
+        // "Content-Type": "multipart/form-data; boundary=AaB03x",
+        "Content-Type": "application/json",
         authorization: token,
       },
     }
     if (dp) {
+      // console.log(dp)
+      let data = {
+        dp,
+      }
       axios
-        .post("/upload-dp", formData, config)
+        .post("/upload-dp", data, config)
         .then((res) => {
           console.log(res.data)
           setLoading(false)
