@@ -11,18 +11,18 @@ const Food = () => {
     description: "",
     category: [],
     cost: "",
-    featured: false,
+    featured: 0,
   })
 
   const { Name, description, category, cost, featured } = formData
 
   const handleImgChange = (e) => {
     if (e.target.files) {
-      setFood_Image(e.target.files[0])
+      // setFood_Image(e.target.files[0])
       const reader = new FileReader()
       reader.addEventListener("load", () => {
         setImgData(reader.result)
-        // setDp(reader.result)
+        setFood_Image(reader.result)
       })
       reader.readAsDataURL(e.target.files[0])
       // console.log(dp, imgData)
@@ -51,12 +51,16 @@ const Food = () => {
     e.preventDefault()
     setLoading(true)
     let token = localStorage.getItem("token")
-    let data = new FormData()
-    data.append("food_image", food_image)
+    // let data = new FormData()
+    // data.append("food_image", food_image)
+    // let foodDetails = {
+    //   name
+    // }
     let config = {
       headers: {
         "Content-Type":
-          "application/json; multipart/form-data; boundary=AaB03x",
+          // "application/json; multipart/form-data; boundary=AaB03x",
+          "application/json",
         authorization: token,
       },
     }
@@ -66,7 +70,7 @@ const Food = () => {
       category,
       cost,
       featured,
-      data,
+      food_image,
     }
     axios
       .post("/add-food", body, config)
@@ -124,7 +128,7 @@ const Food = () => {
           type="radio"
           name="featured"
           onChange={(e) => handleChange(e)}
-          value={true}
+          value={1}
         />
         Set Featured
         <h3>Categories</h3>

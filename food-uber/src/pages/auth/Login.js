@@ -52,7 +52,7 @@ const Login = () => {
           setAuthToken(res.data.token)
         }
         setLoading(false)
-        if (user.isAuthenticated) history.goBack()
+        history.goBack()
       })
       .catch((err) => {
         if (err) {

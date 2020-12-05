@@ -71,7 +71,9 @@ const Header = () => {
                 </li>
               </>
             )}
-            {user.isAuthenticated &&
+            {user &&
+            user.isAuthenticated &&
+            user.data &&
             user.data[0].role &&
             (user.data[0].role === "admin" ||
               user.data[0].role === "main-admin") ? (

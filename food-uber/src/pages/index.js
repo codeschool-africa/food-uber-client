@@ -28,6 +28,7 @@ const Home = () => {
           <img
             src={plate}
             alt=""
+            loading="lazy"
             style={{
               transform: `translateY(${yOffset * 0.5}px)`,
             }}

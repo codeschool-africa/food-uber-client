@@ -59,7 +59,7 @@ const Signup = () => {
             data: res.data.results,
           })
           setAuthToken(res.data.token)
-          if (user.isAuthenticated) history.goBack()
+          history.goBack()
         }
         setLoading(false)
       })
