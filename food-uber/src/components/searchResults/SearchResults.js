@@ -9,7 +9,7 @@ const SearchResults = ({ keyword }) => {
   let [results, setResults] = useState()
   let [loading, setLoading] = useState(false)
   let [close, setClose] = useState(false)
-  console.log(keyword)
+  console.log(keyword, close)
   const closeModal = () => {
     setClose(true)
   }
@@ -40,14 +40,9 @@ const SearchResults = ({ keyword }) => {
       })
   }, [setResults, setLoading, keyword])
   return (
-    <div
-      className="search-results"
-      style={{
-        display: close ? "none" : "block",
-      }}
-    >
+    <div className="search-results">
       <div className="search-backdrop" onClick={closeModal}></div>
-      <div className="container">
+      <div className="search-container">
         <Search />
         <h2>You Searched For {keyword}</h2>
         {loading ? (

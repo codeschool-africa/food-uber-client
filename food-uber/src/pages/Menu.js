@@ -19,8 +19,8 @@ const Menu = () => {
         </div>
       </Banner>
       <div className="food-showcase">
-        <Search />
         <div className="container">
+          <Search />
           <div className="showcase">
             {foods &&
               foods.data &&
