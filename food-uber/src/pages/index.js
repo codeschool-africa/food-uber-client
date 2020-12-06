@@ -38,7 +38,7 @@ const Home = () => {
           <h1>It's that Simple.</h1>
           <p>
             Select your favourite plate from our menu, <br />
-            We’ll <span>deliver</span> it to you, for <span>FREE!!</span>
+            We’ll <span>deliver</span> it to you, <span>FREE DELIVERY!!</span>
           </p>
           <Link to="/menu" className="btn btn-primary">
             Visit our Menu <span>&raquo;</span>

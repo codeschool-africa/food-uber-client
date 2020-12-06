@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom"
 import { AiOutlineShoppingCart } from "react-icons/all"
 import "./header.sass"
 import { UserContext } from "../../context/UserContext"
+// import axios from "axios"
 
 // components
 // import HeaderSvg from "./HeaderSvg"
