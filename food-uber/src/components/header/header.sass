@@ -10,10 +10,11 @@ header.nav-header
         right: 0
         width: 60%
         z-index: 11
-    .container
+    .container.header-container
         display: flex
         flex-direction: row
         justify-content: space-between
+        align-items: center
         flex-wrap: no-wrap
         height: 70px
         min-height: 70px
@@ -75,7 +76,7 @@ header.nav-header
 
 @media screen and ( max-width: 1200px )
     header.nav-header
-        .container
+        .container.header-container
             width: 90%
             .logo
                 height: 35px
@@ -95,8 +96,7 @@ header.nav-header
 
 @media screen and ( max-width: 768px )
     header.nav-header
-
-        .container
+        .container.header-container
             width: 95%
             flex-wrap: wrap
             .logo

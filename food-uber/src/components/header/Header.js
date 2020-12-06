@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <header className="nav-header">
       <div className="svg-container">{/* <HeaderSvg /> */}</div>
-      <div className="container">
+      <div className="container header-container">
         <nav className="navigation">
           <ul>
             <li>

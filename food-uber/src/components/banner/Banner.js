@@ -7,7 +7,7 @@ const Banner = ({ children }) => {
     <div className="banner">
       <div className="before"></div>
       <Header />
-      <div className="container">{children}</div>
+      <div className="container content">{children}</div>
     </div>
   )
 }

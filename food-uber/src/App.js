@@ -8,6 +8,7 @@ import { FoodContext } from "./context/FoodContext"
 import Home from "./pages/"
 import Login from "./pages/auth/Login"
 import Signup from "./pages/auth/Signup"
+import Menu from "./pages/Menu"
 
 import Dashboard from "./pages/dashboard/"
 
@@ -86,6 +87,7 @@ const App = () => {
           <Route exact path="/" render={() => <Home />} />
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/signup" render={() => <Signup />} />
+          <Route exact path="/menu" render={() => <Menu />} />
           {/* auth routes */}
           <Route path="/dashboard" render={() => <Dashboard />} />
         </Switch>

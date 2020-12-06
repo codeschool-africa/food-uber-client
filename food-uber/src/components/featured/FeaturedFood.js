@@ -1,11 +1,13 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
+import { Link } from "react-router-dom"
 import { FoodContext } from "../../context/FoodContext"
+
+import Food from "../food/Food"
 
 import "./featured.sass"
 
 const FeaturedFood = () => {
   let [foods, setFoods] = useContext(FoodContext)
-  let [cart, setCart] = useState([])
 
   let data = foods.data
   let featuredFoods
@@ -15,7 +17,6 @@ const FeaturedFood = () => {
   return (
     <section className="featured">
       <div className="container">
-        <h2>Explore Our Featured Plates</h2>
         <form>
           <label htmlFor="search">
             <input
@@ -26,34 +27,22 @@ const FeaturedFood = () => {
           </label>
           <button>Search</button>
         </form>
+        <h2>Explore Our Featured Plates</h2>
         <div className="showcase">
           {featuredFoods &&
             featuredFoods.map(({ name, id, food_image, description, cost }) => (
-              <div className="food" key={id}>
-                <span>{cost} Tshs</span>
-                <div className="img-container">
-                  <img
-                    src={food_image}
-                    alt={name}
-                    style={{
-                      height: "200px",
-                      width: "200px",
-                      objectFit: "cover",
-                    }}
-                  />
-                </div>
-                <h3>{name}</h3>
-                <p>{description}</p>
-                <button
-                  onClick={() => {
-                    setCart([...cart, id])
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button>Preview</button>
-              </div>
+              <Food
+                key={id}
+                name={name}
+                id={id}
+                food_image={food_image}
+                description={description}
+                cost={cost}
+              />
             ))}
+          <div className="more">
+            <Link to="/menu">View More</Link>
+          </div>
         </div>
       </div>
     </section>
