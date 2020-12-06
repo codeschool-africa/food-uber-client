@@ -4,6 +4,7 @@ import { FoodContext } from "../context/FoodContext"
 // components
 import Banner from "../components/banner/Banner"
 import Food from "../components/food/Food"
+import Search from "../components/search/Search"
 
 import "../styles/pages/menu.sass"
 
@@ -18,6 +19,7 @@ const Menu = () => {
         </div>
       </Banner>
       <div className="food-showcase">
+        <Search />
         <div className="container">
           <div className="showcase">
             {foods &&
