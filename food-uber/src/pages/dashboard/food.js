@@ -1,11 +1,16 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import axios from "axios"
+import { FoodContext } from "../../context/FoodContext"
+
+// components
+import FoodModal from "../../components/foodModal/FoodModal"
 
 const Food = () => {
   // name, description, category, cost, featured, food_image
   let [food_image, setFood_Image] = useState(null)
   let [loading, setLoading] = useState(false)
   let [imgData, setImgData] = useState(null)
+  let [foods, setFoods] = useContext(FoodContext)
   let [formData, setFormData] = useState({
     Name: "",
     description: "",
@@ -77,6 +82,9 @@ const Food = () => {
       .then((res) => {
         console.log(res.data)
         setLoading(false)
+        setFoods({
+          ...foods,
+        })
       })
       .catch((err) => {
         console.log(err)
@@ -85,6 +93,27 @@ const Food = () => {
   }
   return (
     <div>
+      <div className="foods">
+        <div className="showcase">
+          {foods &&
+            foods.data &&
+            foods.data.map(({ name, id, food_image, description, cost }) => (
+              <div className="food" key={id}>
+                <div className="img-container">
+                  <img src={food_image} alt={name} />
+                </div>
+                <div className="food-content">
+                  <h3>{name}</h3>
+                  <p>{description}</p>
+                  <p>{cost} Tshs</p>
+                  <div className="btns">
+                    <button>Edit</button>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
       <form
         onSubmit={(e) => handleSubmit(e)}
         style={{
@@ -196,6 +225,7 @@ const Food = () => {
         </div>
         <button disabled={loading}>{loading ? "Saving..." : "Save"}</button>
       </form>
+      {foods && <FoodModal />}
     </div>
   )
 }

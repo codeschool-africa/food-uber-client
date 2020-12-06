@@ -30,6 +30,7 @@ header.dashboard-header
             width: 20px
             height: 15px
             display: flex
+            margin-right: 20px
             // visibility: hidden
             flex-direction: column
             justify-content: space-between
@@ -39,11 +40,11 @@ header.dashboard-header
                 display: block
                 background: black
         .logo
-            margin-left: 10px
+            // margin-left: 10px
             img
                 height: 30px
                 width: auto
-                padding-left: 20px
+                // padding-left: 20px
                 &.logo-mobile
                     display: none
         nav
@@ -56,7 +57,7 @@ header.dashboard-header
                 // padding: 7px 20px
                 display: flex
                 border-radius: 3.5px
-                margin-right: 15px
+                margin-right: 7px
                 font-size: 18px
             ul.dropdown
                 display: none
@@ -103,7 +104,7 @@ header.dashboard-header
                 color: #022124
                 // color: $dim-primary
                 .icon
-                    margin-left: 10px
+                    // margin-left: 10px
                 &:hover
                     opacity: .8
                     // color: $primary-color
@@ -112,8 +113,9 @@ header.dashboard-header
                 // margin-left: 20px
                 height: 40px
                 width: 40px
+                border-radius: 50%
                 overflow: hidden
-                outline: 2px solid rgba(0, 0, 0, .4)
+                border: 2px solid rgba(0, 0, 0, .4)
                 // background: #F8F9FA
                 img
                     height: 100%
@@ -159,7 +161,7 @@ a.user-name:hover ~ ul.dropdown
                     // padding: 7px 10px
                     display: flex
                     border-radius: 3.5px
-                    margin-right: 15px
+                    margin-right: 7px
                 ul
                     display: none
                 a.nav-link
@@ -181,6 +183,7 @@ a.user-name:hover ~ ul.dropdown
             margin-left: 0
         .container
             justify-content: space-between
+            width: 85%
             .burger-logo-container
                 .logo
                     margin-left: 0
