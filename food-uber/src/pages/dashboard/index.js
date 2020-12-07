@@ -6,9 +6,14 @@ import { Switch, Route } from "react-router-dom"
 import Header from "../../components/dashboard/header/Header"
 import AsideLeft from "../../components/dashboard/aside/AsideLeft"
 
-// import Home from "./pages/"
+import Home from "./Home"
 import Profile from "./Profile"
 import Food from "./food"
+import Notifications from "./Notifications"
+import Orders from "./Orders"
+import Team from "./Team"
+import Setting from "./Setting"
+import Error from "./Error"
 
 //styles
 import "../../styles/pages/dashboard.sass"
@@ -49,8 +54,7 @@ const Dashboard = () => {
               <Switch location={location} key={location.pathname}>
                 <Route exact path={`/dashboard/`} key={`Home`}>
                   <main className={navOpen ? "main" : "main full-width"}>
-                    <div />
-                    Hello from home page
+                    <Home />
                   </main>
                 </Route>
                 <Route exact path={`/dashboard/profile`} key={`Home`}>
@@ -61,6 +65,31 @@ const Dashboard = () => {
                 <Route exact path={`/dashboard/food`} key={`Home`}>
                   <main className={navOpen ? "main" : "main full-width"}>
                     <Food />
+                  </main>
+                </Route>
+                <Route exact path={`/dashboard/orders`} key={`orders`}>
+                  <main className={navOpen ? "main" : "main full-width"}>
+                    <Orders />
+                  </main>
+                </Route>
+                <Route exact path={`/dashboard/notifications`} key={`notifications`}>
+                  <main className={navOpen ? "main" : "main full-width"}>
+                    <Notifications />
+                  </main>
+                </Route>
+                <Route exact path={`/dashboard/team`} key={`team`}>
+                  <main className={navOpen ? "main" : "main full-width"}>
+                    <Team />
+                  </main>
+                </Route>
+                <Route exact path={`/dashboard/setting`} key={`Setting`}>
+                  <main className={navOpen ? "main" : "main full-width"}>
+                    <Setting />
+                  </main>
+                </Route>
+                <Route key={`Error`}>
+                  <main className={navOpen ? "main" : "main full-width"}>
+                    <Error />
                   </main>
                 </Route>
               </Switch>

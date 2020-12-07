@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import axios from "axios"
 
+import PageHeader from "../../components/dashboard/PageHeader"
+
 const Profile = () => {
   let [dp, setDp] = useState(null)
   let [loading, setLoading] = useState(false)
@@ -52,24 +54,31 @@ const Profile = () => {
     }
   }
   return (
-    <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input type="file" name="dp" onChange={(e) => handleChange(e)} />
-        <button type="submit" disabled={loading}>
-          {loading ? "Submitting..." : "Submit"}
-        </button>
-      </form>
-      {imgData && (
-        <img
-          src={imgData}
-          alt=""
-          style={{
-            objectFit: "cover",
-            height: "200px",
-            width: "200px",
-          }}
-        />
-      )}
+    <div className="dashboard-content profile">
+      <div className="main-content">
+        <PageHeader>Profile</PageHeader>
+      </div>
+      <div className="dashboard-profile">
+        <div>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <input type="file" name="dp" onChange={(e) => handleChange(e)} />
+            <button type="submit" disabled={loading}>
+              {loading ? "Submitting..." : "Submit"}
+            </button>
+          </form>
+          {imgData && (
+            <img
+              src={imgData}
+              alt=""
+              style={{
+                objectFit: "cover",
+                height: "200px",
+                width: "200px",
+              }}
+            />
+          )}
+        </div>
+      </div>
     </div>
   )
 }

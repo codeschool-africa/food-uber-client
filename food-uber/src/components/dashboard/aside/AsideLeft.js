@@ -6,8 +6,10 @@ import {
   RiSettings3Line,
   BiUserCircle,
   FaUsers,
-  // BiFoodTag,
   IoFastFood,
+  FaBell,
+  // FaFirstOrder,
+  GoListOrdered,
 } from "react-icons/all"
 import { UserContext } from "../../../context/UserContext"
 
@@ -23,6 +25,16 @@ let routes = [
     path: "food",
     name: "Foods",
     icon: <IoFastFood className="icon" />,
+  },
+  {
+    path: "orders",
+    name: "Orders",
+    icon: <GoListOrdered className="icon" />,
+  },
+  {
+    path: "notifications",
+    name: "Notifications",
+    icon: <FaBell className="icon" />,
   },
   {
     path: "team",
