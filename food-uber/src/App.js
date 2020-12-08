@@ -18,6 +18,7 @@ import Cart from "./pages/user/Cart"
 import Profile from "./pages/user/Profile"
 import Favourites from "./pages/user/Favourites"
 import Order from "./pages/user/Order"
+import MyOrders from "./pages/user/MyOrders"
 
 // admin
 import Dashboard from "./pages/dashboard/"
@@ -109,6 +110,7 @@ const App = () => {
           <Route path="/order/:id" render={() => <Order />} />
           {/* auth routes */}
           <Route path="/dashboard" render={() => <Dashboard />} />
+          <Route path="/my-orders/" render={() => <MyOrders />} />
           <Route exact path="/profile" render={() => <Profile />} />
           <Route exact path="/favourites" render={() => <Favourites />} />
           <Route exact path="/about" render={() => <About />} />
