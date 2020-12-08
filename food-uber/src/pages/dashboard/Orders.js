@@ -15,8 +15,8 @@ const Orders = () => {
       .get("/orders", config)
       .then((res) => {
         console.log(res.data)
-        if (res.data.results) {
-          setOrders(res.data.results)
+        if (res.data.output) {
+          setOrders(res.data.output)
           console.log(orders)
         }
       })
