@@ -4,16 +4,30 @@ import axios from "axios"
 import { UserContext } from "./context/UserContext"
 import { FoodContext } from "./context/FoodContext"
 
-// components
+// pages
 import Home from "./pages/"
 import Login from "./pages/auth/Login"
 import Signup from "./pages/auth/Signup"
 import Menu from "./pages/Menu"
+import About from "./pages/About"
+import Contact from "./pages/Contact"
+import Help from "./pages/Help"
 
+// user
+import Cart from "./pages/user/Cart"
+import Profile from "./pages/user/Profile"
+import Favourites from "./pages/user/Favourites"
+
+// admin
 import Dashboard from "./pages/dashboard/"
 
 // import logo
 import logo from "./assets/images/logo.png"
+
+// components
+import FoodModal from "./components/foodModal/FoodModal"
+import OrderModal from "./components/orderModal/OrderModal"
+import MenuBar from "./components/menu/MenuBar"
 
 // styles
 import "./styles/style.sass"
@@ -90,8 +104,17 @@ const App = () => {
           <Route exact path="/menu" render={() => <Menu />} />
           {/* auth routes */}
           <Route path="/dashboard" render={() => <Dashboard />} />
+          <Route exact path="/profile" render={() => <Profile />} />
+          <Route exact path="/cart" render={() => <Cart />} />
+          <Route exact path="/favourites" render={() => <Favourites />} />
+          <Route exact path="/about" render={() => <About />} />
+          <Route exact path="/contact" render={() => <Contact />} />
+          <Route exact path="/help" render={() => <Help />} />
         </Switch>
       )}
+      <FoodModal />
+      <OrderModal />
+      <MenuBar />
     </div>
   )
 }

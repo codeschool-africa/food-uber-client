@@ -2,13 +2,51 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 
 import Food from "../food/Food"
-import Search from "../search/Search"
+// import Search from "../search/Search"
 import "./searchResults.sass"
 
 const SearchResults = ({ keyword }) => {
   let [results, setResults] = useState()
   let [loading, setLoading] = useState(false)
   let [close, setClose] = useState(false)
+  let [formData, setFormData] = useState({
+    keyword: keyword ? keyword : "",
+  })
+
+  const handleChange = (e) => {
+    let { name, value } = e.target
+    setFormData({
+      [name]: value,
+    })
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setLoading(true)
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+    const body = {
+      keyword,
+    }
+    setLoading(true)
+    axios
+      .post("/search", body, config)
+      .then((res) => {
+        // console.log(res.data)
+        if (res.data) {
+          setResults(res.data)
+          //   console.log(results.results)
+          setLoading(false)
+          //   console.log(results.results.results)
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(false)
+      })
+  }
   console.log(keyword, close)
   const closeModal = () => {
     setClose(true)
@@ -43,7 +81,21 @@ const SearchResults = ({ keyword }) => {
     <div className="search-results">
       <div className="search-backdrop" onClick={closeModal}></div>
       <div className="search-container">
-        <Search />
+        <div className="search">
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <label htmlFor="search">
+              <input
+                type="text"
+                placeholder="Search through our menu..."
+                id="search"
+                name="keyword"
+                value={formData.keyword}
+                onChange={(e) => handleChange(e)}
+              />
+            </label>
+            <button>Search</button>
+          </form>
+        </div>
         <h2>You Searched For {keyword}</h2>
         {loading ? (
           <h2>Searching...</h2>
