@@ -9,11 +9,13 @@ import * as serviceWorker from "./serviceWorker"
 ReactDOM.render(
   <FoodProvider>
     <UserProvider>
-      <Router>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Router>
+      <React.Suspense fallback={<span>Loading...</span>}>
+        <Router>
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        </Router>
+      </React.Suspense>
     </UserProvider>
   </FoodProvider>,
   document.getElementById("root")

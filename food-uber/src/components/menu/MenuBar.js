@@ -17,7 +17,7 @@ const MenuBar = () => {
       setLastYPos(yPos)
       console.log(isScrollingDown, yPos)
     }
-    // console.log(window)
+    console.log(handleScroll)
     window.addEventListener("scroll", handleScroll, false)
     return () => {
       window.removeEventListener("scroll", handleScroll, false)

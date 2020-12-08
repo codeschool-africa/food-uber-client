@@ -8,7 +8,7 @@ import { FoodContext } from "./context/FoodContext"
 import Home from "./pages/"
 import Login from "./pages/auth/Login"
 import Signup from "./pages/auth/Signup"
-import Menu from "./pages/Menu"
+// import Menu from "./pages/Menu"
 import About from "./pages/About"
 import Contact from "./pages/Contact"
 import Help from "./pages/Help"
@@ -17,6 +17,7 @@ import Help from "./pages/Help"
 import Cart from "./pages/user/Cart"
 import Profile from "./pages/user/Profile"
 import Favourites from "./pages/user/Favourites"
+import Order from "./pages/user/Order"
 
 // admin
 import Dashboard from "./pages/dashboard/"
@@ -25,12 +26,14 @@ import Dashboard from "./pages/dashboard/"
 import logo from "./assets/images/logo.png"
 
 // components
-import FoodModal from "./components/foodModal/FoodModal"
+// import FoodModal from "./components/foodModal/FoodModal"
 import OrderModal from "./components/orderModal/OrderModal"
 import MenuBar from "./components/menu/MenuBar"
 
 // styles
 import "./styles/style.sass"
+
+const Menu = React.lazy(() => import("./pages/Menu"))
 
 axios.defaults.baseURL = "http://faraja-food-uber.herokuapp.com/api"
 // axios.defaults.baseURL = "http://localhost:5000/api"
@@ -102,17 +105,18 @@ const App = () => {
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/signup" render={() => <Signup />} />
           <Route exact path="/menu" render={() => <Menu />} />
+          <Route exact path="/cart" render={() => <Cart />} />
+          <Route path="/order/:id" render={() => <Order />} />
           {/* auth routes */}
           <Route path="/dashboard" render={() => <Dashboard />} />
           <Route exact path="/profile" render={() => <Profile />} />
-          <Route exact path="/cart" render={() => <Cart />} />
           <Route exact path="/favourites" render={() => <Favourites />} />
           <Route exact path="/about" render={() => <About />} />
           <Route exact path="/contact" render={() => <Contact />} />
           <Route exact path="/help" render={() => <Help />} />
         </Switch>
       )}
-      <FoodModal />
+      {/* <FoodModal /> */}
       <OrderModal />
       <MenuBar />
     </div>
