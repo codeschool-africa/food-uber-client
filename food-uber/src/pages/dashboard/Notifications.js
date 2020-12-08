@@ -23,7 +23,7 @@ const Orders = () => {
       .catch((err) => {
         console.log(err)
       })
-  }, [setNotifications])
+  }, [setNotifications, notifications])
   return (
     <div className="dashboard-content notifications">
       <div className="main-content">
