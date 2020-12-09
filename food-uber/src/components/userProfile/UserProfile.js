@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import ProfileModal from "../profileModal/ProfileModal"
 
-import dp from "../../assets/images/dp.png"
+import dp_img from "../../assets/images/dp.png"
 
 import "./userProfile.sass"
 
@@ -25,18 +25,19 @@ const UserProfile = ({ name, email, location, address, dp, tel }) => {
   }
 
   let user = { name, email, location, address, dp, tel }
+  console.log(dp)
   return (
     <div className="profile">
       <div className="container">
+        <div className="top">
+          <span onClick={openModal}>Edit Profile</span>
+        </div>
         <div className="dp">
-          <div className="top">
-            <span onClick={openModal}>Edit Profile</span>
-          </div>
           <div className="img-container">
-            {dp ? (
+            {!dp ? (
               <img src={dp} alt={`${name} dp`} />
             ) : (
-              <img src={dp} alt="user" />
+              <img src={dp_img} alt="user" />
             )}
           </div>
           <div className="user-details">
