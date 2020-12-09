@@ -1,29 +1,8 @@
 import React, { useEffect, useState } from "react"
-import axios from "axios"
+
 import PageHeader from "../../components/dashboard/PageHeader"
 
-const Orders = () => {
-  let [notifications, setNotifications] = useState()
-  let token = localStorage.getItem("token")
-  useEffect(() => {
-    let config = {
-      headers: {
-        authorization: token,
-      },
-    }
-    axios
-      .get("/notifications", config)
-      .then((res) => {
-        console.log(res.data)
-        if (res.data.results) {
-          setNotifications(res.data.results)
-          console.log(notifications)
-        }
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [setNotifications, notifications])
+const Notifications = ({notifications}) => {
   return (
     <div className="dashboard-content notifications">
       <div className="main-content">
@@ -48,4 +27,4 @@ const Orders = () => {
   )
 }
 
-export default Orders
+export default Notifications

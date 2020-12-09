@@ -34,6 +34,7 @@ let routes = [
   {
     path: "notifications",
     name: "Notifications",
+    notification: true,
     icon: <FaBell className="icon" />,
   },
   {
@@ -54,8 +55,17 @@ let routes = [
   },
 ]
 
-const AsideLeft = ({ asideOpen, setnavOpen, isMobile }) => {
+const AsideLeft = ({ asideOpen, setnavOpen, isMobile, notifications }) => {
   const [user, setUser] = useContext(UserContext)
+
+  let number
+  if (notifications) {
+    let unreadNot = notifications.filter((o) => o.read_status == 0)
+    number = unreadNot.length
+    if (number > 99) {
+      number = "99+"
+    }
+  }
 
   const logout = () => {
     setUser({
@@ -83,6 +93,9 @@ const AsideLeft = ({ asideOpen, setnavOpen, isMobile }) => {
                 >
                   {prop.icon}
                   <span>{prop.name}</span>
+                  {/* {prop.notification && number && (
+                    // <span className="number">{number}</span>
+                  )} */}
                 </NavLink>
               </li>
             )

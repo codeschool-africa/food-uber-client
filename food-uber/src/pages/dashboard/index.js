@@ -22,6 +22,7 @@ const Dashboard = () => {
   // const [user, setUser] = useContext(UserContext)
   const [navOpen, setnavOpen] = useState(true)
   const [isMobile, setMobile] = useState(false)
+  let [notifications, setNotifications] = useState()
 
   useEffect(() => {
     if (window.screen.width <= 768) {
@@ -39,11 +40,12 @@ const Dashboard = () => {
         render={({ location }) => (
           <div className="page-content">
             <>
-              <Header navOpen={navOpen} handleNav={handleNav} />
+              <Header navOpen={navOpen} handleNav={handleNav} notifications={notifications} setNotifications={setNotifications}/>
               <AsideLeft
                 asideOpen={navOpen ? "" : "side-nav-open"}
                 isMobile={isMobile}
                 setnavOpen={setnavOpen}
+                notifications={notifications}
               />
               {isMobile && (
                 <div
@@ -74,7 +76,7 @@ const Dashboard = () => {
                 </Route>
                 <Route exact path={`/dashboard/notifications`} key={`notifications`}>
                   <main className={navOpen ? "main" : "main full-width"}>
-                    <Notifications />
+                    <Notifications notifications={notifications}/>
                   </main>
                 </Route>
                 <Route exact path={`/dashboard/team`} key={`team`}>

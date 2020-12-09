@@ -24,7 +24,7 @@ const UserProfile = ({ name, email, location, address, dp, tel }) => {
     setOpen(false)
   }
 
-  let user = { name, email, location, address, dp, tel }
+  let user = { name, email, location, address, dp, tel, dp_img }
   console.log(dp)
   return (
     <div className="profile">
@@ -34,7 +34,7 @@ const UserProfile = ({ name, email, location, address, dp, tel }) => {
         </div>
         <div className="dp">
           <div className="img-container">
-            {!dp ? (
+            {dp ? (
               <img src={dp} alt={`${name} dp`} />
             ) : (
               <img src={dp_img} alt="user" />
@@ -44,7 +44,7 @@ const UserProfile = ({ name, email, location, address, dp, tel }) => {
             <span>{name}</span>
           </div>
         </div>
-        <span>We don't share your information anywhere</span>
+        <span className="share">We don't share your information anywhere</span>
         <UserCard name="Email Address" descr={email} />
         <UserCard name="Tel Number" descr={tel} />
         {address && <UserCard name="Address" descr={address} />}

@@ -1,17 +1,26 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { FaAngleDown } from "react-icons/all"
+import axios from "axios"
+import { FaAngleDown, FaBell } from "react-icons/all"
 import { UserContext } from "../../../context/UserContext"
 
-// import dp from "../assets/images/dp.png"
+import dp_img from "../../../assets/images/dp.png"
 import logo from "../../../assets/images/logo.png"
 
 import "./header.sass"
 
-const Header = ({ navOpen, handleNav }) => {
+const Header = ({ navOpen, handleNav, notifications, setNotifications }) => {
   const [user, setUser] = useContext(UserContext)
   const [open, setOpen] = useState(false)
   let Name
+  let number
+  if (notifications) {
+    let unreadNot = notifications.filter((o) => o.read_status == 0)
+    number = unreadNot.length
+    if (number > 99) {
+      number = "99+"
+    }
+  }
   if (user && user.data) {
     Name = user.data.name.split(" ")[0]
   }
@@ -23,7 +32,26 @@ const Header = ({ navOpen, handleNav }) => {
     })
     localStorage.setItem("token", null)
   }
-  // if (user && user.data) console.log(user.data[0])
+  let token = localStorage.getItem("token")
+  useEffect(() => {
+    let config = {
+      headers: {
+        authorization: token,
+      },
+    }
+    axios
+      .get("/notifications", config)
+      .then((res) => {
+        console.log(res.data)
+        if (res.data.results) {
+          setNotifications(res.data.results)
+          console.log(notifications)
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [setNotifications, notifications])
 
   return (
     <header
@@ -46,7 +74,13 @@ const Header = ({ navOpen, handleNav }) => {
           </div>
         </div>
         <nav>
-          <span className="role nav-link"></span> &nbsp;
+          <span className="role nav-link">
+            <Link to="/dashboard/notifications" className="alerts">
+              <FaBell className="icon" />
+              {number && <span>{number}</span>}
+            </Link>
+          </span>{" "}
+          &nbsp;
           <a
             href="#!"
             className="user-name nav-link"
@@ -80,9 +114,9 @@ const Header = ({ navOpen, handleNav }) => {
             </li>
           </ul>
           <div className="profile-image">
-            {user && user.data && user.data.dp_path && (
+            {user && user.data && (
               <img
-                src={user.data.dp_path}
+                src={user.data.dp_path ? user.data.dp_path : dp_img}
                 alt="profile/dp"
                 loading="lazy"
                 style={{
