@@ -13,7 +13,6 @@ import logo from "../../assets/images/logo.png"
 
 const Header = () => {
   const [user, setUser] = useContext(UserContext)
-  console.log(setUser)
   return (
     <header className="nav-header">
       <div className="svg-container">{/* <HeaderSvg /> */}</div>
@@ -73,11 +72,8 @@ const Header = () => {
               </>
             )}
             {user &&
-            user.isAuthenticated &&
             user.data &&
-            user.data[0].role &&
-            (user.data[0].role === "admin" ||
-              user.data[0].role === "main-admin") ? (
+            (user.data.role === "admin" || user.data.role === "main-admin") ? (
               <>
                 <li>
                   <NavLink to="/dashboard" activeClassName="active">

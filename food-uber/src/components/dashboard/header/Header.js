@@ -13,7 +13,7 @@ const Header = ({ navOpen, handleNav }) => {
   const [open, setOpen] = useState(false)
   let Name
   if (user && user.data) {
-    Name = user.data[0].name.split(" ")[0]
+    Name = user.data.name.split(" ")[0]
   }
   const logout = () => {
     setUser({
@@ -80,9 +80,9 @@ const Header = ({ navOpen, handleNav }) => {
             </li>
           </ul>
           <div className="profile-image">
-            {user && user.data && user.data[0].dp_path && (
+            {user && user.data && user.data.dp_path && (
               <img
-                src={user.data[0].dp_path}
+                src={user.data.dp_path}
                 alt="profile/dp"
                 loading="lazy"
                 style={{

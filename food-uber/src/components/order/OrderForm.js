@@ -1,19 +1,41 @@
 import React, { useContext, useState } from "react"
 import axios from "axios"
 import { UserContext } from "../../context/UserContext"
+import { useEffect } from "react"
 
 const OrderForm = ({ food }) => {
   let [user, setUser] = useContext(UserContext)
   let [loading, setLoading] = useState(false)
   let [formData, setFormdata] = useState({
-    location: user.data.location ? user.data.location : "",
+    location: user.data && user.data.location ? user.data.location : "",
     special_description: "",
     delivery_time: "",
     number_of_plates: "",
-    tel: user.data.tel ? user.data.tel : "",
-    orderedBy: user.data.name ? user.data.name : "",
-    address: user.data.address ? user.data.address : "",
+    tel: user.data && user.data.tel ? user.data.tel : "",
+    orderedBy: user.data && user.data.name ? user.data.name : "",
+    address: user.data && user.data.address ? user.data.address : "",
   })
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      let x = navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log(
+            "Retrieved",
+            position,
+            position.coords.latitude,
+            position.coords.longitude
+          )
+        },
+        () => {
+          console.log("Not retrieved")
+        }
+      )
+      console.log(x)
+    } else {
+      console.log("Not supported")
+    }
+  }
 
   let {
     location,
@@ -67,6 +89,10 @@ const OrderForm = ({ food }) => {
         setLoading(false)
       })
   }
+
+  useEffect(() => {
+    getLocation()
+  }, [getLocation])
   return (
     <form onSubmit={(e) => placeOrder(e)}>
       <textarea
