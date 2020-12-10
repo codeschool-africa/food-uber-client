@@ -74,7 +74,9 @@ const ImgUpload = ({ dp_path, dp_img }) => {
             <FaCamera className="icon" />
           </div>
         </label>
-        <button disabled={loading}>{loading ? "Uploading" : "Upload"}</button>
+        <button disabled={loading}>
+          {loading ? "Uploading..." : "Upload"}
+        </button>
       </form>
     </div>
   )

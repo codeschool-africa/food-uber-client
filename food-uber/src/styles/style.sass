@@ -35,6 +35,23 @@ button
 
 form
     width: 100%
+    .input-group
+        width: 100%
+        padding: 20px 20px
+        display: flex
+        flex-direction: column
+        label
+            margin-bottom: 7px
+            color: #91999A
+            font-size: 14px
+        input
+            height: 35px
+            border: none
+            border-bottom: 1px solid #2F717C
+            width: 100%
+            transition: .253s
+            &:focus
+                background: #EDF6F8
     .form-group
         width: 100%
         margin: 30px 0
@@ -69,6 +86,19 @@ form
         label:focus
             background: white
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2)
+    .btns
+        margin: 40px 0
+        width: 100%
+        .btn
+            border-radius: 5px
+            &.btn-primary:focus
+                outline: 1px solid #C7180C !important
+            &.btn-primary, &.btn-secondary
+                width: 100%
+                display: flex
+                justify-content: center
+                align-items: center
+                padding-left: 0
 
 .loading-screen
     height: 100vh

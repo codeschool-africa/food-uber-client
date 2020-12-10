@@ -20,11 +20,6 @@ const Header = () => {
         <nav className="navigation">
           <ul>
             <li>
-              <NavLink to="/" activeClassName="active">
-                Home
-              </NavLink>
-            </li>
-            <li>
               <NavLink to="/menu" activeClassName="active">
                 Menu
               </NavLink>
@@ -34,10 +29,17 @@ const Header = () => {
                 About Us
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/contact" activeClassName="active">
+                Contact
+              </NavLink>
+            </li>
           </ul>
         </nav>
         <div className="logo">
-          <img src={logo} alt="logo" />
+          <NavLink to="/">
+            <img src={logo} alt="logo" />
+          </NavLink>
         </div>
         <nav className="auth">
           <ul>

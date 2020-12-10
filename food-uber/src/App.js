@@ -56,7 +56,7 @@ const App = () => {
       .then((res) => {
         // setLoading(false)
         if (res.data) {
-          console.log(res.data.results)
+          // console.log(res.data.results)
           setUser({
             ...user,
             isAuthenticated: true,

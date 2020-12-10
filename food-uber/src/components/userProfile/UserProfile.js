@@ -25,7 +25,7 @@ const UserProfile = ({ name, email, location, address, dp, tel }) => {
   }
 
   let user = { name, email, location, address, dp, tel, dp_img }
-  console.log(dp)
+  // console.log(dp)
   return (
     <div className="profile">
       <div className="container">
