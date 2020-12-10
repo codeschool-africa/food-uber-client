@@ -7,13 +7,19 @@ import PageHeader from "../../components/dashboard/PageHeader"
 
 const Food = () => {
   let [foods, setFoods] = useContext(FoodContext)
-  let [open, setOpen] = useState(false)
+  let [modal, setModal] = useState({
+    open: false,
+  })
   const openModal = () => {
-    setOpen(true)
+    setModal({
+      open: true,
+    })
   }
 
   const closeModal = () => {
-    setOpen(false)
+    setModal({
+      open: false,
+    })
   }
   return (
     <div className="dashboard-content foods">
@@ -23,7 +29,9 @@ const Food = () => {
           <div>
             <div className="foods">
               <div className="showcase">
-                {/* .top */}
+                <div className="top">
+                  <span onClick={openModal}>Add New Food</span>
+                </div>
                 {foods &&
                   foods.data &&
                   foods.data.map(
@@ -42,13 +50,13 @@ const Food = () => {
                             </div>
                           </div>
                         </div>
-                        {open && <FoodModal closeModal={closeModal} food />}
+                        {modal.open && <FoodModal closeModal={closeModal} />}
                       </>
                     )
                   )}
               </div>
             </div>
-            {open && <FoodModal closeModal={closeModal} food />}
+            {/* {open && <FoodModal closeModal={closeModal} food />} */}
           </div>
         </div>
       </div>
