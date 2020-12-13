@@ -226,9 +226,14 @@ a.user-name:hover ~ ul.dropdown
                     span
                         // width: 30px
             nav
-                // span.role
+                span.role
+
                 //     display: none
                 a.nav-link
                     font-size: 14px
                     &.username
-                        width: 100px
+                        width: 50px
+                        // width: 50px
+                        white-space: nowrap
+                        overflow: hidden
+                        text-overflow: ellipsis
