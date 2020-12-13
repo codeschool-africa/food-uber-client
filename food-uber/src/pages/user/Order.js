@@ -11,7 +11,7 @@ const Order = () => {
   let orderedFood
   let { id } = useParams()
   if (data) orderedFood = data.filter((o) => o.id == id)
-  console.log(setFoods)
+  // console.log(setFoods)
 
   return (
     <div className="menu">
