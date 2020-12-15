@@ -6,6 +6,7 @@ import { useEffect } from "react"
 
 const OrderForm = ({ food }) => {
   let [user, setUser] = useContext(UserContext)
+  let [error, setError] = useState("")
   let [location, setLocation] = useState({
     lat:
       user.data && user.data.location && user.data.location.lat
@@ -20,29 +21,18 @@ const OrderForm = ({ food }) => {
   let [formData, setFormdata] = useState({
     // location: user.data && user.data.location ? user.data.location : "",
     special_description: "",
-    delivery_time: "",
+    date: "",
+    time: "",
     number_of_plates: "",
     tel: user.data && user.data.tel ? user.data.tel : "",
     orderedBy: user.data && user.data.name ? user.data.name : "",
     address: user.data && user.data.address ? user.data.address : "",
   })
 
-  // const MapWithAMarker = withGoogleMap((props) => (
-  //   <GoogleMap defaultZoom={8} defaultCenter={{ lat: -34.397, lng: 150.644 }}>
-  //     <Marker position={{ lat: -34.397, lng: 150.644 }} />
-  //   </GoogleMap>
-  // ))
-
   function getLocation() {
     if (navigator.geolocation) {
       let x = navigator.geolocation.getCurrentPosition(
         (position) => {
-          console.log(
-            "Retrieved",
-            position,
-            position.coords.latitude,
-            position.coords.longitude
-          )
           setLocation({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
@@ -60,14 +50,13 @@ const OrderForm = ({ food }) => {
   let {
     // location,
     special_description,
-    delivery_time,
+    date,
+    time,
     number_of_plates,
     tel,
     orderedBy,
     address,
   } = formData
-
-  // console.log(setUser, user.data)
 
   const handleChange = (e) => {
     let { name, value } = e.target
@@ -80,10 +69,6 @@ const OrderForm = ({ food }) => {
 
   let token = localStorage.getItem("token")
 
-  // useEffect(() => {
-  //   getLocation()
-  // }, [getLocation])
-
   const placeOrder = (e) => {
     e.preventDefault()
     setLoading(true)
@@ -93,10 +78,16 @@ const OrderForm = ({ food }) => {
         "Content-Type": "application/json",
       },
     }
+
+    let delivery_time = {
+      date,
+      time,
+    }
+
     let body = {
       location: JSON.stringify(location),
       special_description,
-      delivery_time,
+      delivery_time: JSON.stringify(delivery_time),
       number_of_plates,
       tel,
       orderedBy,
@@ -116,11 +107,7 @@ const OrderForm = ({ food }) => {
 
   return (
     <>
-      {/* <MapWithAMarker
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `400px` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-      /> */}
+      By allowing location you help us find you when delivering food
       <button onClick={getLocation}>Set Location</button>
       <form onSubmit={(e) => placeOrder(e)}>
         <textarea
@@ -129,13 +116,6 @@ const OrderForm = ({ food }) => {
           value={special_description}
           placeholder="describe"
         />
-        {/* <input
-          type="text"
-          name="location"
-          onChange={(e) => handleChange(e)}
-          value={location}
-          placeholder="location"
-        /> */}
         <input
           type="text"
           name="address"
@@ -166,9 +146,17 @@ const OrderForm = ({ food }) => {
         />
         <input
           type="date"
-          name="delivery_time"
+          name="date"
           onChange={(e) => handleChange(e)}
-          value={delivery_time}
+          value={date}
+          placeholder="Enter date you want food to e delivered"
+        />
+        <input
+          type="time"
+          name="time"
+          onChange={(e) => handleChange(e)}
+          value={time}
+          placeholder="Enter time you want food to be delivered"
         />
         <button disabled={loading}>
           {loading ? "Submitting..." : "Submit"}

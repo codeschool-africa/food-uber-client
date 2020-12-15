@@ -9,7 +9,17 @@ import * as serviceWorker from "./serviceWorker"
 ReactDOM.render(
   <FoodProvider>
     <UserProvider>
-      <React.Suspense fallback={<span>Loading...</span>}>
+      <React.Suspense
+        fallback={
+          <div className="loader-page">
+            <div className="lds-ellipsis">
+              <div />
+              <div />
+              <div />
+            </div>
+          </div>
+        }
+      >
         <Router>
           <React.StrictMode>
             <App />

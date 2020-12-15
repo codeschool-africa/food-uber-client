@@ -42,10 +42,10 @@ const Header = ({ navOpen, handleNav, notifications, setNotifications }) => {
     axios
       .get("/notifications", config)
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         if (res.data.results) {
           setNotifications(res.data.results)
-          console.log(notifications)
+          // console.log(notifications)
         }
       })
       .catch((err) => {

@@ -4,6 +4,7 @@ import { FoodContext } from "../../context/FoodContext"
 // components
 import FoodModal from "../../components/dashboard/foodModal/FoodModal"
 import PageHeader from "../../components/dashboard/PageHeader"
+import { render } from "@testing-library/react"
 
 const Food = () => {
   let [foods, setFoods] = useContext(FoodContext)
@@ -30,7 +31,20 @@ const Food = () => {
             <div className="foods">
               <div className="showcase">
                 <div className="top">
-                  <span onClick={openModal}>Add New Food</span>
+                  <span
+                    onClick={() =>
+                      modal.open ? (
+                        <>
+                          render
+                          {() => <FoodModal />}
+                        </>
+                      ) : (
+                        ""
+                      )
+                    }
+                  >
+                    Add New Food
+                  </span>
                 </div>
                 {foods &&
                   foods.data &&
@@ -50,13 +64,17 @@ const Food = () => {
                             </div>
                           </div>
                         </div>
-                        {modal.open && <FoodModal closeModal={closeModal} />}
+                        {modal.open && (
+                          <FoodModal
+                            closeModal={closeModal}
+                            food={(name, id, food_image, description, cost)}
+                          />
+                        )}
                       </>
                     )
                   )}
               </div>
             </div>
-            {/* {open && <FoodModal closeModal={closeModal} food />} */}
           </div>
         </div>
       </div>

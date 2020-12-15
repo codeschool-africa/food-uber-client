@@ -11,9 +11,10 @@ import axios from "axios"
 import { UserContext } from "../../context/UserContext"
 import setAuthToken from "../../utils/authToken"
 
-const Signup = () => {
+const Signup = ({ setMsg }) => {
   let history = useHistory()
   let [loading, setLoading] = useState(false)
+  let [err, setErr] = useState(null)
   // let [errorMsg, setErrorMsg] = useState(null)
   let [user, setUser] = useContext(UserContext)
   let [formData, setFormData] = useState({
@@ -29,6 +30,7 @@ const Signup = () => {
       ...formData,
       [name]: value,
     })
+    setErr(null)
   }
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -49,8 +51,7 @@ const Signup = () => {
     axios
       .post("/register", body, config)
       .then((res) => {
-        // console.log(res)
-        if (res.data.msg) console.log(res.data.msg)
+        console.log(res.data)
         if (res.data.token && res.data.results) {
           localStorage.setItem("token", res.data.token)
           setUser({
@@ -59,7 +60,19 @@ const Signup = () => {
             data: res.data.results,
           })
           setAuthToken(res.data.token)
+          setMsg(res.data.msg)
           history.goBack()
+        } else if (res.data.errors) {
+          setErr({
+            error: "There are errors in your form",
+            // name: errors[0].msg,
+            // email: errors[1].msg,
+            // tel: errors[2].tel
+          })
+        } else if (res.data.error) {
+          setErr({
+            error: res.data.error,
+          })
         }
         setLoading(false)
       })
@@ -143,6 +156,7 @@ const Signup = () => {
             </div>
           </label>
         </div>
+        {err && <div className="alert alert-danger">{err.error}</div>}
         <div className="btns">
           <button className="btn btn-primary" disabled={loading}>
             {loading ? "Please Wait..." : "SIGNUP"}
