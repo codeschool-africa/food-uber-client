@@ -5,6 +5,12 @@ import {
   AiOutlineShoppingCart,
   CgProfile,
   FiMoreHorizontal,
+  AiOutlineOrderedList,
+  AiOutlineStar,
+  AiFillStar,
+  MdHelpOutline,
+  BsInfoSquare,
+  RiSettings3Line,
 } from "react-icons/all"
 
 import "./menu.sass"
@@ -67,6 +73,19 @@ const MenuBar = () => {
               </span>
             </li>
           </ul>
+          <div className="drop-up-menu">
+            <div className="menu-backdrop"></div>
+            <div className="navigation">
+              <div className="nav-header">More</div>
+              <nav>
+                <ul>
+                  <li>
+                    <NavLink>{/* < */}</NavLink>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
         </nav>
       </div>
     </div>

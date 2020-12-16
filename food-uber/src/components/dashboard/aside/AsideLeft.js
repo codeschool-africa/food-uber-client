@@ -7,7 +7,7 @@ import {
   BiUserCircle,
   FaUsers,
   IoFastFood,
-  FaBell,
+  BsBell,
   // FaFirstOrder,
   GoListOrdered,
 } from "react-icons/all"
@@ -35,7 +35,7 @@ let routes = [
     path: "notifications",
     name: "Notifications",
     notification: true,
-    icon: <FaBell className="icon" />,
+    icon: <BsBell className="icon" />,
   },
   {
     path: "team",

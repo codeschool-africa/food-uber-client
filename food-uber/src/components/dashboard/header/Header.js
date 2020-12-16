@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
-import { FaAngleDown, FaBell } from "react-icons/all"
+import { FaAngleDown, BsBell } from "react-icons/all"
 import { UserContext } from "../../../context/UserContext"
 
 import dp_img from "../../../assets/images/dp.png"
@@ -76,7 +76,7 @@ const Header = ({ navOpen, handleNav, notifications, setNotifications }) => {
         <nav>
           <span className="role nav-link">
             <Link to="/dashboard/notifications" className="alerts">
-              <FaBell className="icon" />
+              <BsBell className="icon" />
               {number && <span>{number}</span>}
             </Link>
           </span>{" "}
