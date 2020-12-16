@@ -80,7 +80,7 @@ const MenuBar = () => {
               <nav>
                 <ul>
                   <li>
-                    <NavLink>{/* < */}</NavLink>
+                    <NavLink to="/">{/* < */}</NavLink>
                   </li>
                 </ul>
               </nav>
