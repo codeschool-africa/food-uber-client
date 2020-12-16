@@ -6,7 +6,7 @@
     width: 100%
     background: white
     box-shadow: 0 0 10px rgba(0, 0, 0, .5)
-    border-radius: 5px
+    // border-radius: 5px
     display: flex
     justify-content: center
     align-items: center
@@ -15,3 +15,93 @@
     transition: .45s
     &.revealed
         transform: translateY(0)
+        display: flex
+    .burger
+        display: none
+    .nav-container
+        width: 100%
+        nav
+            width: 100%
+        ul
+            display: flex
+            justify-content: space-around
+            align-items: center
+            li
+                a, span.more
+                    display: flex
+                    flex-direction: column
+                    justify-content: center
+                    align-items: center
+                    color: #011d24
+                    cursor: pointer
+                    .icon
+                        font-size: 17px
+                    span
+                        font-size: 12px
+                        margin-top: 5px
+                    &:hover, &.active
+                        color: #C7180C
+
+@media screen and ( min-width: 768px )
+    .menu-bar
+        position: fixed
+        bottom: 20px
+        right: 20px
+        height: 45px
+        width: 50px
+        background: white
+        box-shadow: 5px 5px 70px rgba(0, 0, 0, .8)
+        border-radius: 5px
+        display: flex
+        justify-content: center
+        align-items: center
+        z-index: 9
+        transform: translateY(250%)
+        transition: .6s
+        &.revealed
+            transform: translateY(0)
+            display: flex
+        .burger
+            display: flex
+            flex-direction: column
+            justify-content: flex-end
+            span
+                height: 2px
+                width: 25px
+                background: #011d24
+                position: relative
+                &::before, &::after
+                    content: ""
+                    position: absolute
+                    height: 2px
+                    width: 20px
+                    background: #011d24
+                    right: 0
+                    top: 7px
+                &::before
+                    top: -7px
+                    width: 30px
+        .nav-container
+            width: 0
+            overflow: hidden
+            nav
+                width: 100%
+            ul
+                display: flex
+                justify-content: space-around
+                align-items: center
+                li
+                    a, span.more
+                        display: flex
+                        flex-direction: column
+                        justify-content: center
+                        align-items: center
+                        color: #011d24
+                        cursor: pointer
+                        .icon
+                            font-size: 17px
+                        span
+                            font-size: 12px
+                            margin-top: 5px
+                        &:hover, &.active
+                            color: #C7180C

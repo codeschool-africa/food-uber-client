@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { NavLink } from "react-router-dom"
+import {
+  IoHomeOutline,
+  AiOutlineShoppingCart,
+  CgProfile,
+  FiMoreHorizontal,
+} from "react-icons/all"
 
 import "./menu.sass"
 
@@ -30,16 +36,35 @@ const MenuBar = () => {
 
   return (
     <div className={reveal ? "revealed menu-bar" : "menu-bar"}>
-      <div className="burdger">
+      <div className="burger">
         <span></span>
       </div>
       <div className="nav-container">
         <nav>
           <ul>
             <li>
-              <NavLink to="/">
+              <NavLink to="/" activeClassName="active">
+                <IoHomeOutline className="icon" />
                 <span>Home</span>
               </NavLink>
+            </li>
+            <li>
+              <NavLink to="/cart" activeClassName="active">
+                <AiOutlineShoppingCart className="icon" />
+                <span>Cart</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/profile" activeClassName="active">
+                <CgProfile className="icon" />
+                <span>Profile</span>
+              </NavLink>
+            </li>
+            <li>
+              <span className="more">
+                <FiMoreHorizontal className="icon" />
+                <span>More</span>
+              </span>
             </li>
           </ul>
         </nav>

@@ -24,7 +24,7 @@ const Home = () => {
         <div
           className="banner__img"
           // style={{
-          //   transform: `translateY(${yOffset * 1}px)`,
+          //   transform: `translateY(-${yOffset * 0.99999999}px)`,
           // }}
         >
           <img
@@ -32,11 +32,18 @@ const Home = () => {
             alt=""
             loading="lazy"
             style={{
-              transform: `translateY(${-yOffset * 1.2}px)`,
+              transform: `translateY(${yOffset * 0.2}px)`,
+              transition: "transform .1s linear",
             }}
           />
         </div>
-        <div className="banner__headline">
+        <div
+          className="banner__headline"
+          style={{
+            transform: `translateY(-${yOffset * 0.1}px)`,
+            transition: "transform .1s linear",
+          }}
+        >
           <h1>It's that Simple.</h1>
           <p>
             Select your favourite plate from our menu, <br />
