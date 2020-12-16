@@ -31,18 +31,18 @@ const Home = () => {
             src={plate}
             alt=""
             loading="lazy"
-            style={{
-              transform: `translateY(${yOffset * 0.2}px)`,
-              transition: "transform .1s linear",
-            }}
+            // style={{
+            //   transform: `translateY(${yOffset * 0.2}px)`,
+            //   transition: "transform .1s linear",
+            // }}
           />
         </div>
         <div
           className="banner__headline"
-          style={{
-            transform: `translateY(-${yOffset * 0.1}px)`,
-            transition: "transform .1s linear",
-          }}
+          // style={{
+          //   transform: `translateY(-${yOffset * 0.1}px)`,
+          //   transition: "transform .1s linear",
+          // }}
         >
           <h1>It's that Simple.</h1>
           <p>
