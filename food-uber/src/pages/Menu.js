@@ -5,12 +5,12 @@ import { FoodContext } from "../context/FoodContext"
 import Banner from "../components/banner/Banner"
 import Food from "../components/food/Food"
 import Search from "../components/search/Search"
+import MenuBar from "../components/menu/MenuBar"
 
 import "../styles/pages/menu.sass"
 
 const Menu = () => {
   const [foods, setFoods] = useContext(FoodContext)
-  console.log(setFoods)
   return (
     <div className="menu">
       <Banner>
@@ -37,6 +37,7 @@ const Menu = () => {
           </div>
         </div>
       </div>
+      <MenuBar />
     </div>
   )
 }

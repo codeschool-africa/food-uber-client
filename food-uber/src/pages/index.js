@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 // components
 import Banner from "../components/banner/Banner"
 import FeaturedFood from "../components/featured/FeaturedFood"
+import MenuBar from "../components/menu/MenuBar"
+
 // imag
 import plate from "../assets/images/featured_plate.png"
 
@@ -21,16 +23,16 @@ const Home = () => {
       <Banner>
         <div
           className="banner__img"
-          style={{
-            transform: `translateY(${yOffset * 0.8}px)`,
-          }}
+          // style={{
+          //   transform: `translateY(${yOffset * 1}px)`,
+          // }}
         >
           <img
             src={plate}
             alt=""
             loading="lazy"
             style={{
-              transform: `translateY(${yOffset * 0.5}px)`,
+              transform: `translateY(${-yOffset * 1.2}px)`,
             }}
           />
         </div>
@@ -46,6 +48,7 @@ const Home = () => {
         </div>
       </Banner>
       <FeaturedFood />
+      <MenuBar />
     </div>
   )
 }

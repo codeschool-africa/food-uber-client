@@ -9,9 +9,7 @@ import { FoodContext } from "./context/FoodContext"
 import logo from "./assets/images/logo.png"
 
 // components
-// import FoodModal from "./components/foodModal/FoodModal"
-import OrderModal from "./components/orderModal/OrderModal"
-import MenuBar from "./components/menu/MenuBar"
+// import MenuBar from "./components/menu/MenuBar"
 
 // styles
 import "./styles/style.sass"
@@ -110,30 +108,30 @@ const App = () => {
           </div>
         </div>
       ) : (
-        <Switch>
-          <Route exact path="/" render={() => <Home />} />
-          <Route exact path="/login" render={() => <Login />} />
-          <Route
-            exact
-            path="/signup"
-            render={() => <Signup setMsg={setMsg} />}
-          />
-          <Route exact path="/menu" render={() => <Menu />} />
-          <Route exact path="/cart" render={() => <Cart />} />
-          <Route path="/order/:id" render={() => <Order />} />
-          {/* auth routes */}
-          <Route path="/dashboard" render={() => <Dashboard />} />
-          <Route path="/my-orders/" render={() => <MyOrders />} />
-          <Route exact path="/profile" render={() => <Profile />} />
-          <Route exact path="/favourites" render={() => <Favourites />} />
-          <Route exact path="/about" render={() => <About />} />
-          <Route exact path="/contact" render={() => <Contact />} />
-          <Route exact path="/help" render={() => <Help />} />
-        </Switch>
+        <>
+          <Switch>
+            <Route exact path="/" render={() => <Home />} />
+            <Route exact path="/login" render={() => <Login />} />
+            <Route
+              exact
+              path="/signup"
+              render={() => <Signup setMsg={setMsg} />}
+            />
+            <Route exact path="/menu" render={() => <Menu />} />
+            <Route exact path="/cart" render={() => <Cart />} />
+            <Route path="/order/:id" render={() => <Order />} />
+            {/* auth routes */}
+            <Route path="/dashboard" render={() => <Dashboard />} />
+            <Route path="/my-orders/" render={() => <MyOrders />} />
+            <Route exact path="/profile" render={() => <Profile />} />
+            <Route exact path="/favourites" render={() => <Favourites />} />
+            <Route exact path="/about" render={() => <About />} />
+            <Route exact path="/contact" render={() => <Contact />} />
+            <Route exact path="/help" render={() => <Help />} />
+          </Switch>
+          {/* <MenuBar /> */}
+        </>
       )}
-      {/* <FoodModal /> */}
-      <OrderModal />
-      <MenuBar />
     </div>
   )
 }

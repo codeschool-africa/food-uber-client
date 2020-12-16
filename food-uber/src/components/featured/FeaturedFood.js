@@ -14,7 +14,6 @@ const FeaturedFood = () => {
   let featuredFoods
 
   if (data) featuredFoods = data.filter((o) => o.featured === 1)
-  console.log(setFoods)
 
   return (
     <section className="featured">
