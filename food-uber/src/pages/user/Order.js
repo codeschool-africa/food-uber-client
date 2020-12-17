@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom"
 import { FoodContext } from "../../context/FoodContext"
 import OrderForm from "../../components/order/OrderForm"
 
+import MenuBar from "../../components/menu/MenuBar"
+
 const Order = () => {
   let [foods, setFoods] = useContext(FoodContext)
 
@@ -44,6 +46,7 @@ const Order = () => {
           </div>
         </div>
       </div>
+      <MenuBar />
     </div>
   )
 }

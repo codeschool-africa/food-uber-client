@@ -5,7 +5,7 @@ import FoodModal from "../foodModal/FoodModal"
 import "./food.sass"
 
 const Food = ({ name, id, food_image, description, cost }) => {
-  const [cart, setCart] = useState([])
+  // const [cart, setCart] = useState([])
   let [open, setOpen] = useState(false)
   const openModal = () => {
     setOpen(true)
@@ -33,13 +33,8 @@ const Food = ({ name, id, food_image, description, cost }) => {
           <p>{cost} Tshs</p>
           <div className="btns">
             {/* <button>Preview</button> */}
-            <button
-              className="btn-primary"
-              onClick={() => {
-                setCart([...cart, id])
-              }}
-            >
-              Add to Cart
+            <button className="btn-primary" onClick={openModal}>
+              Preview
             </button>
           </div>
         </div>

@@ -3,6 +3,8 @@ import Banner from "../../components/banner/Banner"
 import { UserContext } from "../../context/UserContext"
 import axios from "axios"
 
+import MenuBar from "../../components/menu/MenuBar"
+
 const MyOrders = () => {
   let [user, setUser] = useContext(UserContext)
   let [orders, setOrders] = useState()
@@ -45,7 +47,7 @@ const MyOrders = () => {
                 delivery_time,
                 delivered,
                 special_description,
-                id
+                id,
               }) => (
                 <div key={id}>
                   <h3>{food_name}</h3>
@@ -57,6 +59,7 @@ const MyOrders = () => {
             )}
         </div>
       </div>
+      <MenuBar />
     </div>
   )
 }

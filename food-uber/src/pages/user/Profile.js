@@ -3,6 +3,7 @@ import Banner from "../../components/banner/Banner"
 import { UserContext } from "../../context/UserContext"
 
 import UserProfile from "../../components/userProfile/UserProfile"
+import MenuBar from "../../components/menu/MenuBar"
 
 const Profile = () => {
   let [user, setUser] = useContext(UserContext)
@@ -29,6 +30,7 @@ const Profile = () => {
           />
         )}
       </div>
+      <MenuBar />
     </div>
   )
 }

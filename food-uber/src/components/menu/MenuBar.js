@@ -7,10 +7,13 @@ import {
   FiMoreHorizontal,
   AiOutlineOrderedList,
   AiOutlineStar,
-  AiFillStar,
-  MdHelpOutline,
+  // AiFillStar,
+  FiLogOut,
   BsInfoSquare,
   RiSettings3Line,
+  RiDashboardLine,
+  MdHelpOutline,
+  AiOutlinePhone,
 } from "react-icons/all"
 
 import "./menu.sass"
@@ -18,6 +21,9 @@ import "./menu.sass"
 const MenuBar = () => {
   const [reveal, setReveal] = useState(false)
   const [lastYPos, setLastYPos] = useState(0)
+  const [dropOpen, setDropOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+
   useEffect(() => {
     // console.log("Mounted")
     const handleScroll = () => {
@@ -25,7 +31,7 @@ const MenuBar = () => {
       const isScrollingDown = yPos > lastYPos
       // console.log("Listened")
       if (yPos > 50) {
-        setReveal(isScrollingDown)
+        setReveal(true)
         // console.log(isScrollingDown, yPos, reveal, "scrolled")
       } else {
         setReveal(false)
@@ -42,10 +48,13 @@ const MenuBar = () => {
 
   return (
     <div className={reveal ? "revealed menu-bar" : "menu-bar"}>
-      <div className="burger">
+      <div
+        className={menuOpen ? "burger open" : "burger"}
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
         <span></span>
       </div>
-      <div className="nav-container">
+      <div className={menuOpen ? "nav-container menu-open" : "nav-container"}>
         <nav>
           <ul>
             <li>
@@ -67,20 +76,75 @@ const MenuBar = () => {
               </NavLink>
             </li>
             <li>
-              <span className="more">
+              <span
+                className="more"
+                onClick={() => {
+                  setDropOpen(true)
+                }}
+              >
                 <FiMoreHorizontal className="icon" />
                 <span>More</span>
               </span>
             </li>
           </ul>
-          <div className="drop-up-menu">
-            <div className="menu-backdrop"></div>
+          <div className={dropOpen ? "open drop-up-menu" : "drop-up-menu"}>
+            <div
+              className="menu-backdrop"
+              onClick={() => {
+                setDropOpen(false)
+              }}
+            ></div>
             <div className="navigation">
               <div className="nav-header">More</div>
               <nav>
                 <ul>
                   <li>
-                    <NavLink to="/">{/* < */}</NavLink>
+                    <NavLink to="/">
+                      <AiOutlineOrderedList className="icon" />
+                      <span>My Orders</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/">
+                      <AiOutlineStar className="icon" />
+                      <span>Favourites</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/dashboard">
+                      <RiDashboardLine className="icon" />
+                      <span>Dashboard</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/">
+                      <RiSettings3Line className="icon" />
+                      <span>Setting</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/faq">
+                      <MdHelpOutline className="icon" />
+                      <span>Help</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/about">
+                      <BsInfoSquare className="icon" />
+                      <span>About Us</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/contact">
+                      <AiOutlinePhone className="icon" />
+                      <span>Contact Us</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <a href="#!">
+                      <FiLogOut className="icon" />
+                      <span>Logout</span>
+                    </a>
                   </li>
                 </ul>
               </nav>
