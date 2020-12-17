@@ -35,6 +35,7 @@ const MenuBar = () => {
         // console.log(isScrollingDown, yPos, reveal, "scrolled")
       } else {
         setReveal(false)
+        setDropOpen(false)
         // console.log(isScrollingDown, yPos, reveal, "nope")
       }
       setLastYPos(yPos)
