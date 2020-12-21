@@ -31,7 +31,7 @@ const OrderForm = ({ food }) => {
 
   function getLocation() {
     if (navigator.geolocation) {
-      let x = navigator.geolocation.getCurrentPosition(
+      navigator.geolocation.getCurrentPosition(
         (position) => {
           setLocation({
             lat: position.coords.latitude,

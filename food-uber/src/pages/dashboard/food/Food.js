@@ -23,23 +23,21 @@ const Food = () => {
                   foods.data &&
                   foods.data.map(
                     ({ name, id, food_image, description, cost }) => (
-                      <>
-                        <div className="food" key={id}>
-                          <div className="img-container">
-                            <img src={food_image} alt={name} />
-                          </div>
-                          <div className="food-content">
-                            <h3>{name}</h3>
-                            <p>{description}</p>
-                            <p>{cost} Tshs</p>
-                            <div className="btns">
-                              <Link to={`/dashboard/food/edit-food?q=${id}`}>
-                                Edit
-                              </Link>
-                            </div>
+                      <div className="food" key={id}>
+                        <div className="img-container">
+                          <img src={food_image} alt={name} />
+                        </div>
+                        <div className="food-content">
+                          <h3>{name}</h3>
+                          <p>{description}</p>
+                          <p>{cost} Tshs</p>
+                          <div className="btns">
+                            <Link to={`/dashboard/food/edit-food?q=${id}`}>
+                              Edit
+                            </Link>
                           </div>
                         </div>
-                      </>
+                      </div>
                     )
                   )}
               </div>

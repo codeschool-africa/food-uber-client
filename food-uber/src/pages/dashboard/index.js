@@ -12,7 +12,7 @@ import Profile from "./Profile"
 import Foods from "./food/"
 import Notifications from "./Notifications"
 import Orders from "./Orders"
-import Users from "./Users"
+import Users from "./users/"
 import Setting from "./Setting"
 import Error from "./Error"
 
@@ -92,7 +92,7 @@ const Dashboard = () => {
                       <Notifications notifications={notifications} />
                     </main>
                   </Route>
-                  <Route exact path={`/dashboard/users`} key={`team`}>
+                  <Route path={`/dashboard/users`} key={`team`}>
                     <main className={navOpen ? "main" : "main full-width"}>
                       <Users />
                     </main>

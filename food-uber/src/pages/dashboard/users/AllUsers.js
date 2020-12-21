@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react"
-import PageHeader from "../../components/dashboard/PageHeader"
+import PageHeader from "../../../components/dashboard/PageHeader"
 import axios from "axios"
 
-const Users = () => {
+// components
+import User from "../../../components/user/User"
+import defaultDp from "../../../assets/images/dp.png"
+
+const AllUsers = () => {
   let [users, setUsers] = useState(null)
   useEffect(() => {
     let token = localStorage.getItem("token")
@@ -27,22 +31,18 @@ const Users = () => {
       <div className="dashboard-team">
         {users &&
           users.map(({ name, dp_path, role, id }) => (
-            <div
+            <User
+              name={name}
+              dp_path={dp_path}
+              defaultDp={defaultDp}
+              role={role}
+              id={id}
               key={id}
-              style={{
-                width: "200px",
-                margin: "20px",
-                boxShadow: "0 0 20px rgba(0,0,0, .3)",
-              }}
-            >
-              {dp_path && <img src={dp_path} alt="" />}
-              <span>{name}</span>
-              {role && role}
-            </div>
+            />
           ))}
       </div>
     </div>
   )
 }
 
-export default Users
+export default AllUsers

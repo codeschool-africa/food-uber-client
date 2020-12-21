@@ -18,6 +18,7 @@ const SearchResults = ({ keyword }) => {
     setFormData({
       [name]: value,
     })
+    keyword = formData.keyword
   }
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -28,7 +29,7 @@ const SearchResults = ({ keyword }) => {
       },
     }
     const body = {
-      keyword,
+      keyword: formData.keyword,
     }
     setLoading(true)
     axios
@@ -39,17 +40,13 @@ const SearchResults = ({ keyword }) => {
           setResults(res.data)
           //   console.log(results.results)
           setLoading(false)
-          //   console.log(results.results.results)
+          // console.log(results.results.results)
         }
       })
       .catch((err) => {
         console.log(err)
         setLoading(false)
       })
-  }
-  console.log(keyword, close)
-  const closeModal = () => {
-    setClose(true)
   }
   useEffect(() => {
     let config = {
@@ -58,7 +55,7 @@ const SearchResults = ({ keyword }) => {
       },
     }
     const body = {
-      keyword,
+      keyword: formData.keyword,
     }
     setLoading(true)
     axios
@@ -79,7 +76,6 @@ const SearchResults = ({ keyword }) => {
   }, [setResults, setLoading, keyword])
   return (
     <div className="search-results">
-      <div className="search-backdrop" onClick={closeModal}></div>
       <div className="search-container">
         <div className="search">
           <form onSubmit={(e) => handleSubmit(e)}>
@@ -96,7 +92,7 @@ const SearchResults = ({ keyword }) => {
             <button>Search</button>
           </form>
         </div>
-        <h2>You Searched For {keyword}</h2>
+        <h2>You Searched For {formData.keyword}</h2>
         {loading ? (
           <h2>Searching...</h2>
         ) : (

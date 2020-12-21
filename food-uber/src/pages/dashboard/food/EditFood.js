@@ -4,6 +4,7 @@ import { FoodContext } from "../../../context/FoodContext"
 
 // components
 import PageHeader from "../../../components/dashboard/PageHeader"
+import EditFoodForm from "../../../components/dashboard/editFood/EditFoodForm"
 
 const EditFood = () => {
   let [foods, setFoods] = useContext(FoodContext)
@@ -21,7 +22,9 @@ const EditFood = () => {
         <PageHeader>
           <Link to="/dashboard/food">Food /</Link> Edit
         </PageHeader>
-        <div className="dashboard-foods new"></div>
+        <div className="dashboard-foods new">
+          <EditFoodForm foodToEdit={foodToEdit} />
+        </div>
       </div>
     </div>
   )
