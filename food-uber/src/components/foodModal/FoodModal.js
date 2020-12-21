@@ -21,7 +21,7 @@ const FoodModal = ({ closeModal, foodProps }) => {
           <p>{description}</p>
           <p>{cost} Tshs</p>
           <div className="order">
-            <Link className="btn-primary" to={`/order/${id}`}>
+            <Link className="btn-primary" to={`/order/food?q=${id}`}>
               Order this food
             </Link>
           </div>

@@ -3,7 +3,7 @@ import { FoodContext } from "../../../context/FoodContext"
 import { Link } from "react-router-dom"
 
 // components
-import FoodModal from "../../../components/dashboard/foodModal/FoodModal"
+// import FoodModal from "../../components/dashboard/foodModal/FoodModal"
 import PageHeader from "../../../components/dashboard/PageHeader"
 
 const Food = () => {
@@ -33,7 +33,7 @@ const Food = () => {
                             <p>{description}</p>
                             <p>{cost} Tshs</p>
                             <div className="btns">
-                              <Link to={`/dashboard/food/edit/food?q=${id}`}>
+                              <Link to={`/dashboard/food/edit-food?q=${id}`}>
                                 Edit
                               </Link>
                             </div>

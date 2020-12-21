@@ -38,8 +38,8 @@ let routes = [
     icon: <BsBell className="icon" />,
   },
   {
-    path: "team",
-    name: "Team",
+    path: "users",
+    name: "Users",
     icon: <FaUsers className="icon" />,
   },
 

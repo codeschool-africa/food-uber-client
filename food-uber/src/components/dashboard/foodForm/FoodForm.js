@@ -2,9 +2,9 @@ import React, { useState, useContext } from "react"
 import axios from "axios"
 import { FoodContext } from "../../../context/FoodContext"
 
-import "./foodModal.sass"
+import "./foodForm.sass"
 
-const FoodModal = ({ setClose, food }) => {
+const FoodForm = ({ setClose, food }) => {
   let [food_image, setFood_Image] = useState(null)
   let [loading, setLoading] = useState(false)
   let [imgData, setImgData] = useState(null)
@@ -199,4 +199,4 @@ const FoodModal = ({ setClose, food }) => {
   )
 }
 
-export default FoodModal
+export default FoodForm

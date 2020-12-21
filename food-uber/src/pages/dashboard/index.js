@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { Switch, Route } from "react-router-dom"
-// import { UserContext } from "../../context/UserContext"
+import { UserContext } from "../../context/UserContext"
 
 //components
 import Header from "../../components/dashboard/header/Header"
@@ -8,10 +8,11 @@ import AsideLeft from "../../components/dashboard/aside/AsideLeft"
 
 import Home from "./Home"
 import Profile from "./Profile"
-import Food from "./food"
+// import Food from "./food"
+import Foods from "./food/"
 import Notifications from "./Notifications"
 import Orders from "./Orders"
-import Team from "./Team"
+import Users from "./Users"
 import Setting from "./Setting"
 import Error from "./Error"
 
@@ -22,6 +23,7 @@ const Dashboard = () => {
   // const [user, setUser] = useContext(UserContext)
   const [navOpen, setnavOpen] = useState(true)
   const [isMobile, setMobile] = useState(false)
+  const [user, setUser] = useContext(UserContext)
   let [notifications, setNotifications] = useState()
 
   useEffect(() => {
@@ -36,69 +38,83 @@ const Dashboard = () => {
 
   return (
     <div className={navOpen ? "dashboard" : "dashboard dashboard-dark"}>
-      <Route
-        render={({ location }) => (
-          <div className="page-content">
-            <>
-              <Header navOpen={navOpen} handleNav={handleNav} notifications={notifications} setNotifications={setNotifications}/>
-              <AsideLeft
-                asideOpen={navOpen ? "" : "side-nav-open"}
-                isMobile={isMobile}
-                setnavOpen={setnavOpen}
-                notifications={notifications}
-              />
-              {isMobile && (
-                <div
-                  className={!navOpen ? "backdrop" : ""}
-                  onClick={() => setnavOpen(true)}
-                ></div>
-              )}
-              <Switch location={location} key={location.pathname}>
-                <Route exact path={`/dashboard/`} key={`Home`}>
-                  <main className={navOpen ? "main" : "main full-width"}>
-                    <Home />
-                  </main>
-                </Route>
-                <Route exact path={`/dashboard/profile`} key={`Home`}>
-                  <main className={navOpen ? "main" : "main full-width"}>
-                    <Profile />
-                  </main>
-                </Route>
-                <Route exact path={`/dashboard/food`} key={`Home`}>
-                  <main className={navOpen ? "main" : "main full-width"}>
-                    <Food />
-                  </main>
-                </Route>
-                <Route exact path={`/dashboard/orders`} key={`orders`}>
-                  <main className={navOpen ? "main" : "main full-width"}>
-                    <Orders />
-                  </main>
-                </Route>
-                <Route exact path={`/dashboard/notifications`} key={`notifications`}>
-                  <main className={navOpen ? "main" : "main full-width"}>
-                    <Notifications notifications={notifications}/>
-                  </main>
-                </Route>
-                <Route exact path={`/dashboard/team`} key={`team`}>
-                  <main className={navOpen ? "main" : "main full-width"}>
-                    <Team />
-                  </main>
-                </Route>
-                <Route exact path={`/dashboard/setting`} key={`Setting`}>
-                  <main className={navOpen ? "main" : "main full-width"}>
-                    <Setting />
-                  </main>
-                </Route>
-                <Route key={`Error`}>
-                  <main className={navOpen ? "main" : "main full-width"}>
-                    <Error />
-                  </main>
-                </Route>
-              </Switch>
-            </>
-          </div>
-        )}
-      />
+      {user.data &&
+      (user.data.role === "admin" || user.data.role === "main-admin") ? (
+        <Route
+          render={({ location }) => (
+            <div className="page-content">
+              <>
+                <Header
+                  navOpen={navOpen}
+                  handleNav={handleNav}
+                  notifications={notifications}
+                  setNotifications={setNotifications}
+                />
+                <AsideLeft
+                  asideOpen={navOpen ? "" : "side-nav-open"}
+                  isMobile={isMobile}
+                  setnavOpen={setnavOpen}
+                  notifications={notifications}
+                />
+                {isMobile && (
+                  <div
+                    className={!navOpen ? "backdrop" : ""}
+                    onClick={() => setnavOpen(true)}
+                  ></div>
+                )}
+                <Switch location={location} key={location.pathname}>
+                  <Route exact path={`/dashboard/`} key={`Home`}>
+                    <main className={navOpen ? "main" : "main full-width"}>
+                      <Home />
+                    </main>
+                  </Route>
+                  <Route exact path={`/dashboard/profile`} key={`Home`}>
+                    <main className={navOpen ? "main" : "main full-width"}>
+                      <Profile />
+                    </main>
+                  </Route>
+                  <Route path={`/dashboard/food`} key={`Foods`}>
+                    <main className={navOpen ? "main" : "main full-width"}>
+                      <Foods />
+                    </main>
+                  </Route>
+                  <Route exact path={`/dashboard/orders`} key={`orders`}>
+                    <main className={navOpen ? "main" : "main full-width"}>
+                      <Orders />
+                    </main>
+                  </Route>
+                  <Route
+                    exact
+                    path={`/dashboard/notifications`}
+                    key={`notifications`}
+                  >
+                    <main className={navOpen ? "main" : "main full-width"}>
+                      <Notifications notifications={notifications} />
+                    </main>
+                  </Route>
+                  <Route exact path={`/dashboard/users`} key={`team`}>
+                    <main className={navOpen ? "main" : "main full-width"}>
+                      <Users />
+                    </main>
+                  </Route>
+                  <Route exact path={`/dashboard/setting`} key={`Setting`}>
+                    <main className={navOpen ? "main" : "main full-width"}>
+                      <Setting />
+                    </main>
+                  </Route>
+                  <Route key={`Error`}>
+                    <main className={navOpen ? "main" : "main full-width"}>
+                      <Error />
+                    </main>
+                  </Route>
+                </Switch>
+              </>
+            </div>
+          )}
+        />
+      ) : (
+        <>Go away</>
+      )}
     </div>
   )
 }

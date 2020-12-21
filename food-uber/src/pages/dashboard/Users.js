@@ -1,15 +1,15 @@
 import React from "react"
 import PageHeader from "../../components/dashboard/PageHeader"
 
-const Team = () => {
+const Users = () => {
   return (
     <div className="dashboard-content team">
       <div className="main-content">
-        <PageHeader>The Team</PageHeader>
+        <PageHeader>Users</PageHeader>
       </div>
-      <div className="dashboard-team">Team</div>
+      <div className="dashboard-team">Users</div>
     </div>
   )
 }
 
-export default Team
+export default Users

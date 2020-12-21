@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import { FoodContext } from "../../context/FoodContext"
 
@@ -9,6 +9,7 @@ import "./featured.sass"
 
 const FeaturedFood = () => {
   let [foods, setFoods] = useContext(FoodContext)
+  let [loading, setLoading] = useState(false)
 
   let data = foods.data
   let featuredFoods
@@ -21,19 +22,26 @@ const FeaturedFood = () => {
         <Search />
         <h2>Explore Our Featured Plates</h2>
         <div className="showcase">
-          {featuredFoods &&
-            featuredFoods.map(({ name, id, food_image, description, cost }) => (
-              <Food
-                key={id}
-                name={name}
-                id={id}
-                food_image={food_image}
-                description={description}
-                cost={cost}
-              />
-            ))}
+          {featuredFoods ? (
+            <>
+              {featuredFoods.map(
+                ({ name, id, food_image, description, cost }) => (
+                  <Food
+                    key={id}
+                    name={name}
+                    id={id}
+                    food_image={food_image}
+                    description={description}
+                    cost={cost}
+                  />
+                )
+              )}{" "}
+            </>
+          ) : (
+            <></>
+          )}
           <div className="more">
-            <Link to="/menu">View More</Link>
+            <Link to="/menu">View All</Link>
           </div>
         </div>
       </div>

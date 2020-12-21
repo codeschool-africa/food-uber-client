@@ -8,11 +8,14 @@ import MenuBar from "../../components/menu/MenuBar"
 
 const Order = () => {
   let [foods, setFoods] = useContext(FoodContext)
+  const search = window.location.search
+  const params = new URLSearchParams(search)
+  const slug = params.get("q")
 
   let data = foods.data
   let orderedFood
-  let { id } = useParams()
-  if (data) orderedFood = data.filter((o) => o.id == id)
+  // let { id } = useParams()
+  if (data) orderedFood = data.filter((o) => o.id == slug)
   // console.log(setFoods)
 
   return (
@@ -24,7 +27,7 @@ const Order = () => {
       </Banner>
       <div className="order">
         <div className="container">
-          {orderedFood && orderedFood[0] ? (
+          {data && orderedFood && orderedFood[0] ? (
             <div className="food-details">
               <h2>{orderedFood[0].name}</h2>
               <div className="img-container">
