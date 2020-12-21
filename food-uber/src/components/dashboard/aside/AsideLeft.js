@@ -69,7 +69,6 @@ const AsideLeft = ({ asideOpen, setnavOpen, isMobile, notifications }) => {
 
   const logout = () => {
     setUser({
-      ...user,
       isAuthenticated: false,
       data: null,
     })

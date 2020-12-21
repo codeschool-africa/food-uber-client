@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { NavLink } from "react-router-dom"
 import {
   IoHomeOutline,
@@ -16,9 +16,12 @@ import {
   AiOutlinePhone,
 } from "react-icons/all"
 
+import { UserContext } from "../../context/UserContext"
+
 import "./menu.sass"
 
 const MenuBar = () => {
+  let [user, setUser] = useContext(UserContext)
   const [reveal, setReveal] = useState(false)
   const [lastYPos, setLastYPos] = useState(0)
   const [dropOpen, setDropOpen] = useState(false)
@@ -46,6 +49,14 @@ const MenuBar = () => {
       window.removeEventListener("scroll", handleScroll, false)
     }
   }, [lastYPos])
+
+  const logout = () => {
+    setUser({
+      isAuthenticated: false,
+      data: null,
+    })
+    localStorage.setItem("token", null)
+  }
 
   return (
     <div className={reveal ? "revealed menu-bar" : "menu-bar"}>
@@ -111,12 +122,18 @@ const MenuBar = () => {
                       <span>Favourites</span>
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink to="/dashboard">
-                      <RiDashboardLine className="icon" />
-                      <span>Dashboard</span>
-                    </NavLink>
-                  </li>
+                  {user &&
+                    user.data &&
+                    (user.data.role === "admin" ||
+                      user.data.role === "main-admin") && (
+                      <li>
+                        <NavLink to="/dashboard">
+                          <RiDashboardLine className="icon" />
+                          <span>Dashboard</span>
+                        </NavLink>
+                      </li>
+                    )}
+
                   <li>
                     <NavLink to="/">
                       <RiSettings3Line className="icon" />
@@ -142,7 +159,7 @@ const MenuBar = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <a href="#!">
+                    <a href="#!" onClick={logout}>
                       <FiLogOut className="icon" />
                       <span>Logout</span>
                     </a>

@@ -61,9 +61,7 @@ const FoodForm = ({ setClose, food }) => {
     // }
     let config = {
       headers: {
-        "Content-Type":
-          // "application/json; multipart/form-data; boundary=AaB03x",
-          "application/json",
+        "Content-Type": "application/json",
         authorization: token,
       },
     }

@@ -8,7 +8,9 @@ const ImgUpload = ({ dp_path, dp_img }) => {
   let [dp, setDp] = useState(null)
   let [loading, setLoading] = useState(false)
   let [imgData, setImgData] = useState(null)
+  let [alert, setAlert] = useState(null)
   const handleChange = (e) => {
+    setAlert(null)
     if (e.target.files) {
       setDp(e.target.files[0])
       const reader = new FileReader()
@@ -39,14 +41,26 @@ const ImgUpload = ({ dp_path, dp_img }) => {
       let data = {
         dp,
       }
+      setAlert(null)
       axios
         .post("/upload-dp", data, config)
         .then((res) => {
           console.log(res.data)
+          if (res.data && res.data.msg)
+            setAlert({
+              success: res.data.msg,
+            })
+          if (res.data && res.data.error)
+            setAlert({
+              error: res.data.error,
+            })
           setLoading(false)
         })
         .catch((err) => {
           console.log(err)
+          setAlert({
+            error: "Error",
+          })
           setLoading(false)
         })
     } else {
@@ -54,6 +68,8 @@ const ImgUpload = ({ dp_path, dp_img }) => {
       setLoading(false)
     }
   }
+
+  console.log(alert)
   return (
     <div className="img-upload">
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -74,6 +90,12 @@ const ImgUpload = ({ dp_path, dp_img }) => {
             <FaCamera className="icon" />
           </div>
         </label>
+        {/* {alert && (
+          <p className="alert">
+            {alert.success && alert.success}
+            {alert.error && alert.error}
+          </p>
+        )} */}
         <button disabled={loading}>
           {loading ? "Uploading..." : "Upload"}
         </button>
