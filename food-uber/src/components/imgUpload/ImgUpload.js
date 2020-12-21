@@ -69,7 +69,7 @@ const ImgUpload = ({ dp_path, dp_img }) => {
     }
   }
 
-  console.log(alert)
+  // console.log(alert)
   return (
     <div className="img-upload">
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -90,12 +90,12 @@ const ImgUpload = ({ dp_path, dp_img }) => {
             <FaCamera className="icon" />
           </div>
         </label>
-        {/* {alert && (
+        {alert && (
           <p className="alert">
             {alert.success && alert.success}
             {alert.error && alert.error}
           </p>
-        )} */}
+        )}
         <button disabled={loading}>
           {loading ? "Uploading..." : "Upload"}
         </button>
