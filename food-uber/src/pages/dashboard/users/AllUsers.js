@@ -28,7 +28,14 @@ const AllUsers = () => {
       <div className="main-content">
         <PageHeader>Users</PageHeader>
       </div>
-      <div className="dashboard-team">
+      <div
+        className="dashboard-team"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}
+      >
         {users &&
           users.map(({ name, dp_path, role, id }) => (
             <User

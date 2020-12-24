@@ -4,6 +4,8 @@ import { UserContext } from "../../context/UserContext"
 
 import axios from "axios"
 
+import "./user.sass"
+
 const User = ({ dp_path, name, id, role, defaultDp }) => {
   let [user, setUser] = useContext(UserContext)
   let token = localStorage.getItem("token")
