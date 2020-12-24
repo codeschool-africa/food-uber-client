@@ -22,7 +22,7 @@ const AllUsers = () => {
         if (res.data && res.data.results) setUsers(res.data.results)
       })
       .catch((err) => console.log(err))
-  }, [])
+  }, [users])
   return (
     <div className="dashboard-content team">
       <div className="main-content">

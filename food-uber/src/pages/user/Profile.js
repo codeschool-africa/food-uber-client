@@ -4,6 +4,7 @@ import { UserContext } from "../../context/UserContext"
 
 import UserProfile from "../../components/userProfile/UserProfile"
 import MenuBar from "../../components/menu/MenuBar"
+import FloatHeader from "../../components/floatHeader/FloatHeader"
 
 const Profile = () => {
   let [user, setUser] = useContext(UserContext)
@@ -13,6 +14,7 @@ const Profile = () => {
   }
   return (
     <div className="menu">
+      <FloatHeader />
       <Banner>
         <div className="banner__headline">
           <h1>{user && user.data && Name}</h1>
