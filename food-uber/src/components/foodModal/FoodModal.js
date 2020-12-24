@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { MdClose } from "react-icons/all"
 import { Link } from "react-router-dom"
 
@@ -10,6 +10,18 @@ const FoodModal = ({ closeModal, foodProps }) => {
   const { id, name, food_image, description, cost } = foodProps
 
   let check = cart.filter((o) => o.id == id)
+
+  const saveLocalCarts = () => {
+    if (localStorage.getItem("cart") === null) {
+      localStorage.setItem("cart", JSON.stringify([]))
+    } else {
+      localStorage.setItem("cart", JSON.stringify(cart))
+    }
+  }
+
+  useEffect(() => {
+    saveLocalCarts()
+  }, [cart])
 
   return (
     <div className="food-modal">
