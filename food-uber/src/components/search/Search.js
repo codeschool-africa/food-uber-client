@@ -19,6 +19,9 @@ const Search = () => {
     e.preventDefault()
     setOpenSearch(true)
   }
+  const closeSearch = () => {
+    setOpenSearch(false)
+  }
   return (
     <>
       <div className="search">
@@ -35,7 +38,9 @@ const Search = () => {
           <button>Search</button>
         </form>
       </div>
-      {openSearch && <SearchResults keyword={formData.keyword} />}
+      {openSearch && (
+        <SearchResults keyword={formData.keyword} closeSearch={closeSearch} />
+      )}
     </>
   )
 }
