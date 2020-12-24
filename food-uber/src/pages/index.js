@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import Banner from "../components/banner/Banner"
 import FeaturedFood from "../components/featured/FeaturedFood"
 import MenuBar from "../components/menu/MenuBar"
+import FloatHeader from "../components/floatHeader/FloatHeader"
 
 // imag
 import plate from "../assets/images/featured_plate.png"
@@ -20,6 +21,7 @@ const Home = () => {
 
   return (
     <div>
+      <FloatHeader />
       <Banner>
         <div
           className="banner__img"
