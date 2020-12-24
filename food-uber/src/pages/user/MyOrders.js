@@ -4,6 +4,7 @@ import { UserContext } from "../../context/UserContext"
 import axios from "axios"
 
 import MenuBar from "../../components/menu/MenuBar"
+import FloatHeader from "../../components/floatHeader/FloatHeader"
 
 const MyOrders = () => {
   let [user, setUser] = useContext(UserContext)
@@ -33,6 +34,7 @@ const MyOrders = () => {
   }, [setOrders])
   return (
     <div className="menu">
+      <FloatHeader />
       <Banner>
         <div className="banner__headline">
           <h1>My Orders</h1>

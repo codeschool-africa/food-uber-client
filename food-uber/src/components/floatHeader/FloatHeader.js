@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom"
 import { AiOutlineShoppingCart } from "react-icons/ai"
 
 import { UserContext } from "../../context/UserContext"
+import { CartContext } from "../../context/CartContext"
 
 // components
 import logo from "../../assets/images/logo.png"
@@ -12,6 +13,7 @@ import "./floatHeader.sass"
 
 const FloatHeader = () => {
   let [user, setUser] = useContext(UserContext)
+  let [cart, setCart] = useContext(CartContext)
   const [reveal, setReveal] = useState(false)
   const [lastYPos, setLastYPos] = useState(0)
 
@@ -88,7 +90,7 @@ const FloatHeader = () => {
         </nav>
         <div className="user-container">
           <Link to="/cart" className="cart">
-            <span></span>
+            {cart && cart.length > 0 && <span>{cart.length}</span>}
             <AiOutlineShoppingCart className="icon" />
           </Link>
           {user && user.data && (

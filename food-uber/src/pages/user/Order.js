@@ -5,6 +5,7 @@ import { FoodContext } from "../../context/FoodContext"
 import OrderForm from "../../components/order/OrderForm"
 
 import MenuBar from "../../components/menu/MenuBar"
+import FloatHeader from "../../components/floatHeader/FloatHeader"
 
 const Order = () => {
   let [foods, setFoods] = useContext(FoodContext)
@@ -20,6 +21,7 @@ const Order = () => {
 
   return (
     <div className="menu">
+      <FloatHeader />
       <Banner>
         <div className="banner__headline">
           <h1>Create an Order</h1>

@@ -6,6 +6,7 @@ import Banner from "../components/banner/Banner"
 import Food from "../components/food/Food"
 import Search from "../components/search/Search"
 import MenuBar from "../components/menu/MenuBar"
+import FloatHeader from "../components/floatHeader/FloatHeader"
 
 import "../styles/pages/menu.sass"
 
@@ -13,6 +14,7 @@ const Menu = () => {
   const [foods, setFoods] = useContext(FoodContext)
   return (
     <div className="menu">
+      <FloatHeader />
       <Banner>
         <div className="banner__headline">
           <h1>Our Menu</h1>

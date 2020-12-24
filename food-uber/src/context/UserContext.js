@@ -6,6 +6,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
     isAuthenticated: false,
     token: localStorage.getItem("token"),
+    loading: false,
   })
   return (
     <UserContext.Provider value={[user, setUser]}>

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom"
 import { AiOutlineShoppingCart } from "react-icons/all"
 import "./header.sass"
 import { UserContext } from "../../context/UserContext"
+import { CartContext } from "../../context/CartContext"
 // import axios from "axios"
 
 // components
@@ -13,6 +14,7 @@ import logo from "../../assets/images/logo.png"
 
 const Header = () => {
   const [user, setUser] = useContext(UserContext)
+  const [cart, setCart] = useContext(CartContext)
   return (
     <header className="nav-header">
       <div className="svg-container">{/* <HeaderSvg /> */}</div>
@@ -86,7 +88,7 @@ const Header = () => {
             ) : null}
             <li>
               <NavLink to="/cart" className="cart">
-                <span></span>
+                {cart && cart.length > 0 && <span>{cart.length}</span>}
                 <AiOutlineShoppingCart className="icon" />
               </NavLink>
             </li>

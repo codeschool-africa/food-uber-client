@@ -1,11 +1,16 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { MdClose } from "react-icons/all"
 import { Link } from "react-router-dom"
 
+import { CartContext } from "../../context/CartContext"
+
 import "./foodModal.sass"
 const FoodModal = ({ closeModal, foodProps }) => {
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useContext(CartContext)
   const { id, name, food_image, description, cost } = foodProps
+
+  let check = cart.filter((o) => o.id == id)
+
   return (
     <div className="food-modal">
       <div className="food-modal-backdrop"></div>
@@ -29,11 +34,20 @@ const FoodModal = ({ closeModal, foodProps }) => {
             {/* <button>Preview</button> */}
             <button
               className="btn-primary"
+              disabled={check && check.length > 0 && true}
               onClick={() => {
-                setCart([...cart, id])
+                if (check && check.length > 0) {
+                  return null
+                } else {
+                  if (check && check.length > 0) {
+                    return null
+                  } else {
+                    setCart([...cart, foodProps])
+                  }
+                }
               }}
             >
-              Add to Cart
+              {check && check.length > 0 ? "Added to Cart" : "Add To Cart"}
             </button>
             <span onClick={closeModal}>Dismiss</span>
           </div>
