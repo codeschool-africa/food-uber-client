@@ -9,7 +9,9 @@ const FoodModal = ({ closeModal, foodProps }) => {
   const [cart, setCart] = useContext(CartContext)
   const { id, name, food_image, description, cost } = foodProps
 
-  let check = cart.filter((o) => o.id == id)
+  let check
+
+  if (cart && cart.length > 0) check = cart.filter((o) => o.id == id)
 
   const saveLocalCarts = () => {
     if (localStorage.getItem("cart") === null) {
