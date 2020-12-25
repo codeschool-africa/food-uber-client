@@ -9,8 +9,6 @@ import FloatHeader from "../../components/floatHeader/FloatHeader"
 
 const Cart = () => {
   let [cart, setCart] = useContext(CartContext)
-  // console.log(cart[0].foodProps)
-  // work on the cost of all foods
   let amount = (item) => {
     return item.cost * item.number
   }
@@ -21,7 +19,9 @@ const Cart = () => {
 
   let totalCost = cart.map(amount).reduce(sum)
 
-  console.log(totalCost)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
   return (
     <div className="menu">
       <FloatHeader />
@@ -37,6 +37,15 @@ const Cart = () => {
             padding: "20px 0 70px",
           }}
         >
+          <div
+            style={{
+              textAlign: "right",
+              width: "100%",
+              maxWidth: "600px",
+            }}
+          >
+            {totalCost && `total cost = ${totalCost}`}
+          </div>
           {cart &&
             cart.map(({ id, name, description, food_image, cost, number }) => (
               <CartCard
@@ -49,7 +58,37 @@ const Cart = () => {
                 key={id}
               />
             ))}
-          <div>{totalCost && `total cost = ${totalCost}`}</div>
+          <div
+            style={{
+              textAlign: "right",
+              width: "100%",
+              maxWidth: "600px",
+            }}
+          >
+            {totalCost && `total cost = ${totalCost}`}
+          </div>
+          <form
+            onSubmit={(e) => handleSubmit(e)}
+            style={{
+              width: "100%",
+              maxWidth: "600px",
+            }}
+          >
+            <button
+              className="btn"
+              style={{
+                width: "100%",
+                background: "red",
+                margin: "20px 0",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                color: "white",
+              }}
+            >
+              Check Out
+            </button>
+          </form>
         </div>
       </div>
       <MenuBar />
