@@ -95,62 +95,19 @@
                     label.placeholder
                         width: 100%
                         margin-bottom: 20px
-                        div
-                            height: 100%
-                            width: 100%
-                            background: grey
-                            position: relative
-                            &::before, &::after
-                                content: ""
-                                position: absolute
-                                top: 50%
-                                left: 50%
-                                // transform: translate(-50%, -50%)
-                                height: 1px
-                                width: 100%
-                                background: #EDF6F8
-                                transform-origin: 0 0
-                            &::before
-                                transform: rotateZ(45deg) translate(-50%, -50%)
-                            &::after
-                                transform: rotateZ(-45deg) translate(-50%, -50%)
-                        img
-                            height: 100%
-                            width: 100%
-                            object-fit: cover
-                    input
-                        display: none
                 h2
                     margin: 40px 0
                     font-size: clamp(18px, 3vw, 22px)
                 .input-group
-                    padding: 0
-                    margin: 40px 0
-                    display: flex
-                    flex-direction: row
-                    flex-wrap: wrap
                     label
-                        width: 35%
+                        width: 100%
                     input, textarea
-                        width: 60%
-                        padding: 10px
-                        border: 1px solid #2F717C
-                h3
-                    font-size: clamp(16px, 2vw, 18px)
-                    margin: 30px 0 20px
-                .checkbox-group
-                    display: flex
-                    flex-wrap: wrap
-                    label
-                        margin: 10px 40px 10px 0
-                        input
-                            margin-right: 20px
+                        width: 100%
                 #featured
                     margin: 20px 0
                     input
                         margin-right: 20px
                 .btns
-                    display: flex
-                    justify-content: flex-end
+                    justify-content: center
                     button
-                        width: 60%
+                        width: 100%
