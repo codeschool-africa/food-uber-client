@@ -21,6 +21,10 @@ const CartCard = ({ id, name, description, food_image, cost }) => {
       setNumber(number - 1)
     }
   }
+
+  const removeFromCart = () => {
+    // removal function
+  }
   return (
     <div className="cart-card">
       <div className="img-container">
