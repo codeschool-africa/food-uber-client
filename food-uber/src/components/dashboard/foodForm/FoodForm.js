@@ -88,109 +88,139 @@ const FoodForm = ({ setClose, food }) => {
       })
   }
   return (
-    <div className="food-modal">
-      <div className="food-backdrop" />
+    <div className="new-food">
       <div className="container">
-        <form
-          onSubmit={(e) => handleSubmit(e)}
-          style={{
-            padding: "30px",
-          }}
-        >
-          <input
-            type="file"
-            name="food_image"
-            onChange={(e) => handleImgChange(e)}
-          />
-          {imgData && <img src={imgData} alt="" />}
-          <input
-            type="text"
-            name="Name"
-            onChange={(e) => handleChange(e)}
-            placeholder="Food Name"
-          />
-          <textarea
-            name="description"
-            onChange={(e) => handleChange(e)}
-            placeholder="place food description here"
-          />
-          <input
-            type="number"
-            name="cost"
-            onChange={(e) => handleChange(e)}
-            placeholder="cost in Tshs"
-          />
-          <input
-            type="radio"
-            name="featured"
-            onChange={(e) => handleChange(e)}
-            value={1}
-          />
-          Set Featured
-          <h3>Categories</h3>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className="image-upload">
+            <label htmlFor="image">Upload Food Image:</label>
+            <input
+              type="file"
+              name="food_image"
+              id="image"
+              onChange={(e) => handleImgChange(e)}
+            />
+            <label htmlFor="image" className="placeholder">
+              {imgData ? <img src={imgData} alt="" /> : <div />}
+            </label>
+          </div>
+          <h2>Add basic food informations</h2>
+          <div className="input-group">
+            <label htmlFor="name">Food Name:</label>
+            <input
+              type="text"
+              name="Name"
+              id="name"
+              onChange={(e) => handleChange(e)}
+              placeholder="Food Name"
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="descriptions">Food Description:</label>
+            <textarea
+              name="description"
+              id="descriptions"
+              onChange={(e) => handleChange(e)}
+              placeholder="place food description here"
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="cost">Food Price in Tshs:</label>
+            <input
+              type="number"
+              name="cost"
+              id="cost"
+              onChange={(e) => handleChange(e)}
+              placeholder="Price..."
+            />
+          </div>
+          <h3>Select Categories</h3>
           <div className="checkbox-group">
-            <div className="checkbox">
+            <label htmlFor="vegetables">
               <input
                 type="checkbox"
                 name="category"
-                id="web"
-                value="Cereals"
+                id="vegetables"
+                value="Vegetables"
                 onChange={(e) => handleCheckBoxChange(e)}
-              />{" "}
-              <label htmlFor="web">Cereals</label>
-            </div>
-            <div className="checkbox">
+              />
+              Vegetables
+            </label>
+            <label htmlFor="salad">
               <input
                 type="checkbox"
                 name="category"
-                id="design"
+                id="salad"
+                value="Salads"
+                onChange={(e) => handleCheckBoxChange(e)}
+              />
+              Salads
+            </label>
+            <label htmlFor="cake">
+              <input
+                type="checkbox"
+                name="category"
+                id="cake"
                 value="Cake"
                 onChange={(e) => handleCheckBoxChange(e)}
-              />{" "}
-              <label htmlFor="design">Cake</label>
-            </div>
-            <div className="checkbox">
+              />
+              Cake
+            </label>
+            <label htmlFor="chicken">
               <input
                 type="checkbox"
                 name="category"
-                id="graphics"
+                id="chicken"
                 value="Chicken"
                 onChange={(e) => handleCheckBoxChange(e)}
-              />{" "}
-              <label htmlFor="graphics">Chicken</label>
-            </div>
-            <div className="checkbox">
+              />
+              Chicken
+            </label>
+            <label htmlFor="cereals">
               <input
                 type="checkbox"
                 name="category"
-                id="app"
-                value="Rice"
+                id="cereals"
+                value="Cereals"
                 onChange={(e) => handleCheckBoxChange(e)}
-              />{" "}
-              <label htmlFor="app">Rice</label>
-            </div>
-            <div className="checkbox">
+              />
+              Cereals
+            </label>
+            <label htmlFor="fruits">
               <input
                 type="checkbox"
                 name="category"
-                id="mobile-application"
-                value="fruits"
+                id="fruits"
+                value="Fruits"
                 onChange={(e) => handleCheckBoxChange(e)}
-              />{" "}
-              <label htmlFor="mobile-application">Fruits</label>
-            </div>
-            <div className="checkbox">
+              />
+              Fruits
+            </label>
+            <label htmlFor="steak">
               <input
                 type="checkbox"
                 name="category"
-                id="web-application"
+                id="steak"
                 value="Steak"
                 onChange={(e) => handleCheckBoxChange(e)}
-              />{" "}
-              <label htmlFor="web-application">Steak</label>
-            </div>
+              />
+              Steak
+            </label>
           </div>
-          <button disabled={loading}>{loading ? "Saving..." : "Save"}</button>
+          <label htmlFor="featured" id="featured">
+            <input
+              type="radio"
+              name="featured"
+              id="featured"
+              onChange={(e) => handleChange(e)}
+              value={1}
+            />
+            Add this food to featured list
+          </label>
+          <div className="btns">
+            <button disabled={loading} className="btn btn-primary">
+              {loading ? "Saving..." : "Save"}
+            </button>
+          </div>
         </form>
       </div>
     </div>
