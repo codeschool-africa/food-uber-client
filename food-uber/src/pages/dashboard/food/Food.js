@@ -15,10 +15,10 @@ const Food = () => {
         <div className="dashboard-foods">
           <div>
             <div className="foods">
+              <div className="top">
+                <Link to="/dashboard/food/new">Add New Food</Link>
+              </div>
               <div className="showcase">
-                <div className="top">
-                  <Link to="/dashboard/food/new">Add New Food</Link>
-                </div>
                 {foods &&
                   foods.data &&
                   foods.data.map(
