@@ -56,7 +56,11 @@ const FoodModal = ({ closeModal, foodProps }) => {
                   if (check && check.length > 0) {
                     return null
                   } else {
-                    setCart([...cart, foodProps])
+                    if (cart) {
+                      setCart([...cart, foodProps])
+                    } else {
+                      setCart([foodProps])
+                    }
                   }
                 }
               }}
