@@ -7,6 +7,19 @@ import "./food.sass"
 const Food = ({ name, id, food_image, description, cost }) => {
   // const [cart, setCart] = useState([])
   let [open, setOpen] = useState(false)
+  let cart = JSON.parse(localStorage.getItem("cart"))
+  // console.log(cart)
+  let number = 1
+  if (cart) {
+    cart.filter((o) => {
+      if (o.id === id) {
+        o.number ? (number = o.number) : (number = 1)
+      } else {
+        number = 1
+      }
+    })
+  }
+
   const openModal = () => {
     setOpen(true)
   }
@@ -20,6 +33,7 @@ const Food = ({ name, id, food_image, description, cost }) => {
     food_image,
     description,
     cost,
+    number,
   }
   return (
     <>

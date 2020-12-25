@@ -7,7 +7,8 @@ import { CartContext } from "../../context/CartContext"
 import "./foodModal.sass"
 const FoodModal = ({ closeModal, foodProps }) => {
   const [cart, setCart] = useContext(CartContext)
-  const { id, name, food_image, description, cost } = foodProps
+  // let number = 1
+  const { id, name, food_image, description, cost, number } = foodProps
 
   let check
 
@@ -20,6 +21,8 @@ const FoodModal = ({ closeModal, foodProps }) => {
       localStorage.setItem("cart", JSON.stringify(cart))
     }
   }
+
+  // console.log(number)
 
   useEffect(() => {
     saveLocalCarts()

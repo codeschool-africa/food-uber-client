@@ -1,16 +1,27 @@
-import React, { useState } from "react"
+import React, { useEffect, useContext } from "react"
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
+import { CartContext } from "../../context/CartContext"
 
 import "./cart.sass"
 
-const CartCard = ({ id, name, description, food_image, cost }) => {
-  let [number, setNumber] = useState(1)
-
+const CartCard = ({ id, name, description, food_image, cost, number }) => {
+  let [cart, setCart] = useContext(CartContext)
   const add = () => {
     if (number > 10) {
       return null
     } else {
-      setNumber(number + 1)
+      setCart(
+        cart.map((item) => {
+          if (id === item.id) {
+            saveLocalCarts()
+            return {
+              ...item,
+              number: item.number + 1,
+            }
+          }
+          return item
+        })
+      )
     }
   }
 
@@ -18,16 +29,46 @@ const CartCard = ({ id, name, description, food_image, cost }) => {
     if (number <= 1) {
       return null
     } else {
-      setNumber(number - 1)
+      setCart(
+        cart.map((item) => {
+          if (id === item.id) {
+            saveLocalCarts()
+            return {
+              ...item,
+              number: item.number - 1,
+            }
+          }
+          return item
+        })
+      )
     }
   }
 
   const removeFromCart = () => {
-    // removal function
+    if (cart && cart.length > 1) {
+      setCart(cart.filter((o) => o.id != id))
+    } else {
+      setCart(cart.filter((o) => o.id != id))
+      localStorage.setItem("cart", JSON.stringify([]))
+    }
   }
+
+  const saveLocalCarts = () => {
+    if (localStorage.getItem("cart") === null) {
+      localStorage.setItem("cart", JSON.stringify([]))
+    } else {
+      localStorage.setItem("cart", JSON.stringify(cart))
+    }
+  }
+
+  useEffect(() => {
+    saveLocalCarts()
+  }, [cart])
+
   return (
     <div className="cart-card">
       <div className="img-container">
+        {/* {number} */}
         <img src={food_image} alt={name} />
       </div>
       <div className="cart-details">
@@ -37,10 +78,13 @@ const CartCard = ({ id, name, description, food_image, cost }) => {
           <span onClick={minus} className="span">
             <AiOutlineMinus className="icon" />
           </span>
-          <span className="number">{number}</span>
+          <span className="number">{number && number}</span>
           <span onClick={add} className="span">
             <AiOutlinePlus className="icon" />
           </span>
+        </div>
+        <div className="remove">
+          <span onClick={removeFromCart}>Remove</span>
         </div>
       </div>
     </div>

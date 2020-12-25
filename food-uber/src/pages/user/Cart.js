@@ -9,7 +9,7 @@ import FloatHeader from "../../components/floatHeader/FloatHeader"
 
 const Cart = () => {
   let [cart, setCart] = useContext(CartContext)
-  // console.log(cart)
+  // console.log(cart[0].foodProps)
   return (
     <div className="menu">
       <FloatHeader />
@@ -21,13 +21,14 @@ const Cart = () => {
       <div className="cart-container">
         <div className="container">
           {cart &&
-            cart.map(({ id, name, description, food_image, cost }) => (
+            cart.map(({ id, name, description, food_image, cost, number }) => (
               <CartCard
                 id={id}
                 name={name}
                 description={description}
                 food_image={food_image}
                 cost={cost}
+                number={number}
                 key={id}
               />
             ))}
