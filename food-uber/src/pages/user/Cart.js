@@ -10,6 +10,18 @@ import FloatHeader from "../../components/floatHeader/FloatHeader"
 const Cart = () => {
   let [cart, setCart] = useContext(CartContext)
   // console.log(cart[0].foodProps)
+  // work on the cost of all foods
+  let amount = (item) => {
+    return item.cost * item.number
+  }
+
+  let sum = (prev, next) => {
+    return prev + next
+  }
+
+  let totalCost = cart.map(amount).reduce(sum)
+
+  console.log(totalCost)
   return (
     <div className="menu">
       <FloatHeader />
@@ -19,7 +31,12 @@ const Cart = () => {
         </div>
       </Banner>
       <div className="cart-container">
-        <div className="container">
+        <div
+          className="container"
+          style={{
+            padding: "20px 0 70px",
+          }}
+        >
           {cart &&
             cart.map(({ id, name, description, food_image, cost, number }) => (
               <CartCard
@@ -32,6 +49,7 @@ const Cart = () => {
                 key={id}
               />
             ))}
+          <div>{totalCost && `total cost = ${totalCost}`}</div>
         </div>
       </div>
       <MenuBar />
