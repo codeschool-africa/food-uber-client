@@ -5,6 +5,7 @@ import axios from "axios"
 
 import MenuBar from "../../components/menu/MenuBar"
 import FloatHeader from "../../components/floatHeader/FloatHeader"
+import Footer from "../../components/footer/Footer"
 
 const MyOrders = () => {
   let [user, setUser] = useContext(UserContext)

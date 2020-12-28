@@ -3,6 +3,7 @@ import Banner from "../../components/banner/Banner"
 
 import MenuBar from "../../components/menu/MenuBar"
 import FloatHeader from "../../components/floatHeader/FloatHeader"
+import Footer from "../../components/footer/Footer"
 
 const Favourites = () => {
   return (
@@ -13,6 +14,7 @@ const Favourites = () => {
           <h1>My Favourite Plates</h1>
         </div>
       </Banner>
+      <Footer />
       <MenuBar />
     </div>
   )

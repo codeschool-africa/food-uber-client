@@ -22,7 +22,7 @@ const Food = () => {
                 {foods &&
                   foods.data &&
                   foods.data.map(
-                    ({ name, id, food_image, description, cost }) => (
+                    ({ name, id, food_image, description, cost, plates }) => (
                       <div className="food" key={id}>
                         <div className="img-container">
                           <img src={food_image} alt={name} />
@@ -36,6 +36,7 @@ const Food = () => {
                               Edit
                             </Link>
                           </div>
+                          {plates && plates}
                         </div>
                       </div>
                     )

@@ -206,7 +206,7 @@ const FoodForm = ({ setClose, food }) => {
               Steak
             </label>
           </div>
-          <label htmlFor="featured" id="featured">
+          <label htmlFor="featured" className="featured">
             <input
               type="radio"
               name="featured"

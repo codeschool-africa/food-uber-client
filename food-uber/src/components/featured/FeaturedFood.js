@@ -9,7 +9,6 @@ import "./featured.sass"
 
 const FeaturedFood = () => {
   let [foods, setFoods] = useContext(FoodContext)
-  let [loading, setLoading] = useState(false)
 
   let data = foods.data
   let featuredFoods
@@ -22,23 +21,29 @@ const FeaturedFood = () => {
         <Search />
         <h2>Explore Our Featured Plates</h2>
         <div className="showcase">
-          {featuredFoods ? (
-            <>
-              {featuredFoods.map(
-                ({ name, id, food_image, description, cost }) => (
-                  <Food
-                    key={id}
-                    name={name}
-                    id={id}
-                    food_image={food_image}
-                    description={description}
-                    cost={cost}
-                  />
-                )
-              )}{" "}
-            </>
+          {foods.loading ? (
+            <div className="loading">Loading...</div>
           ) : (
-            <></>
+            <>
+              {featuredFoods ? (
+                <>
+                  {featuredFoods.map(
+                    ({ name, id, food_image, description, cost }) => (
+                      <Food
+                        key={id}
+                        name={name}
+                        id={id}
+                        food_image={food_image}
+                        description={description}
+                        cost={cost}
+                      />
+                    )
+                  )}{" "}
+                </>
+              ) : (
+                <></>
+              )}
+            </>
           )}
           <div className="more">
             <Link to="/menu">View All</Link>

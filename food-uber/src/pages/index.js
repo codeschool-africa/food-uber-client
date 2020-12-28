@@ -6,6 +6,10 @@ import Banner from "../components/banner/Banner"
 import FeaturedFood from "../components/featured/FeaturedFood"
 import MenuBar from "../components/menu/MenuBar"
 import FloatHeader from "../components/floatHeader/FloatHeader"
+import Footer from "../components/footer/Footer"
+import About from "../components/about/About"
+import App from "../components/app/App"
+import Testimonies from "../components/testimonies/Testimonies"
 
 // imag
 import plate from "../assets/images/featured_plate.png"
@@ -23,29 +27,10 @@ const Home = () => {
     <div>
       <FloatHeader />
       <Banner>
-        <div
-          className="banner__img"
-          // style={{
-          //   transform: `translateY(-${yOffset * 0.99999999}px)`,
-          // }}
-        >
-          <img
-            src={plate}
-            alt=""
-            loading="lazy"
-            // style={{
-            //   transform: `translateY(${yOffset * 0.2}px)`,
-            //   transition: "transform .1s linear",
-            // }}
-          />
+        <div className="banner__img">
+          <img src={plate} alt="" loading="lazy" />
         </div>
-        <div
-          className="banner__headline"
-          // style={{
-          //   transform: `translateY(-${yOffset * 0.1}px)`,
-          //   transition: "transform .1s linear",
-          // }}
-        >
+        <div className="banner__headline">
           <h1>It's that Simple.</h1>
           <p>
             Select your favourite plate from our menu, <br />
@@ -57,6 +42,10 @@ const Home = () => {
         </div>
       </Banner>
       <FeaturedFood />
+      <About />
+      <App />
+      <Testimonies />
+      <Footer />
       <MenuBar />
     </div>
   )

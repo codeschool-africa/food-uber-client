@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react"
 import axios from "axios"
 // import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import { UserContext } from "../../context/UserContext"
-import { useEffect } from "react"
+// import { useEffect } from "react"
 
 const OrderForm = ({ food }) => {
   let [user, setUser] = useContext(UserContext)
@@ -22,7 +22,7 @@ const OrderForm = ({ food }) => {
     // location: user.data && user.data.location ? user.data.location : "",
     special_description: "",
     date: "",
-    time: "",
+    // time: "",
     number_of_plates: "",
     tel: user.data && user.data.tel ? user.data.tel : "",
     orderedBy: user.data && user.data.name ? user.data.name : "",
@@ -37,6 +37,7 @@ const OrderForm = ({ food }) => {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           })
+          console.log(location)
         },
         () => {
           console.log("Not retrieved")
@@ -48,10 +49,9 @@ const OrderForm = ({ food }) => {
   }
 
   let {
-    // location,
     special_description,
     date,
-    time,
+    // time,
     number_of_plates,
     tel,
     orderedBy,
@@ -79,22 +79,30 @@ const OrderForm = ({ food }) => {
       },
     }
 
-    let delivery_time = {
-      date,
-      time,
-    }
+    // console.log(food)
 
+    let delivery_time = date
     let body = {
       location: JSON.stringify(location),
-      special_description,
-      delivery_time: JSON.stringify(delivery_time),
-      number_of_plates,
-      tel,
-      orderedBy,
-      address,
+      foods: JSON.stringify([
+        {
+          id: food.id,
+          name: food.name,
+          delivery_time,
+          plates: number_of_plates,
+          special_description,
+        },
+      ]),
+      orderedBy: JSON.stringify({
+        id: user && user.data && user.data.id,
+        orderedBy,
+        address,
+        tel,
+      }),
+      totalCost: food.cost,
     }
     axios
-      .post(`/order/${food.id}`, body, config)
+      .post(`/order-foods`, body, config)
       .then((res) => {
         console.log(res.data)
         setLoading(false)
@@ -145,19 +153,19 @@ const OrderForm = ({ food }) => {
           placeholder="tel"
         />
         <input
-          type="date"
+          type="datetime-local"
           name="date"
           onChange={(e) => handleChange(e)}
           value={date}
           placeholder="Enter date you want food to e delivered"
         />
-        <input
+        {/* <input
           type="time"
           name="time"
           onChange={(e) => handleChange(e)}
           value={time}
           placeholder="Enter time you want food to be delivered"
-        />
+        /> */}
         <button disabled={loading}>
           {loading ? "Submitting..." : "Submit"}
         </button>

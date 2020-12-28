@@ -39,7 +39,6 @@ axios.defaults.baseURL = "http://faraja-food-uber.herokuapp.com/api"
 const App = () => {
   let [user, setUser] = useContext(UserContext)
   let [foods, setFoods] = useContext(FoodContext)
-  let [loading, setLoading] = useState(true)
   let [msg, setMsg] = useState(null)
   useEffect(() => {
     let token = localStorage.getItem("token")
@@ -52,9 +51,7 @@ const App = () => {
     axios
       .get("/auth", config)
       .then((res) => {
-        // setLoading(false)
         if (res.data) {
-          // console.log(res.data.results)
           setUser({
             ...user,
             isAuthenticated: true,
@@ -63,7 +60,6 @@ const App = () => {
         }
       })
       .catch((err) => {
-        // setLoading(false)
         console.log(err)
       })
   }, [user, setUser])
@@ -76,17 +72,19 @@ const App = () => {
     axios
       .get("/get-foods", config)
       .then((res) => {
-        setLoading(false)
         if (res.data) {
-          // console.log(res.data)
           setFoods({
             ...foods,
+            loading: false,
             data: res.data.results,
           })
         }
       })
       .catch((err) => {
-        setLoading(false)
+        setFoods({
+          ...foods,
+          loading: false,
+        })
         console.log(err)
       })
   }, [foods, setFoods])
@@ -129,9 +127,7 @@ const App = () => {
           <Route exact path="/contact" render={() => <Contact />} />
           <Route exact path="/help" render={() => <Help />} />
         </Switch>
-        {/* <MenuBar /> */}
       </>
-      {/* )} */}
     </div>
   )
 }
