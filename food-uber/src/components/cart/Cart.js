@@ -13,7 +13,7 @@ const CartCard = ({ id, name, cost, number }) => {
   // console.log(cartFood)
   const add = () => {
     if (cartFood && cartFood[0] && cartFood[0].plates > 0) {
-      if (number > cartFood[0].plates) {
+      if (number > cartFood[0].plates - 1) {
         return null
       } else {
         setCart(
@@ -22,7 +22,7 @@ const CartCard = ({ id, name, cost, number }) => {
               saveLocalCarts()
               return {
                 ...item,
-                number: item.number + 1,
+                number: item.number++,
               }
             }
             return item

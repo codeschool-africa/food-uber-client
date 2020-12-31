@@ -1,11 +1,18 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 import chef1 from "../../assets/images/chef1.png"
-// import chef2 from "../../assets/images/chef2.png"
+import chef2 from "../../assets/images/chef2.png"
 
 import "./about.sass"
 const About = () => {
+  const [isMobile, setMobile] = useState(false)
+  useEffect(() => {
+    if (window.screen.width <= 640) {
+      setMobile(true)
+    }
+  }, [setMobile])
+  // console.log(isMobile)
   return (
     <section className="about">
       <div className="details">
@@ -21,7 +28,7 @@ const About = () => {
         </Link>
       </div>
       <div className="chefs">
-        <img src={chef1} alt="" />
+        {isMobile ? <img src={chef2} alt="" /> : <img src={chef1} alt="" />}
         <div></div>
       </div>
     </section>
