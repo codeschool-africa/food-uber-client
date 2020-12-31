@@ -5,47 +5,51 @@ import { FoodContext } from "../../context/FoodContext"
 
 import "./cart.sass"
 
-const CartCard = ({ id, name, description, food_image, cost, number }) => {
+const CartCard = ({ id, name, cost, number }) => {
   let [cart, setCart] = useContext(CartContext)
   let [foods, setFoods] = useContext(FoodContext)
   let cartFood
   if (foods && foods.data) cartFood = foods.data.filter((o) => o.id === id)
   // console.log(cartFood)
   const add = () => {
-    if (number > 10) {
-      return null
-    } else {
-      setCart(
-        cart.map((item) => {
-          if (id === item.id) {
-            saveLocalCarts()
-            return {
-              ...item,
-              number: item.number + 1,
+    if (cartFood && cartFood[0] && cartFood[0].plates > 0) {
+      if (number > cartFood[0].plates) {
+        return null
+      } else {
+        setCart(
+          cart.map((item) => {
+            if (id === item.id) {
+              saveLocalCarts()
+              return {
+                ...item,
+                number: item.number + 1,
+              }
             }
-          }
-          return item
-        })
-      )
+            return item
+          })
+        )
+      }
     }
   }
 
   const minus = () => {
-    if (number <= 1) {
-      return null
-    } else {
-      setCart(
-        cart.map((item) => {
-          if (id === item.id) {
-            saveLocalCarts()
-            return {
-              ...item,
-              number: item.number - 1,
+    if (cartFood && cartFood[0] && cartFood[0].plates > 0) {
+      if (number <= 1) {
+        return null
+      } else {
+        setCart(
+          cart.map((item) => {
+            if (id === item.id) {
+              saveLocalCarts()
+              return {
+                ...item,
+                number: item.number - 1,
+              }
             }
-          }
-          return item
-        })
-      )
+            return item
+          })
+        )
+      }
     }
   }
 
@@ -82,7 +86,20 @@ const CartCard = ({ id, name, description, food_image, cost, number }) => {
             {cartFood && <img src={cartFood[0].food_image} alt={name} />}
           </div>
           <div className="cart-details">
-            <div className="name">{name}</div>
+            <div className="name">
+              {name}{" "}
+              <span
+                className={
+                  cartFood && cartFood[0].plates && cartFood[0].plates > 0
+                    ? `success`
+                    : "error"
+                }
+              >
+                {cartFood && cartFood[0].plates && cartFood[0].plates > 0
+                  ? "available"
+                  : "Out of stock"}
+              </span>
+            </div>
             <div className="cost">&#64; Tshs {cost}</div>
             <div className="counter">
               <span onClick={minus} className="span">
