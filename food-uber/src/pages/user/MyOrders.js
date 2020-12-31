@@ -11,7 +11,7 @@ const MyOrders = () => {
   let [user, setUser] = useContext(UserContext)
   let [orders, setOrders] = useState()
   let token = localStorage.getItem("token")
-  console.log(setUser)
+  // console.log(setUser)
   useEffect(() => {
     if (user.data) {
       let config = {

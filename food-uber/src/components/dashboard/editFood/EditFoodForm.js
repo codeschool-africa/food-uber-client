@@ -1,49 +1,24 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 
-const EditFoodForm = ({ foodToEdit }) => {
-  let data
-  if (foodToEdit && foodToEdit.length > 0) data = foodToEdit[0]
-  let [food_image, setFood_Image] = useState(data && data.food_image)
+import "./editFood.sass"
+import UploadImage from "./UploadImage"
+
+const EditFoodForm = ({ foodToEdit, foodLoading }) => {
   let [loading, setLoading] = useState(false)
-  let [imgData, setImgData] = useState()
   let [formData, setFormData] = useState({
-    Name: "",
-    description: "",
-    category: "",
-    cost: "",
-    featured: "",
+    Name: foodToEdit ? foodToEdit[0].name : "",
+    description: foodToEdit ? foodToEdit[0].description : "",
+    cost: foodToEdit ? foodToEdit[0].cost : "",
+    featured: foodToEdit ? foodToEdit[0].featured : "",
+    plates: foodToEdit ? foodToEdit[0].plates : "",
   })
 
-  const { Name, description, category, cost, featured } = formData
-
-  //   console.log(Name, description, category, cost, featured)
-
-  //   useEffect(() => {
-
-  //   })
-
-  const handleImgChange = (e) => {
-    if (e.target.files) {
-      // setFood_Image(e.target.files[0])
-      const reader = new FileReader()
-      reader.addEventListener("load", () => {
-        setImgData(reader.result)
-        setFood_Image(reader.result)
-      })
-      reader.readAsDataURL(e.target.files[0])
-      // console.log(dp, imgData)
-    }
-  }
-
-  const handleImageSubmit = (e) => {
-    e.preventDefault()
-  }
+  const { Name, description, category, cost, featured, plates } = formData
 
   const handleChange = (e) => {
     let { name, value } = e.target
     setFormData({ ...formData, [name]: value })
-    console.log(formData)
   }
 
   const handleSubmit = (e) => {
@@ -59,19 +34,15 @@ const EditFoodForm = ({ foodToEdit }) => {
     let body = {
       name: Name,
       description,
-      category,
+      category: foodToEdit && foodToEdit[0].category,
       cost,
       featured,
-      //   food_image,
     }
     axios
-      .post(`/update-food/${data.id}`, body, config)
+      .post(`/update-food/${foodToEdit[0].id}`, body, config)
       .then((res) => {
         console.log(res.data)
         setLoading(false)
-        // setFoods({
-        //   ...foods,
-        // })
       })
       .catch((err) => {
         console.log(err)
@@ -79,46 +50,84 @@ const EditFoodForm = ({ foodToEdit }) => {
       })
   }
   return (
-    <div className="food-modal">
-      <div className="container">
-        {data && (
-          <>
-            <form onSubmit={(e) => handleImageSubmit(e)}>
-              <input
-                type="file"
-                name="food_image"
-                onChange={(e) => handleImgChange(e)}
-              />
-              {imgData && <img src={imgData} alt="" />}
-            </form>
-            <form onSubmit={(e) => handleSubmit(e)}>
-              <input
-                type="text"
-                name="Name"
-                value={Name}
-                onChange={(e) => handleChange(e)}
-                placeholder="Food Name"
-              />
-              <textarea
-                name="description"
-                value={description}
-                onChange={(e) => handleChange(e)}
-                placeholder="place food description here"
-              />
-              <input
-                type="number"
-                name="cost"
-                value={cost}
-                onChange={(e) => handleChange(e)}
-                placeholder="cost in Tshs"
-              />
-              <button disabled={loading}>
-                {loading ? "Saving..." : "Save"}
-              </button>
-            </form>
-          </>
-        )}
-      </div>
+    <div className="edit-food">
+      {foodLoading ? (
+        <>Loading...</>
+      ) : (
+        <>
+          {foodToEdit ? (
+            <div className="new-food">
+              <div className="container">
+                <UploadImage image={foodToEdit && foodToEdit[0].food_image} />
+                <form onSubmit={(e) => handleSubmit(e)}>
+                  <h2>Edit basic food informations</h2>
+                  <div className="input-group">
+                    <label htmlFor="name">Food Name:</label>
+                    <input
+                      type="text"
+                      name="Name"
+                      id="name"
+                      value={Name}
+                      onChange={(e) => handleChange(e)}
+                      placeholder="Food Name"
+                    />
+                  </div>
+                  <div className="input-group">
+                    <label htmlFor="descriptions">Food Description:</label>
+                    <textarea
+                      name="description"
+                      id="descriptions"
+                      value={description}
+                      onChange={(e) => handleChange(e)}
+                      placeholder="place food description here"
+                    />
+                  </div>
+                  <div className="input-group">
+                    <label htmlFor="cost">Food Price in Tshs:</label>
+                    <input
+                      type="number"
+                      name="cost"
+                      id="cost"
+                      value={cost}
+                      onChange={(e) => handleChange(e)}
+                      placeholder="Price..."
+                    />
+                  </div>
+                  <div className="input-group">
+                    <label htmlFor="cplates">Available plates:</label>
+                    <input
+                      type="number"
+                      name="plates"
+                      id="plates"
+                      value={plates && plates}
+                      onChange={(e) => handleChange(e)}
+                      placeholder="Available plates..."
+                    />
+                  </div>
+                  <label htmlFor="featured" className="featured">
+                    <input
+                      type="checkbox"
+                      name="featured"
+                      id="featured"
+                      onChange={(e) => handleChange(e)}
+                      value={1}
+                      defaultChecked={featured}
+                    />
+                    Add this food to featured list
+                  </label>
+                  <div className="btns">
+                    <button disabled={loading} className="btn btn-primary">
+                      {loading ? "Saving..." : "Save"}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          ) : (
+            "Food Not Found"
+          )}
+        </>
+      )}
     </div>
   )
 }

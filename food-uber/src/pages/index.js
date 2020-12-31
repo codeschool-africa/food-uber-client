@@ -31,7 +31,7 @@ const Home = () => {
           <img src={plate} alt="" loading="lazy" />
         </div>
         <div className="banner__headline">
-          <h1>It's that Simple.</h1>
+          <h1>It's Simple.</h1>
           <p>
             Select your favourite plate from our menu, <br />
             We’ll <span>deliver</span> it to you, <span>FREE DELIVERY!!</span>

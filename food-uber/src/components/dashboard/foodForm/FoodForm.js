@@ -56,11 +56,6 @@ const FoodForm = ({ setClose, food }) => {
     e.preventDefault()
     setLoading(true)
     let token = localStorage.getItem("token")
-    // let data = new FormData()
-    // data.append("food_image", food_image)
-    // let foodDetails = {
-    //   name
-    // }
     let config = {
       headers: {
         "Content-Type": "application/json",

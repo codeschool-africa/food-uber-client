@@ -37,6 +37,7 @@ const App = () => {
   let [user, setUser] = useContext(UserContext)
   let [foods, setFoods] = useContext(FoodContext)
   let [msg, setMsg] = useState(null)
+
   useEffect(() => {
     let token = localStorage.getItem("token")
     let config = {
@@ -53,13 +54,18 @@ const App = () => {
             ...user,
             isAuthenticated: true,
             data: res.data.results,
+            loading: false,
           })
         }
       })
       .catch((err) => {
         console.log(err)
+        setUser({
+          ...user,
+          loading: false,
+        })
       })
-  }, [user, setUser])
+  }, [user])
 
   // console.log(user)
   useEffect(() => {
@@ -86,7 +92,7 @@ const App = () => {
         })
         console.log(err)
       })
-  }, [foods, setFoods])
+  }, [foods])
   return (
     <div className="App">
       {msg && (

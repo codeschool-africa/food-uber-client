@@ -76,7 +76,7 @@ const Checkout = () => {
     setLoading(true)
     let config = {
       headers: {
-        authorization: token,
+        // authorization: token,
         "Content-Type": "application/json",
       },
     }

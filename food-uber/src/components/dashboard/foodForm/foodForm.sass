@@ -1,4 +1,4 @@
-.new-food
+.new-food, .edit-food
     .container
         width: 95%
         display: flex
@@ -17,28 +17,23 @@
                 justify-content: space-between
                 label
                     width: 35%
+                    cursor: pointer
                 label.placeholder
                     height: 250px
                     width: 60%
                     div
                         height: 100%
                         width: 100%
-                        background: grey
+                        background: #EDF6F8
                         position: relative
-                        &::before, &::after
-                            content: ""
-                            position: absolute
-                            top: 50%
-                            left: 50%
-                            // transform: translate(-50%, -50%)
-                            height: 1px
-                            width: 100%
-                            background: #EDF6F8
-                            transform-origin: 0 0
-                        &::before
-                            transform: rotateZ(45deg) translate(-50%, -50%)
-                        &::after
-                            transform: rotateZ(-45deg) translate(-50%, -50%)
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                        cursor: pointer
+                        .icon
+                            font-size: 150px
+                            color: #b1aeae
+                            // height: 100%
                     img
                         height: 100%
                         width: 100%
@@ -74,8 +69,10 @@
                     input
                         margin-right: 20px
             .featured
+                display: block
                 margin: 20px 0
                 padding: 0
+                // display: flex
                 input
                     margin-right: 20px
             .btns
@@ -109,8 +106,8 @@
                         width: 100%
                     input, textarea
                         width: 100%
-                #featured
-                    margin: 20px 0
+                .featured
+                    // margin: 20px 0
                     input
                         margin-right: 20px
                 .btns

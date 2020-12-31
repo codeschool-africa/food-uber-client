@@ -23,7 +23,7 @@ const EditFood = () => {
           <Link to="/dashboard/food">Food /</Link> Edit
         </PageHeader>
         <div className="dashboard-foods new">
-          <EditFoodForm foodToEdit={foodToEdit} />
+          <EditFoodForm foodToEdit={foodToEdit} foodLoading={foods.loading} />
         </div>
       </div>
     </div>

@@ -26,6 +26,8 @@ const Dashboard = () => {
   const [user, setUser] = useContext(UserContext)
   let [notifications, setNotifications] = useState()
 
+  // console.log(user.loading)
+
   useEffect(() => {
     if (window.screen.width <= 768) {
       setMobile(true)
@@ -38,82 +40,88 @@ const Dashboard = () => {
 
   return (
     <div className={navOpen ? "dashboard" : "dashboard dashboard-dark"}>
-      {user.data &&
-      (user.data.role === "admin" || user.data.role === "main-admin") ? (
-        <Route
-          render={({ location }) => (
-            <div className="page-content">
-              <>
-                <Header
-                  navOpen={navOpen}
-                  handleNav={handleNav}
-                  notifications={notifications}
-                  setNotifications={setNotifications}
-                />
-                <AsideLeft
-                  asideOpen={navOpen ? "" : "side-nav-open"}
-                  isMobile={isMobile}
-                  setnavOpen={setnavOpen}
-                  notifications={notifications}
-                />
-                {isMobile && (
-                  <div
-                    className={!navOpen ? "backdrop" : ""}
-                    onClick={() => setnavOpen(true)}
-                  ></div>
-                )}
-                <Switch location={location} key={location.pathname}>
-                  <Route exact path={`/dashboard/`} key={`Home`}>
-                    <main className={navOpen ? "main" : "main full-width"}>
-                      <Home />
-                    </main>
-                  </Route>
-                  <Route exact path={`/dashboard/profile`} key={`Home`}>
-                    <main className={navOpen ? "main" : "main full-width"}>
-                      <Profile />
-                    </main>
-                  </Route>
-                  <Route path={`/dashboard/food`} key={`Foods`}>
-                    <main className={navOpen ? "main" : "main full-width"}>
-                      <Foods />
-                    </main>
-                  </Route>
-                  <Route exact path={`/dashboard/orders`} key={`orders`}>
-                    <main className={navOpen ? "main" : "main full-width"}>
-                      <Orders />
-                    </main>
-                  </Route>
-                  <Route
-                    exact
-                    path={`/dashboard/notifications`}
-                    key={`notifications`}
-                  >
-                    <main className={navOpen ? "main" : "main full-width"}>
-                      <Notifications notifications={notifications} />
-                    </main>
-                  </Route>
-                  <Route path={`/dashboard/users`} key={`team`}>
-                    <main className={navOpen ? "main" : "main full-width"}>
-                      <Users />
-                    </main>
-                  </Route>
-                  <Route exact path={`/dashboard/setting`} key={`Setting`}>
-                    <main className={navOpen ? "main" : "main full-width"}>
-                      <Setting />
-                    </main>
-                  </Route>
-                  <Route key={`Error`}>
-                    <main className={navOpen ? "main" : "main full-width"}>
-                      <Error />
-                    </main>
-                  </Route>
-                </Switch>
-              </>
-            </div>
-          )}
-        />
+      {user.loading ? (
+        <>Please wait while loading...</>
       ) : (
-        <>Go away</>
+        <>
+          {user.data &&
+          (user.data.role === "admin" || user.data.role === "main-admin") ? (
+            <Route
+              render={({ location }) => (
+                <div className="page-content">
+                  <>
+                    <Header
+                      navOpen={navOpen}
+                      handleNav={handleNav}
+                      notifications={notifications}
+                      setNotifications={setNotifications}
+                    />
+                    <AsideLeft
+                      asideOpen={navOpen ? "" : "side-nav-open"}
+                      isMobile={isMobile}
+                      setnavOpen={setnavOpen}
+                      notifications={notifications}
+                    />
+                    {isMobile && (
+                      <div
+                        className={!navOpen ? "backdrop" : ""}
+                        onClick={() => setnavOpen(true)}
+                      ></div>
+                    )}
+                    <Switch location={location} key={location.pathname}>
+                      <Route exact path={`/dashboard/`} key={`Home`}>
+                        <main className={navOpen ? "main" : "main full-width"}>
+                          <Home />
+                        </main>
+                      </Route>
+                      <Route exact path={`/dashboard/profile`} key={`Home`}>
+                        <main className={navOpen ? "main" : "main full-width"}>
+                          <Profile />
+                        </main>
+                      </Route>
+                      <Route path={`/dashboard/food`} key={`Foods`}>
+                        <main className={navOpen ? "main" : "main full-width"}>
+                          <Foods />
+                        </main>
+                      </Route>
+                      <Route exact path={`/dashboard/orders`} key={`orders`}>
+                        <main className={navOpen ? "main" : "main full-width"}>
+                          <Orders />
+                        </main>
+                      </Route>
+                      <Route
+                        exact
+                        path={`/dashboard/notifications`}
+                        key={`notifications`}
+                      >
+                        <main className={navOpen ? "main" : "main full-width"}>
+                          <Notifications notifications={notifications} />
+                        </main>
+                      </Route>
+                      <Route path={`/dashboard/users`} key={`team`}>
+                        <main className={navOpen ? "main" : "main full-width"}>
+                          <Users />
+                        </main>
+                      </Route>
+                      <Route exact path={`/dashboard/setting`} key={`Setting`}>
+                        <main className={navOpen ? "main" : "main full-width"}>
+                          <Setting />
+                        </main>
+                      </Route>
+                      <Route key={`Error`}>
+                        <main className={navOpen ? "main" : "main full-width"}>
+                          <Error />
+                        </main>
+                      </Route>
+                    </Switch>
+                  </>
+                </div>
+              )}
+            />
+          ) : (
+            <>Your are not an admin, don't know where to go?</>
+          )}
+        </>
       )}
     </div>
   )

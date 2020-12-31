@@ -1,6 +1,9 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
+import chef1 from "../../assets/images/chef1.png"
+// import chef2 from "../../assets/images/chef2.png"
+
 import "./about.sass"
 const About = () => {
   return (
@@ -18,7 +21,7 @@ const About = () => {
         </Link>
       </div>
       <div className="chefs">
-        {/* <img src="" alt=""/> */}
+        <img src={chef1} alt="" />
         <div></div>
       </div>
     </section>
