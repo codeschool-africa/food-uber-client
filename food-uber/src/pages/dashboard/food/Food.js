@@ -3,11 +3,17 @@ import { FoodContext } from "../../../context/FoodContext"
 import { Link } from "react-router-dom"
 
 // components
-// import FoodModal from "../../components/dashboard/foodModal/FoodModal"
 import PageHeader from "../../../components/dashboard/PageHeader"
+import "../../../styles/pages/foods.sass"
 
 const Food = () => {
   let [foods, setFoods] = useContext(FoodContext)
+  const remove = (id) => {
+    window.confirm()
+    if (window.confirm) {
+    } else {
+    }
+  }
   return (
     <div className="dashboard-content foods">
       <div className="main-content">
@@ -19,28 +25,67 @@ const Food = () => {
                 <Link to="/dashboard/food/new">Add New Food</Link>
               </div>
               <div className="showcase">
-                {foods &&
-                  foods.data &&
-                  foods.data.map(
-                    ({ name, id, food_image, description, cost, plates }) => (
-                      <div className="food" key={id}>
-                        <div className="img-container">
-                          <img src={food_image} alt={name} />
-                        </div>
-                        <div className="food-content">
-                          <h3>{name}</h3>
-                          <p>{description}</p>
-                          <p>{cost} Tshs</p>
-                          <div className="btns">
-                            <Link to={`/dashboard/food/edit-food?q=${id}`}>
-                              Edit
-                            </Link>
+                {foods.loading ? (
+                  <>Please Wait</>
+                ) : (
+                  <>
+                    {foods.data &&
+                      foods.data.map(
+                        ({
+                          name,
+                          id,
+                          food_image,
+                          description,
+                          cost,
+                          plates,
+                        }) => (
+                          <div className="food-card" key={id}>
+                            <div className="img-container">
+                              <img src={food_image} alt={name} />
+                            </div>
+                            <div className="food-content">
+                              <h3>
+                                {name} <span>Tshs{cost}</span>
+                              </h3>
+                              <p className="plates">
+                                <span>{plates && plates > 0 && plates}</span>
+                                <span
+                                  className={
+                                    plates && plates > 0 ? "success" : "error"
+                                  }
+                                >
+                                  {plates && plates > 0
+                                    ? "Available"
+                                    : "Out of stock"}
+                                </span>
+                              </p>
+                              <p>{description}</p>
+                              <div className="btns">
+                                <Link
+                                  className="edit"
+                                  to={`/dashboard/food/edit-food?q=${id}`}
+                                >
+                                  Edit
+                                </Link>
+                                <span
+                                  className="delete"
+                                  onClick={() => remove(id)}
+                                >
+                                  Remove
+                                </span>
+                                <Link
+                                  className="orders"
+                                  to={`/dashboard/food/orders/food?q=${id}`}
+                                >
+                                  View orders
+                                </Link>
+                              </div>
+                            </div>
                           </div>
-                          {plates && plates}
-                        </div>
-                      </div>
-                    )
-                  )}
+                        )
+                      )}
+                  </>
+                )}
               </div>
             </div>
           </div>

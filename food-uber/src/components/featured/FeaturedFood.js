@@ -28,7 +28,7 @@ const FeaturedFood = () => {
               {featuredFoods ? (
                 <>
                   {featuredFoods.map(
-                    ({ name, id, food_image, description, cost }) => (
+                    ({ name, id, food_image, description, cost, plates }) => (
                       <Food
                         key={id}
                         name={name}
@@ -36,6 +36,7 @@ const FeaturedFood = () => {
                         food_image={food_image}
                         description={description}
                         cost={cost}
+                        plates={plates}
                       />
                     )
                   )}{" "}

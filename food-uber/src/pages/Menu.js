@@ -26,16 +26,19 @@ const Menu = () => {
           <div className="showcase">
             {foods &&
               foods.data &&
-              foods.data.map(({ name, id, food_image, description, cost }) => (
-                <Food
-                  key={id}
-                  name={name}
-                  id={id}
-                  food_image={food_image}
-                  description={description}
-                  cost={cost}
-                />
-              ))}
+              foods.data.map(
+                ({ name, id, food_image, description, cost, plates }) => (
+                  <Food
+                    key={id}
+                    name={name}
+                    id={id}
+                    food_image={food_image}
+                    description={description}
+                    cost={cost}
+                    plates={plates}
+                  />
+                )
+              )}
           </div>
         </div>
       </div>

@@ -12,6 +12,8 @@ const EditFood = () => {
   const params = new URLSearchParams(search)
   const slug = params.get("q")
 
+  console.log(slug)
+
   let data = foods.data
   let foodToEdit
   if (data) foodToEdit = data.filter((o) => o.id == slug)

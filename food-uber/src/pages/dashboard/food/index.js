@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom"
 import Food from "./Food"
 import NewFood from "./NewFood"
 import EditFood from "./EditFood"
+import FoodOrders from "./FoodOrders"
 
 const Foods = () => {
   return (
@@ -15,8 +16,11 @@ const Foods = () => {
         <Route exact path="/dashboard/food/new">
           <NewFood />
         </Route>
-        <Route path="/dashboard/food/:slug">
+        <Route exact path="/dashboard/food/:slug">
           <EditFood />
+        </Route>
+        <Route exact path="/dashboard/food/orders/:slug">
+          <FoodOrders />
         </Route>
       </Switch>
     </div>

@@ -4,7 +4,7 @@ import FoodModal from "../foodModal/FoodModal"
 //
 import "./food.sass"
 
-const Food = ({ name, id, food_image, description, cost }) => {
+const Food = ({ name, id, food_image, description, cost, plates }) => {
   // const [cart, setCart] = useState([])
   let [open, setOpen] = useState(false)
   let cart = JSON.parse(localStorage.getItem("cart"))
@@ -34,6 +34,7 @@ const Food = ({ name, id, food_image, description, cost }) => {
     description,
     cost,
     number,
+    plates,
   }
   return (
     <>
@@ -43,23 +44,20 @@ const Food = ({ name, id, food_image, description, cost }) => {
         </div>
         <div className="food-content">
           <h3>{name}</h3>
-          {/* <p>{description}</p> */}
-          <p>{cost} Tshs</p>
+          {plates && plates > 0 ? (
+            <span className="success">Available</span>
+          ) : (
+            <span className="error">Out of stock</span>
+          )}
+          <p>Price: {cost} Tshs</p>
           <div className="btns">
-            {/* <button>Preview</button> */}
             <button className="btn-primary" onClick={openModal}>
               Preview
             </button>
           </div>
         </div>
       </div>
-      {open && (
-        <FoodModal
-          // setOpen={setOpen}
-          closeModal={closeModal}
-          foodProps={foodProps}
-        />
-      )}
+      {open && <FoodModal closeModal={closeModal} foodProps={foodProps} />}
     </>
   )
 }

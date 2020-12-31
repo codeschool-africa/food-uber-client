@@ -6,6 +6,7 @@ import UploadImage from "./UploadImage"
 
 const EditFoodForm = ({ foodToEdit, foodLoading }) => {
   let [loading, setLoading] = useState(false)
+  // console.log(foodToEdit)
   let [formData, setFormData] = useState({
     Name: foodToEdit ? foodToEdit[0].name : "",
     description: foodToEdit ? foodToEdit[0].description : "",
@@ -55,7 +56,7 @@ const EditFoodForm = ({ foodToEdit, foodLoading }) => {
         <>Loading...</>
       ) : (
         <>
-          {foodToEdit ? (
+          {foodToEdit && foodToEdit.length > 0 ? (
             <div className="new-food">
               <div className="container">
                 <UploadImage image={foodToEdit && foodToEdit[0].food_image} />

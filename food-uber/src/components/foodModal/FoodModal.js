@@ -8,7 +8,7 @@ import "./foodModal.sass"
 const FoodModal = ({ closeModal, foodProps }) => {
   const [cart, setCart] = useContext(CartContext)
   // let number = 1
-  const { id, name, food_image, description, cost, number } = foodProps
+  const { id, name, food_image, description, cost, number, plates } = foodProps
 
   let cartFood = {
     id,
@@ -47,13 +47,20 @@ const FoodModal = ({ closeModal, foodProps }) => {
         </div>
         <div className="food-content">
           <h3>{name}</h3>
+          {plates && plates > 0 ? (
+            <span className="success">Available</span>
+          ) : (
+            <span className="error">Out of stock</span>
+          )}
           <p>{description}</p>
           <p>{cost} Tshs</p>
-          <div className="order">
-            <Link className="btn-primary" to={`/order/food?q=${id}`}>
-              Order this food
-            </Link>
-          </div>
+          {plates && plates > 0 && (
+            <div className="order">
+              <Link className="btn-primary" to={`/order/food?q=${id}`}>
+                Order this food
+              </Link>
+            </div>
+          )}
           <div className="btns">
             {/* <button>Preview</button> */}
             <button
