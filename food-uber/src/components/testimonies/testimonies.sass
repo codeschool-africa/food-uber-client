@@ -1,0 +1,25 @@
+.testimonies
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    .intro
+        background: #161825
+        width: 40%
+        border-bottom-right-radius: 120px
+        padding: 60px
+        display: flex
+        align-items: center
+        padding-left: 10%
+        h1
+            font-size: clamp(40px, 4vw, 60px)
+            color: white
+            position: relative
+            padding: 15px 0
+            &::before
+                content: ""
+                position: absolute
+                top: -15px
+                left: 0
+                height: 10px
+                width: 100px
+                background: red

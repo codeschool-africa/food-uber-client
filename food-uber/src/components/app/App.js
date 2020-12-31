@@ -6,7 +6,7 @@ import app from "../../assets/images/app.svg"
 import "./app.sass"
 const App = () => {
   return (
-    <div className="app">
+    <section className="app">
       <div className="app-details">
         <h2>
           <RiAppsLine className="icon" /> Food Uber App
@@ -41,7 +41,7 @@ const App = () => {
       <div className="app-image">
         <img src={app} alt="food uber app" />
       </div>
-    </div>
+    </section>
   )
 }
 
