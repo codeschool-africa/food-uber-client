@@ -6,22 +6,13 @@ import { UserProvider } from "./context/UserContext"
 import { FoodProvider } from "./context/FoodContext"
 import { CartProvider } from "./context/CartContext"
 import * as serviceWorker from "./serviceWorker"
+import PageLoader from "./components/pageloader/PageLoader"
 
 ReactDOM.render(
   <FoodProvider>
     <UserProvider>
       <CartProvider>
-        <React.Suspense
-          fallback={
-            <div className="loader-page">
-              <div className="lds-ellipsis">
-                <div />
-                <div />
-                <div />
-              </div>
-            </div>
-          }
-        >
+        <React.Suspense fallback={<PageLoader />}>
           <Router>
             <React.StrictMode>
               <App />

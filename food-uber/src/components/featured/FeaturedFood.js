@@ -4,6 +4,7 @@ import { FoodContext } from "../../context/FoodContext"
 
 import Food from "../food/Food"
 import Search from "../search/Search"
+import FoodLoader from "../foodLoader/FoodLoader"
 
 import "./featured.sass"
 
@@ -22,7 +23,7 @@ const FeaturedFood = () => {
         <h2>Explore Our Featured Plates</h2>
         <div className="showcase">
           {foods.loading ? (
-            <div className="loading">Loading...</div>
+            <FoodLoader />
           ) : (
             <>
               {featuredFoods ? (

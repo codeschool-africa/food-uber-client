@@ -60,15 +60,16 @@ const Carts = () => {
         {cart.length > 0 && (
           <Link
             to={{ pathname: `/cart/checkout`, state: { totalCost } }}
-            className="btn"
+            className="btn btn-primary"
             style={{
               width: "100%",
-              background: "red",
+              maxWidth: "600px",
+              // background: "red",
               margin: "20px 0",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              color: "white",
+              // color: "white",
             }}
           >
             Check Out

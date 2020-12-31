@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 // components
 import PageHeader from "../../../components/dashboard/PageHeader"
 import FoodCard from "../../../components/dashboard/Food"
+import FoodLoader from "../../../components/foodLoader/FoodLoader"
 import "../../../styles/pages/foods.sass"
 
 const Food = () => {
@@ -22,7 +23,7 @@ const Food = () => {
               </div>
               <div className="showcase">
                 {foods.loading ? (
-                  <>Please Wait</>
+                  <FoodLoader />
                 ) : (
                   <>
                     {foods.data &&
@@ -42,6 +43,7 @@ const Food = () => {
                             description={description}
                             cost={cost}
                             plates={plates}
+                            key={id}
                           />
                         )
                       )}

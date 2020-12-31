@@ -7,6 +7,7 @@ import Food from "../components/food/Food"
 import Search from "../components/search/Search"
 import MenuBar from "../components/menu/MenuBar"
 import FloatHeader from "../components/floatHeader/FloatHeader"
+import FoodLoader from "../components/foodLoader/FoodLoader"
 
 import "../styles/pages/menu.sass"
 
@@ -24,21 +25,27 @@ const Menu = () => {
         <div className="container">
           <Search />
           <div className="showcase">
-            {foods &&
-              foods.data &&
-              foods.data.map(
-                ({ name, id, food_image, description, cost, plates }) => (
-                  <Food
-                    key={id}
-                    name={name}
-                    id={id}
-                    food_image={food_image}
-                    description={description}
-                    cost={cost}
-                    plates={plates}
-                  />
-                )
-              )}
+            {foods.loading ? (
+              <FoodLoader />
+            ) : (
+              <>
+                {foods &&
+                  foods.data &&
+                  foods.data.map(
+                    ({ name, id, food_image, description, cost, plates }) => (
+                      <Food
+                        key={id}
+                        name={name}
+                        id={id}
+                        food_image={food_image}
+                        description={description}
+                        cost={cost}
+                        plates={plates}
+                      />
+                    )
+                  )}
+              </>
+            )}
           </div>
         </div>
       </div>
