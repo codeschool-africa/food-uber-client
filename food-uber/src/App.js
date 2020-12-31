@@ -6,10 +6,7 @@ import { UserContext } from "./context/UserContext"
 import { FoodContext } from "./context/FoodContext"
 
 // import logo
-import logo from "./assets/images/logo.png"
-
-// components
-// import MenuBar from "./components/menu/MenuBar"
+// import logo from "./assets/images/logo.png"
 
 // styles
 import "./styles/style.sass"
@@ -23,7 +20,7 @@ const Contact = React.lazy(() => import("./pages/Contact"))
 const Help = React.lazy(() => import("./pages/Help"))
 
 // users
-const Cart = React.lazy(() => import("./pages/user/Cart"))
+const Cart = React.lazy(() => import("./pages/user/cart/"))
 const Profile = React.lazy(() => import("./pages/user/Profile"))
 const Favourites = React.lazy(() => import("./pages/user/Favourites"))
 const Order = React.lazy(() => import("./pages/user/Order"))
@@ -63,6 +60,8 @@ const App = () => {
         console.log(err)
       })
   }, [user, setUser])
+
+  // console.log(user)
   useEffect(() => {
     let config = {
       headers: {
@@ -116,7 +115,7 @@ const App = () => {
             render={() => <Signup setMsg={setMsg} />}
           />
           <Route exact path="/menu" render={() => <Menu />} />
-          <Route exact path="/cart" render={() => <Cart />} />
+          <Route path="/cart" render={() => <Cart />} />
           <Route path="/order/:slug" render={() => <Order />} />
           {/* auth routes */}
           <Route path="/dashboard" render={() => <Dashboard />} />

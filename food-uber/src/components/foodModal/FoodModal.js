@@ -10,6 +10,13 @@ const FoodModal = ({ closeModal, foodProps }) => {
   // let number = 1
   const { id, name, food_image, description, cost, number } = foodProps
 
+  let cartFood = {
+    id,
+    name,
+    number,
+    cost,
+  }
+
   let check
 
   if (cart && cart.length > 0) check = cart.filter((o) => o.id == id)
@@ -60,9 +67,9 @@ const FoodModal = ({ closeModal, foodProps }) => {
                     return null
                   } else {
                     if (cart) {
-                      setCart([...cart, foodProps])
+                      setCart([...cart, cartFood])
                     } else {
-                      setCart([foodProps])
+                      setCart([cartFood])
                     }
                   }
                 }

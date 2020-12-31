@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react"
+import { AiOutlineCloudUpload } from "react-icons/all"
 import axios from "axios"
 import { FoodContext } from "../../../context/FoodContext"
 
@@ -15,8 +16,9 @@ const FoodForm = ({ setClose, food }) => {
     category: [],
     cost: "",
     featured: 0,
+    plates: 0,
   })
-  const { Name, description, category, cost, featured } = formData
+  const { Name, description, category, cost, featured, plates } = formData
 
   const handleImgChange = (e) => {
     if (e.target.files) {
@@ -72,6 +74,7 @@ const FoodForm = ({ setClose, food }) => {
       cost,
       featured,
       food_image,
+      plates,
     }
     axios
       .post("/add-food", body, config)
@@ -100,7 +103,13 @@ const FoodForm = ({ setClose, food }) => {
               onChange={(e) => handleImgChange(e)}
             />
             <label htmlFor="image" className="placeholder">
-              {imgData ? <img src={imgData} alt="" /> : <div />}
+              {imgData ? (
+                <img src={imgData} alt="" />
+              ) : (
+                <div>
+                  <AiOutlineCloudUpload className="icon" />
+                </div>
+              )}
             </label>
           </div>
           <h2>Add basic food informations</h2>
@@ -131,6 +140,16 @@ const FoodForm = ({ setClose, food }) => {
               id="cost"
               onChange={(e) => handleChange(e)}
               placeholder="Price..."
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="cplates">Available plates:</label>
+            <input
+              type="number"
+              name="plates"
+              id="plates"
+              onChange={(e) => handleChange(e)}
+              placeholder="Available plates..."
             />
           </div>
           <h3>Select Categories</h3>
