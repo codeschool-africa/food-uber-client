@@ -1,19 +1,15 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import { FoodContext } from "../../../context/FoodContext"
 import { Link } from "react-router-dom"
 
 // components
 import PageHeader from "../../../components/dashboard/PageHeader"
+import FoodCard from "../../../components/dashboard/Food"
 import "../../../styles/pages/foods.sass"
 
 const Food = () => {
   let [foods, setFoods] = useContext(FoodContext)
-  const remove = (id) => {
-    window.confirm()
-    if (window.confirm) {
-    } else {
-    }
-  }
+
   return (
     <div className="dashboard-content foods">
       <div className="main-content">
@@ -39,49 +35,14 @@ const Food = () => {
                           cost,
                           plates,
                         }) => (
-                          <div className="food-card" key={id}>
-                            <div className="img-container">
-                              <img src={food_image} alt={name} />
-                            </div>
-                            <div className="food-content">
-                              <h3>
-                                {name} <span>Tshs{cost}</span>
-                              </h3>
-                              <p className="plates">
-                                <span>{plates && plates > 0 && plates}</span>
-                                <span
-                                  className={
-                                    plates && plates > 0 ? "success" : "error"
-                                  }
-                                >
-                                  {plates && plates > 0
-                                    ? "Available"
-                                    : "Out of stock"}
-                                </span>
-                              </p>
-                              <p>{description}</p>
-                              <div className="btns">
-                                <Link
-                                  className="edit"
-                                  to={`/dashboard/food/edit-food?q=${id}`}
-                                >
-                                  Edit
-                                </Link>
-                                <span
-                                  className="delete"
-                                  onClick={() => remove(id)}
-                                >
-                                  Remove
-                                </span>
-                                <Link
-                                  className="orders"
-                                  to={`/dashboard/food/orders/food?q=${id}`}
-                                >
-                                  View orders
-                                </Link>
-                              </div>
-                            </div>
-                          </div>
+                          <FoodCard
+                            name={name}
+                            id={id}
+                            food_image={food_image}
+                            description={description}
+                            cost={cost}
+                            plates={plates}
+                          />
                         )
                       )}
                   </>
