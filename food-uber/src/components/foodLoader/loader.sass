@@ -38,8 +38,17 @@
             height: 100%
             // transform: rotateZ(0deg)
             display: block
-            background: #e8e4e4
-            animation: foodLoading 1s ease-in 0s infinite both
+            background: #dcdada
+            animation: foodLoading .1.2s ease-in 0s infinite both
+            position: relative
+            &::before
+                content: ""
+                position: absolute
+                width: 100%
+                height: 100%
+                display: block
+                background: #d8d8d8
+                animation: foodLoading 1.2s ease-in .4s infinite both
 
 @keyframes foodLoading
     0%
@@ -47,4 +56,4 @@
     50%
         transform: translateX(0)
     100%
-        transform: translateX(-100%)
+        transform: translateX(100%)

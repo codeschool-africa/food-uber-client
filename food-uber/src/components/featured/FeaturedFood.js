@@ -40,16 +40,16 @@ const FeaturedFood = () => {
                         plates={plates}
                       />
                     )
-                  )}{" "}
+                  )}
                 </>
               ) : (
                 <></>
               )}
+              <div className="more">
+                <Link to="/menu">View All</Link>
+              </div>
             </>
           )}
-          <div className="more">
-            <Link to="/menu">View All</Link>
-          </div>
         </div>
       </div>
     </section>
