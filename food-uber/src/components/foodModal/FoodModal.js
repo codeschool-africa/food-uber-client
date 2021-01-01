@@ -62,28 +62,29 @@ const FoodModal = ({ closeModal, foodProps }) => {
             </div>
           )}
           <div className="btns">
-            {/* <button>Preview</button> */}
-            <button
-              className="btn-primary"
-              disabled={check && check.length > 0 && true}
-              onClick={() => {
-                if (check && check.length > 0) {
-                  return null
-                } else {
+            {plates && plates > 0 && (
+              <button
+                className="btn-primary"
+                disabled={check && check.length > 0 && true}
+                onClick={() => {
                   if (check && check.length > 0) {
                     return null
                   } else {
-                    if (cart) {
-                      setCart([...cart, cartFood])
+                    if (check && check.length > 0) {
+                      return null
                     } else {
-                      setCart([cartFood])
+                      if (cart) {
+                        setCart([...cart, cartFood])
+                      } else {
+                        setCart([cartFood])
+                      }
                     }
                   }
-                }
-              }}
-            >
-              {check && check.length > 0 ? "Added to Cart" : "Add To Cart"}
-            </button>
+                }}
+              >
+                {check && check.length > 0 ? "Added to Cart" : "Add To Cart"}
+              </button>
+            )}
             <span onClick={closeModal}>Dismiss</span>
           </div>
         </div>
