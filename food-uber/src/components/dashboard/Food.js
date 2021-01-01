@@ -4,26 +4,29 @@ import axios from "axios"
 
 const FoodCard = ({ name, id, description, food_image, cost, plates }) => {
   let [loading, setLoading] = useState(false)
+  let token = localStorage.getItem("token")
   const remove = (id, name) => {
     window.confirm(`Are you sure you want to delete ${name}`)
-    let token = localStorage.getItem("token")
-    if (window.confirm) {
-      let config = {
-        headers: {
-          authorization: token,
-        },
+    console.log(token)
+    if (token) {
+      if (window.confirm) {
+        let config = {
+          headers: {
+            authorization: token,
+          },
+        }
+        setLoading(true)
+        axios
+          .post(`/delete-food/${id}`, config)
+          .then((res) => {
+            console.log(res.data)
+            setLoading(false)
+          })
+          .catch((err) => {
+            setLoading(false)
+            console.log(err)
+          })
       }
-      setLoading(true)
-      axios
-        .post(`/delete-food/${id}`, config)
-        .then((res) => {
-          console.log(res.data)
-          setLoading(false)
-        })
-        .catch((err) => {
-          setLoading(false)
-          console.log(err)
-        })
     }
   }
   return (

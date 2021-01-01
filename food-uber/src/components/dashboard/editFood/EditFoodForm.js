@@ -38,6 +38,7 @@ const EditFoodForm = ({ foodToEdit, foodLoading }) => {
       category: foodToEdit && foodToEdit[0].category,
       cost,
       featured,
+      plates,
     }
     axios
       .post(`/update-food/${foodToEdit[0].id}`, body, config)

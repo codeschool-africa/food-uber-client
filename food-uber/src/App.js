@@ -5,9 +5,6 @@ import { MdClose } from "react-icons/all"
 import { UserContext } from "./context/UserContext"
 import { FoodContext } from "./context/FoodContext"
 
-// import logo
-// import logo from "./assets/images/logo.png"
-
 // styles
 import "./styles/style.sass"
 
