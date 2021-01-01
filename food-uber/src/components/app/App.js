@@ -30,11 +30,11 @@ const App = () => {
         <div className="btns">
           <a href="#" className="btn btn-primary">
             <FaGooglePlay className="icon" />
-            Google Playstore
+            Playstore
           </a>
           <a href="#" className="btn btn-primary">
             <FaAppStore className="icon" />
-            App Store
+            AppStore
           </a>
         </div>
       </div>

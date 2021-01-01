@@ -82,38 +82,44 @@ const CartCard = ({ id, name, cost, number }) => {
         </>
       ) : (
         <>
-          <div className="img-container">
-            {cartFood && <img src={cartFood[0].food_image} alt={name} />}
-          </div>
-          <div className="cart-details">
-            <div className="name">
-              {name}{" "}
-              <span
-                className={
-                  cartFood && cartFood[0].plates && cartFood[0].plates > 0
-                    ? `success`
-                    : "error"
-                }
-              >
-                {cartFood && cartFood[0].plates && cartFood[0].plates > 0
-                  ? "available"
-                  : "Out of stock"}
-              </span>
-            </div>
-            <div className="cost">&#64; Tshs {cost}</div>
-            <div className="counter">
-              <span onClick={minus} className="span">
-                <AiOutlineMinus className="icon" />
-              </span>
-              <span className="number">{number && number}</span>
-              <span onClick={add} className="span">
-                <AiOutlinePlus className="icon" />
-              </span>
-            </div>
-            <div className="remove">
-              <span onClick={removeFromCart}>Remove</span>
-            </div>
-          </div>
+          {cartFood && (
+            <>
+              <div className="img-container">
+                {cartFood && <img src={cartFood[0].food_image} alt={name} />}
+              </div>
+              <div className="cart-details">
+                <div className="name">
+                  {name}{" "}
+                  <span
+                    className={
+                      cartFood && cartFood[0].plates && cartFood[0].plates > 0
+                        ? `success`
+                        : "error"
+                    }
+                  >
+                    {cartFood && cartFood[0].plates && cartFood[0].plates > 0
+                      ? "available"
+                      : "Out of stock"}
+                  </span>
+                </div>
+                {cartFood && (
+                  <div className="cost">&#64; Tshs {cartFood[0].cost}</div>
+                )}
+                <div className="counter">
+                  <span onClick={minus} className="span">
+                    <AiOutlineMinus className="icon" />
+                  </span>
+                  <span className="number">{number && number}</span>
+                  <span onClick={add} className="span">
+                    <AiOutlinePlus className="icon" />
+                  </span>
+                </div>
+                <div className="remove">
+                  <span onClick={removeFromCart}>Remove</span>
+                </div>
+              </div>
+            </>
+          )}
         </>
       )}
     </div>
