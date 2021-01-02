@@ -5,7 +5,6 @@ export const UserContext = createContext()
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
     isAuthenticated: false,
-    token: localStorage.getItem("token"),
     loading: true,
   })
   return (

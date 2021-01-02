@@ -12,17 +12,20 @@ const CartCard = ({ id, name, cost, number }) => {
   if (foods && foods.data) cartFood = foods.data.filter((o) => o.id === id)
   // console.log(cartFood)
   const add = () => {
-    if (cartFood && cartFood[0] && cartFood[0].plates > 0) {
+    if (cartFood && cartFood.length > 0 && cartFood[0].plates > 0) {
       if (number > cartFood[0].plates - 1) {
+        // console.log("nope")
         return null
       } else {
+        // console.log(number)
         setCart(
           cart.map((item) => {
             if (id === item.id) {
+              // console.log(id)
               saveLocalCarts()
               return {
                 ...item,
-                number: item.number++,
+                number: item.number + 1,
               }
             }
             return item
@@ -85,24 +88,32 @@ const CartCard = ({ id, name, cost, number }) => {
           {cartFood && (
             <>
               <div className="img-container">
-                {cartFood && <img src={cartFood[0].food_image} alt={name} />}
+                {cartFood && cartFood.length > 0 && (
+                  <img src={cartFood[0].food_image} alt={name} />
+                )}
               </div>
               <div className="cart-details">
                 <div className="name">
                   {name}{" "}
                   <span
                     className={
-                      cartFood && cartFood[0].plates && cartFood[0].plates > 0
+                      cartFood &&
+                      cartFood.length > 0 &&
+                      cartFood[0].plates &&
+                      cartFood[0].plates > 0
                         ? `success`
                         : "error"
                     }
                   >
-                    {cartFood && cartFood[0].plates && cartFood[0].plates > 0
+                    {cartFood &&
+                    cartFood.length > 0 &&
+                    cartFood[0].plates &&
+                    cartFood[0].plates > 0
                       ? "available"
                       : "Out of stock"}
                   </span>
                 </div>
-                {cartFood && (
+                {cartFood && cartFood.length > 0 && (
                   <div className="cost">&#64; Tshs {cartFood[0].cost}</div>
                 )}
                 <div className="counter">

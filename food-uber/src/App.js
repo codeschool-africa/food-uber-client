@@ -56,7 +56,7 @@ const App = () => {
         }
       })
       .catch((err) => {
-        console.log(err)
+        // console.log(err)
         setUser({
           ...user,
           loading: false,
@@ -87,7 +87,7 @@ const App = () => {
           ...foods,
           loading: false,
         })
-        console.log(err)
+        // console.log(err)
       })
   }, [foods])
   return (

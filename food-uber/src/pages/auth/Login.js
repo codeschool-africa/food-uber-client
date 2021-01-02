@@ -23,6 +23,15 @@ const Login = () => {
       [name]: value,
     })
   }
+
+  const saveLocalToken = (token) => {
+    if (localStorage.getItem("token") === null) {
+      localStorage.setItem("token", "")
+    } else {
+      localStorage.setItem("cart", token)
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     setLoading(true)
@@ -43,13 +52,13 @@ const Login = () => {
         // console.log(res)
         if (res.data.msg) console.log(res.data.msg)
         if (res.data.token && res.data.results) {
-          localStorage.setItem("token", res.data.token)
+          saveLocalToken(res.data.token)
           setUser({
             ...user,
             isAuthenticated: true,
             data: res.data.results,
           })
-          setAuthToken(res.data.token)
+          // setAuthToken(res.data.token)
         }
         setLoading(false)
         history.goBack()

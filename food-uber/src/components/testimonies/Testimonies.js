@@ -64,14 +64,17 @@ const Testimonies = () => {
             spaceBetween={0}
             grabCursor={true}
             slidesPerView={1}
-            Navigation
+            navigation={true}
             pagination={{ clickable: true }}
           >
             {stories.map(({ id, story, name, dp }) => (
               <SwiperSlide key={id}>
                 <article className="story">
                   <div className="home-content">
-                    <p>{story}</p>
+                    <p>
+                      <FaQuoteLeft className="icon" />
+                      {story}
+                    </p>
                     <h3>{name}</h3>
                   </div>
                   <div className="dp">
