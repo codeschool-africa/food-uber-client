@@ -66,7 +66,7 @@ const Checkout = () => {
       ...formData,
       [name]: value,
     })
-    console.log(formData)
+    // console.log(formData)
   }
 
   let token = localStorage.getItem("token")
@@ -76,7 +76,7 @@ const Checkout = () => {
     setLoading(true)
     let config = {
       headers: {
-        // authorization: token,
+        authorization: token,
         "Content-Type": "application/json",
       },
     }

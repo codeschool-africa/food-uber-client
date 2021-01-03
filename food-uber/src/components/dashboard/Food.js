@@ -12,6 +12,7 @@ const FoodCard = ({ name, id, description, food_image, cost, plates }) => {
       if (window.confirm) {
         let config = {
           headers: {
+            "Content-Type": "application/json",
             authorization: token,
           },
         }
