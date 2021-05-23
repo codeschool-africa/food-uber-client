@@ -28,7 +28,6 @@ const Dashboard = React.lazy(() => import("./pages/dashboard/"))
 const Menu = React.lazy(() => import("./pages/Menu"))
 
 axios.defaults.baseURL = "http://faraja-food-uber.herokuapp.com/api"
-// axios.defaults.baseURL = "http://localhost:5000/api"
 
 const App = () => {
   let [user, setUser] = useContext(UserContext)
