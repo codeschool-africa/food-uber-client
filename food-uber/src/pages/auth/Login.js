@@ -28,7 +28,7 @@ const Login = () => {
     if (localStorage.getItem("token") === null) {
       localStorage.setItem("token", "")
     } else {
-      localStorage.setItem("cart", token)
+      localStorage.setItem("token", token)
     }
   }
 
