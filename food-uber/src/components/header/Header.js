@@ -45,7 +45,7 @@ const Header = () => {
         </div>
         <nav className="auth">
           <ul>
-            {user.isAuthenticated ? (
+            {user.isAuthenticated && user.data ? (
               <>
                 <li>
                   <NavLink to="/my-orders" activeClassName="active">
