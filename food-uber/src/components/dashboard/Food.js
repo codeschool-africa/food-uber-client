@@ -18,7 +18,7 @@ const FoodCard = ({ name, id, description, food_image, cost, plates }) => {
         }
         setLoading(true)
         axios
-          .post(`/delete-food/${id}`, config)
+          .post(`/delete-food/${id}`, {}, config)
           .then((res) => {
             console.log(res.data)
             setLoading(false)
