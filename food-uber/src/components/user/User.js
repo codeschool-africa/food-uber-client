@@ -20,7 +20,7 @@ const User = ({ dp_path, name, id, role, defaultDp }) => {
   const addAdmin = (id) => {
     if (token)
       axios
-        .post(`/add-admin/${id}`, config)
+        .post(`/add-admin/${id}`, {}, config)
         .then((res) => {
           console.log(res.data)
         })
@@ -31,7 +31,7 @@ const User = ({ dp_path, name, id, role, defaultDp }) => {
 
   const removeAdmin = (id) => {
     axios
-      .post(`remove-admin/${id}`, config)
+      .post(`remove-admin/${id}`, {}, config)
       .then((res) => {
         console.log(res.data)
       })
