@@ -52,7 +52,7 @@ const Login = () => {
         // console.log(res)
         if (res.data.msg) console.log(res.data.msg)
         if (res.data.token && res.data.results) {
-          saveLocalToken(res.data.token)
+          localStorage.setItem("token", res.data.token)
           setUser({
             ...user,
             isAuthenticated: true,
